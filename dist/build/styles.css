@@ -1,0 +1,3 @@
+body { color: red; background-color: #ccc; }
+body h1, body p { font-size: 24px; font-weight: bold; color: black; }
+.my-class { text-align: center; }

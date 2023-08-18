@@ -1,0 +1,23 @@
+{
+  "name": "dynsjs",
+  "version": "1.0.0",
+  "description": "Une bibliothèque JS pour générer dynamiquement des feuilles de style CSS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "compile:styles": "node compileStyles.js"
+  },
+  "keywords": ["css", "stylesheet", "dynamic", "js"],
+  "author": "Paterne G. G",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.22.10",
+    "@babel/preset-env": "^7.22.10",
+    "babel-loader": "^9.1.3",
+    "terser-webpack-plugin": "^5.3.9",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "type": "module"
+}
