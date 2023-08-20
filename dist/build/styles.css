@@ -1,6 +1,16 @@
-body { background-color: var(--background-color); font-family: Arial, sans-serif; padding: 20px; color: var(--text-color); }
+body { background-color: #1a1a1a; font-family: Arial, sans-serif; padding: 20px; color: #f4f4f4; }
 .content-wrapper { border: 1px solid #ddd; border-radius: 5px; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-h1 { color: var(--text-color); font-size: 24px; }
-.my-class { color: var(--text-color); font-size: 16px; }
-button { padding: 10px 20px; font-size: 16px; cursor: pointer; margin-top: 20px; border: none; border-radius: 5px; background-color: var(--primary-color); color: white; transition: background-color 0.3s; animation: buttonHover 0.3s forwards; }
-@keyframes buttonHover { 0%: background-color: var(--primary-color); 100%: background-color: rgb(0,83,215); }
+h1 { color: #007bff; font-size: 24px; }
+.my-class { color: #007bff; font-size: 16px; }
+button { padding: 10px 20px; font-size: 16px; cursor: pointer; margin-top: 20px; border: none; border-radius: 5px; background-color: #007bff; color: white; transition: background-color 0.3s; animation: buttonHover 0.3s forwards; }
+@keyframes buttonHover { 0% { background-color: #007bff; } 100% { background-color: rgb(0,83,215); } }
+button:hover { background-color: rgb(0,83,215); animation: none; color: white; }
+@media (max-width: 768px) {
+  body { font-size: 14px; }
+}
+@media (max-width: 576px) {
+  body { font-size: 12px; }
+}
+@media (max-width: 480px) {
+  body { font-size: 10px; }
+}

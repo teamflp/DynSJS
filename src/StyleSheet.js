@@ -26,21 +26,31 @@ export class StyleSheet {
         let cssMap = {};
 
         cssObjects.forEach(obj => {
-            if (obj.result) {
+            if (obj.result && obj.result.selector && obj.result.properties) {
                 const {selector, properties} = obj.result;
                 cssMap[selector] = cssMap[selector] ? `${cssMap[selector]} ${properties}` : properties;
             }
 
-            obj.childrenCSS.forEach(child => {
-                const {selector, properties} = child;
-                cssMap[selector] = cssMap[selector] ? `${cssMap[selector]} ${properties}` : properties;
-            });
+            // Vérification défensive pour s'assurer que obj.childrenCSS est un tableau
+            if (Array.isArray(obj.childrenCSS)) {
+                obj.childrenCSS.forEach(child => {
+                    if (child && child.selector && child.properties) {
+                        const {selector, properties} = child;
+                        cssMap[selector] = cssMap[selector] ? `${cssMap[selector]} ${properties}` : properties;
+                    }
+                });
+            }
 
-            obj.mediaCSS.forEach(media => {
-                const {query, css} = media;
-                const mediaKey = `@media ${query}`;
-                cssMap[mediaKey] = cssMap[mediaKey] ? `${cssMap[mediaKey]} ${css}` : css;
-            });
+            // Vérification défensive pour s'assurer que obj.mediaCSS est un tableau
+            if (Array.isArray(obj.mediaCSS)) {
+                obj.mediaCSS.forEach(media => {
+                    if (media && media.query && media.css) {
+                        const {query, css} = media;
+                        const mediaKey = `@media ${query}`;
+                        cssMap[mediaKey] = cssMap[mediaKey] ? `${cssMap[mediaKey]} ${css}` : css;
+                    }
+                });
+            }
         });
 
         let compiledCSS = "";
