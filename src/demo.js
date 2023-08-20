@@ -1,55 +1,31 @@
 import { StyleSheet } from './StyleSheet.js';
+import { Color } from './Color.js';
 
 const sheet = new StyleSheet();
 
-// Définition des variables de couleur au niveau de la racine
-/*sheet.rule(':root')
-    .set({
-        '--primary-color': 'rgb(0,123,255)',
-        '--text-color': 'rgb(51,51,51)',
-        '--background-color': 'rgb(244,244,244)'
-    });*/
+// Créez des instances de la classe Color
+const primaryColor = new Color(255, 255, 125);  // 2. Créez des instances de Color
+const hoverColor = new Color(100, 83, 125);
 
-// Application des variables dans les styles
-const isDarkThemeEnabled = () => {
-    return true;
-};
-
-// Application des variables dans les styles
 sheet.rule('body')
     .set({
-        backgroundColor: '#1a1a1a',  // fond sombre pour le mode sombre
+        backgroundColor: '#1a1a1a',
         fontFamily: 'Arial, sans-serif',
         padding: '20px',
-        color: '#f4f4f4'  // texte clair pour le mode sombre
+        color: '#f4f4f4'
     })
-
-sheet.rule('.content-wrapper')
-    .set({
-        border: '1px solid #ddd',
-        borderRadius: '5px',
-        padding: '20px',
-        boxShadow: '0 0 10px rgba(0,0,0,0.1)'
-    })
-    .nested('p')
-    .set({
-        marginBottom: '20px',
-        lineHeight: '1.5'
-    });
+// ... Autres règles ...
 
 sheet.rule('h1')
-    .set({
-        color: '#007bff',
-        fontSize: '24px'
-    });
+    .setColor(primaryColor, 'color')  // 3. Utilisez setColor
+    .set({ fontSize: '24px' });
 
 sheet.rule('.my-class')
-    .set({
-        color: '#007bff',
-        fontSize: '16px'
-    });
+    .setColor(primaryColor, 'color')  // 3. Utilisez setColor
+    .set({ fontSize: '16px' });
 
 sheet.rule('button')
+    .setColor(primaryColor, 'backgroundColor')  // 3. Utilisez setColor
     .set({
         padding: '10px 20px',
         fontSize: '16px',
@@ -57,7 +33,6 @@ sheet.rule('button')
         marginTop: '20px',
         border: 'none',
         borderRadius: '5px',
-        backgroundColor: '#007bff',
         color: 'white',
         transition: 'background-color 0.3s',
         animation: 'buttonHover 0.3s forwards'
@@ -65,13 +40,13 @@ sheet.rule('button')
 
 sheet.rule('@keyframes buttonHover')
     .set({
-        '0%': { 'background-color': '#007bff' },
-        '100%': { 'background-color': 'rgb(0,83,215)' }
+        '0%': { 'background-color': primaryColor.toRGBA() },
+        '100%': { 'background-color': hoverColor.toRGBA() }
     });
 
 sheet.rule('button:hover')
+    .setColor(hoverColor, 'backgroundColor')  // 3. Utilisez setColor
     .set({
-        backgroundColor: 'rgb(0,83,215)',
         animation: 'none',
         color: 'white'
     });

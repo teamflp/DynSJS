@@ -95,6 +95,11 @@ export class Color {
         return this;
     }
 
+    // Ajoutez la méthode toRGBA
+    toRGBA() {
+        return `rgba(${this.r},${this.g},${this.b},${this.a})`;
+    }
+
     /**
      * Returns a CSS string representation of the color.
      * @returns {string}

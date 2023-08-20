@@ -139,6 +139,21 @@ export class DynSJS {
     }
 
     /**
+     * Sets the color for the given property.
+     * @param color
+     * @param property
+     * @returns {DynSJS}
+     */
+    setColor(color, property) {
+        if (!(color instanceof Color)) {
+            throw new Error("L'argument fourni n'est pas une instance de Color.");
+        }
+
+        this._properties[property] = color.toRGBA();
+        return this;
+    }
+
+    /**
      * Converts the rule and its children to CSS string.
      * @param {string} parentSelector - Parent selector string.
      * @returns {{result: {selector: *, properties: string}, mediaCSS: {css: string, query: *}[], childrenCSS: string}|null} - CSS string for the rule and its children.
