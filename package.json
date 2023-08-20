@@ -6,15 +6,28 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "compile:styles": "node compileStyles.js"
+    "build:prod": "node compileStyles.js",
+    "build:prod:watch": "chokidar 'src/**/*' -c 'npm run build:prod:watch'",
+    "build:prod:clean": "rm -rf dist/build/*",
+    "build:prod:minify": "terser-webpack-plugin dist/build/index.js dist/build/index.min.js",
+    "build:dev": "node compileStyles.js",
+    "build:dev:clean": "rm -rf dist/build/*",
+    "build:dev:minify": "terser-webpack-plugin dist/build/index.js dist/build/index.min.js",
+    "build:dev:watch": "chokidar 'src/**/*' -c 'npm run build:dev:watch'"
   },
-  "keywords": ["css", "stylesheet", "dynamic", "js"],
+  "keywords": [
+    "css",
+    "stylesheet",
+    "dynamic",
+    "js"
+  ],
   "author": "Paterne G. G",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.22.10",
     "@babel/preset-env": "^7.22.10",
     "babel-loader": "^9.1.3",
+    "chokidar-cli": "^3.0.0",
     "terser-webpack-plugin": "^5.3.9",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"

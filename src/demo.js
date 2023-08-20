@@ -2,12 +2,21 @@ import { StyleSheet } from './StyleSheet.js';
 
 const sheet = new StyleSheet();
 
-// Styles par défaut
+// Définition des variables de couleur au niveau de la racine
+/*sheet.rule(':root')
+    .set({
+        '--primary-color': 'rgb(0,123,255)',
+        '--text-color': 'rgb(51,51,51)',
+        '--background-color': 'rgb(244,244,244)'
+    });*/
+
+// Application des variables dans les styles
 sheet.rule('body')
     .set({
-        backgroundColor: '#f4f4f4',
+        backgroundColor: 'var(--background-color)',
         fontFamily: 'Arial, sans-serif',
-        padding: '20px'
+        padding: '20px',
+        color: 'var(--text-color)'
     });
 
 sheet.rule('.content-wrapper')
@@ -20,13 +29,13 @@ sheet.rule('.content-wrapper')
 
 sheet.rule('h1')
     .set({
-        color: '#333',
+        color: 'var(--text-color)',
         fontSize: '24px'
     });
 
 sheet.rule('.my-class')
     .set({
-        color: '#555',
+        color: 'var(--text-color)',
         fontSize: '16px'
     });
 
@@ -38,33 +47,18 @@ sheet.rule('button')
         marginTop: '20px',
         border: 'none',
         borderRadius: '5px',
-        backgroundColor: '#007BFF',
-        color: 'white'
-    })
-    .media('(max-width: 600px)')
-    .set({
-        fontSize: '14px'
+        backgroundColor: 'var(--primary-color)',
+        color: 'white',
+        transition: 'background-color 0.3s',
+        animation: 'buttonHover 0.3s forwards'
     });
 
-// Appliquer les styles initiaux
+sheet.rule('@keyframes buttonHover')
+    .set({
+        '0%': 'background-color: var(--primary-color)',
+        '100%': 'background-color: rgb(0,83,215)'
+    });
+
 const cssOutput = sheet.compile();
-document.head.insertAdjacentHTML('beforeend', `<style>${cssOutput}</style>`);
 
-// Événement pour changer de thème
-document.getElementById('toggleTheme').addEventListener('click', () => {
-    const isDark = document.body.style.backgroundColor === 'black';
-
-    if (isDark) {
-        sheet.rule('body').set({backgroundColor: '#f4f4f4'});
-        sheet.rule('h1').set({color: '#333'});
-        sheet.rule('.my-class').set({color: '#555'});
-    } else {
-        sheet.rule('body').set({backgroundColor: 'black'});
-        sheet.rule('h1').set({color: 'white'});
-        sheet.rule('.my-class').set({color: '#aaa'});
-    }
-
-    // Mise à jour des styles
-    const updatedCSS = sheet.compile();
-    document.head.insertAdjacentHTML('beforeend', `<style>${updatedCSS}</style>`);
-});
+export default cssOutput;

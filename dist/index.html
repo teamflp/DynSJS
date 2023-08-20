@@ -1,17 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dynamic Style JavaScript</title>
     <link rel="stylesheet" href="./build/styles.css">
 </head>
+
 <body>
 <div class="content-wrapper">
     <h1> DynSJS: Dynamic Style JavaScript</h1>
     <p class="my-class">DynSJS est une librairie qui permet de générer dynamiquement du CSS en utilisant JavaScript.</p>
     <button id="toggleTheme">Changer de thème</button>
+    <button id="increaseFont">Augmenter la taille de la police</button>
+    <p id="coloredParagraph">Ceci est un paragraphe dont la couleur d'arrière-plan peut être modifiée.</p>
+    <button id="changeBackgroundColor">Changer la couleur d'arrière-plan</button>
 </div>
+
 <script src="../src/DynSJS.js"></script>
-<script src="./demo.js"></script>
+<script src="../src/demo.js"></script>
 </body>
+
 </html>

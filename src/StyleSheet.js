@@ -25,26 +25,23 @@ export class StyleSheet {
     _mergeCSS(cssObjects) {
         let cssMap = {};
 
-        const addCSS = (selector, properties) => {
-            cssMap[selector] = cssMap[selector] ? `${cssMap[selector]} ${properties}` : properties;
-        };
-
-        const processCSSObject = obj => {
+        cssObjects.forEach(obj => {
             if (obj.result) {
                 const {selector, properties} = obj.result;
-                addCSS(selector, properties);
+                cssMap[selector] = cssMap[selector] ? `${cssMap[selector]} ${properties}` : properties;
             }
 
-            obj.childrenCSS.forEach(processCSSObject); // Traiter les règles enfants de manière récursive
+            obj.childrenCSS.forEach(child => {
+                const {selector, properties} = child;
+                cssMap[selector] = cssMap[selector] ? `${cssMap[selector]} ${properties}` : properties;
+            });
 
             obj.mediaCSS.forEach(media => {
                 const {query, css} = media;
                 const mediaKey = `@media ${query}`;
                 cssMap[mediaKey] = cssMap[mediaKey] ? `${cssMap[mediaKey]} ${css}` : css;
             });
-        };
-
-        cssObjects.forEach(processCSSObject);
+        });
 
         let compiledCSS = "";
         for (let selector in cssMap) {
@@ -63,9 +60,7 @@ export class StyleSheet {
      * @returns {string} - The compiled CSS string.
      */
     compile() {
-        const cssObjects = this._rules.map(rule => rule.toCSS()).filter(Boolean);
-        return this._mergeCSS(cssObjects);
+        const intermediateCSS = this._rules.map(rule => rule.toCSS()).filter(Boolean);
+        return this._mergeCSS(intermediateCSS);
     }
-
-
 }
