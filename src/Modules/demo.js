@@ -1,5 +1,5 @@
-import { StyleSheet } from './StyleSheet.js';
-import { Color } from './Color.js';
+import { StyleSheet } from '../Classes/StyleSheet.js';
+import { Color } from '../Classes/Color.js';
 
 const sheet = new StyleSheet();
 
@@ -14,7 +14,6 @@ sheet.rule('body')
         padding: '20px',
         color: '#f4f4f4'
     })
-// ... Autres règles ...
 
 sheet.rule('h1')
     .setColor(primaryColor, 'color')  // 3. Utilisez setColor
@@ -66,7 +65,4 @@ sheet.rule('body')
 sheet.rule('body')
     .media('(max-width: 480px)')
     .set({ fontSize: '10px' });
-
-const cssOutput = sheet.compile();
-
-export default cssOutput;
+export default sheet

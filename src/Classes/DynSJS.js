@@ -1,5 +1,6 @@
 import {Color} from "./Color.js";
 export class DynSJS {
+    _parent;
 
     /**
      * Creates an instance of DynSJS with given selectors.
@@ -55,17 +56,14 @@ export class DynSJS {
         return this;
     }
 
-
     /**
-     * Adds a nested rule within the current rule.
-     * @param {...string} selectors - The CSS selectors for the nested rule.
-     * @returns {DynSJS} - Returns the nested rule instance.
+     * Adds a child rule to the current rule.
+     * @param selector
+     * @returns {DynSJS}
      */
-    nested(...selectors) {
-        const rule = new DynSJS(...selectors);
-        this._children.push(rule);
-        rule._parent = this;
-        return rule;
+    nested(selector) {
+        this._selectors = this._selectors.map(s => `${s} ${selector}`);
+        return this;
     }
 
     /**
@@ -114,9 +112,6 @@ export class DynSJS {
         console.log('parentSelector:', parentSelector);
         console.log('this._selectors:', this._selectors);
         return this._selectors.map(sel => {
-            if (parentSelector && parentSelector.trim() === sel.trim()) {
-                return sel;
-            }
             return parentSelector ? `${parentSelector} ${sel}` : sel;
         }).join(', ');
     }
@@ -158,6 +153,7 @@ export class DynSJS {
      * @param {string} parentSelector - Parent selector string.
      * @returns {{result: {selector: *, properties: string}, mediaCSS: {css: string, query: *}[], childrenCSS: string}|null} - CSS string for the rule and its children.
      */
+
     toCSS(parentSelector = '') {
         if (!this._isConditionMet()) return null;
 
@@ -204,7 +200,5 @@ export class DynSJS {
 
         return {result, childrenCSS: childrenCssString, mediaCSS};
     }
-
-
 
 }

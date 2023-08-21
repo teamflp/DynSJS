@@ -1,7 +1,15 @@
+import { StyleSheet } from './Classes/StyleSheet.js';
 
-import { StyleSheet } from './StyleSheet.js';
+// On importe tous les modules de style 
+import demo from './Modules/demo.js';
+import header from './Modules/header.js';
 
-const sheet = new StyleSheet();
+// On crée un objet StyleSheet
+const MainSheet = new StyleSheet();
 
-const css = sheet.compile();
-console.log(css);
+// On combine toutes les feuilles de style
+MainSheet.combine(demo, header)
+
+// On exporte le style sheet
+const cssOutput = MainSheet.compile();
+export default cssOutput;

@@ -66,6 +66,22 @@ export class StyleSheet {
     }
 
     /**
+     * Combines multiple stylesheets into a single stylesheet.
+     * @param stylesheets
+     */
+
+    combine(...stylesheets) {
+        for (let sheet of stylesheets) {
+            // Vérification pour s'assurer que sheet._rules est bien un tableau
+            if (Array.isArray(sheet._rules)) {
+                this._rules.push(...sheet._rules);
+            } else {
+                throw new Error('Le paramètre fourni à combine ne semble pas être une instance valide de StyleSheet.');
+            }
+        }
+    }
+
+    /**
      * Compiles all the rules into a CSS string.
      * @returns {string} - The compiled CSS string.
      */
