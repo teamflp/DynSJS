@@ -25,6 +25,7 @@ sheet.rule('.my-class')
 
 sheet.rule('button')
     .setColor(primaryColor, 'backgroundColor')  // 3. Utilisez setColor
+    .hover({ backgroundColor: hoverColor })
     .set({
         padding: '10px 20px',
         fontSize: '16px',
@@ -34,19 +35,19 @@ sheet.rule('button')
         borderRadius: '5px',
         color: 'white',
         transition: 'background-color 0.3s',
-        animation: 'buttonHover 0.3s forwards'
+        animation: 'buttonHover 0.3s forwards',
     });
 
 sheet.rule('@keyframes buttonHover')
     .set({
         '0%': { 'background-color': primaryColor.toRGBA() },
-        '100%': { 'background-color': hoverColor.toRGBA() }
+        '100%': { 'background-color': hoverColor.toRGBA() },
     });
 
 sheet.rule('button:hover')
     .setColor(hoverColor, 'backgroundColor')  // 3. Utilisez setColor
     .set({
-        animation: 'none',
+        animation: 'transition 0.3s ease-in-out forwards',
         color: 'white'
     });
 

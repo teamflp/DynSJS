@@ -89,4 +89,5 @@ export class StyleSheet {
         const intermediateCSS = this._rules.map(rule => rule.toCSS()).filter(Boolean);
         return this._mergeCSS(intermediateCSS);
     }
+
 }
