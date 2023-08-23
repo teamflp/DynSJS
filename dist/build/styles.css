@@ -16,6 +16,7 @@ button:hover { background-color: rgba(100,83,125,1); animation: transition 0.3s 
 header h1:hover { background-color: rgba(255,0,0,0.5); color: #FFFFFF; }
 @keyframes rotateInfinite { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 header h1 { animation: rotateInfinite 5s linear infinite; }
-footer p::before { background-color: rgba(0,255,0,0.5); color: #FFFFFF; content: "C'est le footer!"; }
+footer { background-color: rgba(255,0,0,0.5); width: 100%; flex-direction: row; justify-content: center; align-items: center; }
+footer p::before { background-color: rgba(0,255,0,0.5); color: #FFFFFF; text-align: center; padding: 10px; width: 100%; content: "C'est le footer!"; }
 footer button:hover { background-color: rgba(0,255,0,0.5); }
 footer button:focus { background-color: rgba(255,255,0,0.25); }
