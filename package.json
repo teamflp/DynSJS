@@ -5,15 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "build:prod": "node compileStyles.js",
-    "build:prod:watch": "chokidar 'src/**/*' -c 'npm run build:prod:watch'",
-    "build:prod:clean": "rm -rf dist/build/*",
-    "build:prod:minify": "terser-webpack-plugin dist/build/index.js dist/build/index.min.js",
-    "build:dev": "node compileStyles.js",
-    "build:dev:clean": "rm -rf dist/build/*",
-    "build:dev:minify": "terser-webpack-plugin dist/build/index.js dist/build/index.min.js",
-    "build:dev:watch": "chokidar 'src/**/*' -c 'npm run build:dev:watch'"
+    "clean": "rm -rf dist/build/*",
+    "build": "npm run clean && webpack --config webpack.config.cjs",
+    "build:prod": "npm run clean && webpack --mode production --config webpack.config.cjs",
+    "watch": "webpack --watch --config webpack.config.cjs",
+    "doc": "jsdoc -c jsdoc.json"
   },
   "keywords": [
     "css",
@@ -28,6 +24,11 @@
     "@babel/preset-env": "^7.22.10",
     "babel-loader": "^9.1.3",
     "chokidar-cli": "^3.0.0",
+    "docdash": "^2.0.1",
+    "jsdoc": "^4.0.2",
+    "jsdoc-babel": "^0.5.0",
+    "jsdoc-webpack-plugin": "^0.3.0",
+    "minami": "^1.2.3",
     "terser-webpack-plugin": "^5.3.9",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"

@@ -1,34 +1,35 @@
 import { StyleSheet } from '../Classes/StyleSheet.js';
-import { Color } from '../Classes/Color.js';
+import { colorRed, colorGreen, colorWhite, colorYellow } from './vars.js';
 
 const footer = new StyleSheet();
 
-const colorRed = new Color(255, 0, 0, 0.5);
-const colorGreen = new Color(0, 255, 0, 0.5)
-const colorYellow = new Color(255, 255, 0, 0.25 )
-
-footer.rule('div')
+footer.rule('div');
 footer.rule('footer')
     .setColor(colorRed, 'backgroundColor')
-    .set({width: '100%'})
+    .set({width: '50%'})
+    .transitionManager({ backgroundColor: '0.5s', width: '0.3s' }) // Utilisation de transitionManager
     .flexLayout({ direction: 'row', justify: 'center', align: 'center' })
 
 footer.rule('footer')
     .nested('p')
-        .setColor(colorGreen, 'backgroundColor')
-        .set({color: '#FFFFFF', textAlign: 'center', padding: '10px', width: '100%'})
+    .setColor(colorGreen, 'backgroundColor', colorWhite, 'color')
+    .set({textAlign: 'center', padding: '10px', width: '100%'})
+    .transitionManager({ backgroundColor: '0.5s', color: '0.5s' }) // Utilisation de transitionManager
     .nested('::before')
-        .setText("C'est le footer!")
+    .setText("C'est le footer!")
+    .end();
 
 footer.rule('footer')
-    .nested('p')
+    .nested('p');
 
 footer.rule('footer')
     .nested('button:hover')
     .setColor(colorGreen, 'backgroundColor')
+    .transitionManager({ backgroundColor: '0.3s' }); // Utilisation de transitionManager
 
 footer.rule('footer')
     .nested('button:focus')
     .setColor(colorYellow, 'backgroundColor')
+    .transitionManager({ backgroundColor: '0.3s' }); // Utilisation de transitionManager
 
 export default footer;

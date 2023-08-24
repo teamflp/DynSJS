@@ -1,4 +1,51 @@
-import { Color } from "./Color.js";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>DynSJS.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Color.html">Color</a><ul class='methods'><li data-type='method'><a href="Color.html#clamp">clamp</a></li><li data-type='method'><a href="Color.html#operate">operate</a></li><li data-type='method'><a href="Color.html#toRGBA">toRGBA</a></li><li data-type='method'><a href="Color.html#toString">toString</a></li><li data-type='method'><a href="Color.html#.fromHex">fromHex</a></li><li data-type='method'><a href="Color.html#.fromRgb">fromRgb</a></li></ul></li><li><a href="DynSJS.html">DynSJS</a><ul class='methods'><li data-type='method'><a href="DynSJS.html#active">active</a></li><li data-type='method'><a href="DynSJS.html#end">end</a></li><li data-type='method'><a href="DynSJS.html#flexLayout">flexLayout</a></li><li data-type='method'><a href="DynSJS.html#focus">focus</a></li><li data-type='method'><a href="DynSJS.html#hover">hover</a></li><li data-type='method'><a href="DynSJS.html#media">media</a></li><li data-type='method'><a href="DynSJS.html#nested">nested</a></li><li data-type='method'><a href="DynSJS.html#set">set</a></li><li data-type='method'><a href="DynSJS.html#setColor">setColor</a></li><li data-type='method'><a href="DynSJS.html#setText">setText</a></li><li data-type='method'><a href="DynSJS.html#transitionManager">transitionManager</a></li><li data-type='method'><a href="DynSJS.html#when">when</a></li></ul></li><li><a href="TransitionManager.html">TransitionManager</a><ul class='methods'><li data-type='method'><a href="TransitionManager.html#addTransition">addTransition</a></li><li data-type='method'><a href="TransitionManager.html#clearTransitions">clearTransitions</a></li><li data-type='method'><a href="TransitionManager.html#revertTransition">revertTransition</a></li><li data-type='method'><a href="TransitionManager.html#startTransition">startTransition</a></li></ul></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">DynSJS.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { Color } from "./Color.js";
 
 /**
  * Classe pour générer dynamiquement des styles CSS.
@@ -66,10 +113,10 @@ export class DynSJS {
     }
 
     static _isValidSelector(sel) {
-        return typeof sel === 'string' && sel.trim();
+        return typeof sel === 'string' &amp;&amp; sel.trim();
     }
     static _isValidProperty(key, value) {
-        return typeof key === 'string' && typeof value === 'string';
+        return typeof key === 'string' &amp;&amp; typeof value === 'string';
     }
     static camelToKebab(string) {
         return string.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
@@ -84,9 +131,9 @@ export class DynSJS {
      *
      *
      * code html :
-     * <article>
-     *     <h1>Dynamic StyleSheet JavaScript</h1>
-     * </article>
+     * &lt;article>
+     *     &lt;h1>Dynamic StyleSheet JavaScript&lt;/h1>
+     * &lt;/article>
      *
      * code js :
      * const article = new DynSJS('article');
@@ -106,7 +153,7 @@ export class DynSJS {
      */
     set(props) {
         for (let key in props) {
-            if (DynSJS._isValidProperty(key, props[key]) || typeof props[key] === 'object' && !Array.isArray(props[key])) {
+            if (DynSJS._isValidProperty(key, props[key]) || typeof props[key] === 'object' &amp;&amp; !Array.isArray(props[key])) {
                 this._properties[key] = props[key];
             } else {
                 throw new Error(`La propriété ou la valeur ${key}: ${props[key]} est invalide.`);
@@ -121,9 +168,9 @@ export class DynSJS {
      * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
      * @example
      *
-     * <article>
-     *     <h1>Dynamic StyleSheet JavaScript</h1>
-     * </article>
+     * &lt;article>
+     *     &lt;h1>Dynamic StyleSheet JavaScript&lt;/h1>
+     * &lt;/article>
      *
      * const article = new DynSJS('article');
      *
@@ -152,9 +199,9 @@ export class DynSJS {
      * @example
      *
      * code html :
-     * <article>
-     *     <h1>Dynamic StyleSheet JavaScript</h1>
-     * </article>
+     * &lt;article>
+     *     &lt;h1>Dynamic StyleSheet JavaScript&lt;/h1>
+     * &lt;/article>
      *
      * code js :
      * const article = new DynSJS('article');
@@ -207,14 +254,14 @@ export class DynSJS {
         return this;
     }
     _isConditionMet() {
-        return this._parent && !this._parent._isConditionMet() ? false : this._conditionFn ? this._conditionFn() : true;
+        return this._parent &amp;&amp; !this._parent._isConditionMet() ? false : this._conditionFn ? this._conditionFn() : true;
     }
     _generateSelectors(parentSelector) {
         return parentSelector ? this._selectors.map(selector => `${parentSelector} ${selector}`).join(', ') : this._selectors.join(', ');
     }
     _generateProperties() {
         return Object.entries(this._properties)
-            .map(([key, value]) => typeof value === 'object' && !Array.isArray(value) ? `${key} { ${Object.entries(value).map(([k, v]) => `${k}: ${v};`).join(' ')} }` : `${DynSJS.camelToKebab(key)}: ${value};`)
+            .map(([key, value]) => typeof value === 'object' &amp;&amp; !Array.isArray(value) ? `${key} { ${Object.entries(value).map(([k, v]) => `${k}: ${v};`).join(' ')} }` : `${DynSJS.camelToKebab(key)}: ${value};`)
             .join(' ');
     }
 
@@ -257,7 +304,7 @@ export class DynSJS {
      * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
      * @example
      *
-     * <button class="hover-button">Hover over me!</button>
+     * &lt;button class="hover-button">Hover over me!&lt;/button>
      *
      * const button = new DynSJS('.hover-button');
      *
@@ -283,7 +330,7 @@ export class DynSJS {
      * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
      * @example
      *
-     * <button>Click Me</button>
+     * &lt;button>Click Me&lt;/button>
      *
      * const btn = new DynSJS('button');
      *
@@ -307,7 +354,7 @@ export class DynSJS {
      * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
      * @example
      *
-     * <input type="text" placeholder="Focus on me">
+     * &lt;input type="text" placeholder="Focus on me">
      *
      * const input = new DynSJS('input');
      *
@@ -351,9 +398,9 @@ export class DynSJS {
      *
      * @example
      *
-     * <article>
-     *     <h1>Dynamic StyleSheet JavaScript</h1>
-     * </article>
+     * &lt;article>
+     *     &lt;h1>Dynamic StyleSheet JavaScript&lt;/h1>
+     * &lt;/article>
      *
      * const article = new DynSJS('article');
      * article.rule('article')
@@ -396,9 +443,9 @@ export class DynSJS {
      * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
      * @example
      *
-     * <article>
-     *     <h1>Dynamic StyleSheet JavaScript</h1>
-     * </article>
+     * &lt;article>
+     *     &lt;h1>Dynamic StyleSheet JavaScript&lt;/h1>
+     * &lt;/article>
      *
      * const article = new DynSJS('article');
      *
@@ -428,9 +475,9 @@ export class DynSJS {
      * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
      * @example
      *
-     * <div class="container">
-     *     <button>Click me!</button>
-     * </div>
+     * &lt;div class="container">
+     *     &lt;button>Click me!&lt;/button>
+     * &lt;/div>
      *
      * const styles = new DynSJS('.container');
      *
@@ -460,19 +507,44 @@ export class DynSJS {
 
         const combinedSelectors = this._generateSelectors(parentSelector);
         const properties = this._generateProperties();
-        let result = (properties && combinedSelectors) ? { selector: combinedSelectors, properties } : null;
+        let result = (properties &amp;&amp; combinedSelectors) ? { selector: combinedSelectors, properties } : null;
 
         const childrenCSSList = this._children.map(child => child.toCSS(combinedSelectors)).filter(Boolean);
-        let childrenCssString = childrenCSSList.map(({ result }) => result && result.properties ? `${result.selector} { ${result.properties} }` : '').join('\n').trim();
+        let childrenCssString = childrenCSSList.map(({ result }) => result &amp;&amp; result.properties ? `${result.selector} { ${result.properties} }` : '').join('\n').trim();
 
         const mediaCSS = this._mediaQueries.map(({ query, rule }) => {
             const cssResult = rule.toCSS(combinedSelectors);
             return {
                 query,
-                css: cssResult && cssResult.result && cssResult.result.properties ? `${cssResult.result.selector} { ${cssResult.result.properties} }` : ''
+                css: cssResult &amp;&amp; cssResult.result &amp;&amp; cssResult.result.properties ? `${cssResult.result.selector} { ${cssResult.result.properties} }` : ''
             };
         }).filter(m => m.css);
 
         return { result, childrenCSS: childrenCssString, mediaCSS };
     }
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Fri Aug 25 2023 01:16:11 GMT+0200 (heure d’été d’Europe centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>
