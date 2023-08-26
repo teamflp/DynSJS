@@ -29,7 +29,7 @@
 <nav >
     
     
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Color.html">Color</a><ul class='methods'><li data-type='method'><a href="Color.html#clamp">clamp</a></li><li data-type='method'><a href="Color.html#operate">operate</a></li><li data-type='method'><a href="Color.html#toRGBA">toRGBA</a></li><li data-type='method'><a href="Color.html#toString">toString</a></li><li data-type='method'><a href="Color.html#.fromHex">fromHex</a></li><li data-type='method'><a href="Color.html#.fromRgb">fromRgb</a></li></ul></li><li><a href="DynSJS.html">DynSJS</a><ul class='methods'><li data-type='method'><a href="DynSJS.html#active">active</a></li><li data-type='method'><a href="DynSJS.html#end">end</a></li><li data-type='method'><a href="DynSJS.html#flexLayout">flexLayout</a></li><li data-type='method'><a href="DynSJS.html#focus">focus</a></li><li data-type='method'><a href="DynSJS.html#hover">hover</a></li><li data-type='method'><a href="DynSJS.html#media">media</a></li><li data-type='method'><a href="DynSJS.html#nested">nested</a></li><li data-type='method'><a href="DynSJS.html#set">set</a></li><li data-type='method'><a href="DynSJS.html#setColor">setColor</a></li><li data-type='method'><a href="DynSJS.html#setText">setText</a></li><li data-type='method'><a href="DynSJS.html#transitionManager">transitionManager</a></li><li data-type='method'><a href="DynSJS.html#when">when</a></li></ul></li><li><a href="TransitionManager.html">TransitionManager</a><ul class='methods'><li data-type='method'><a href="TransitionManager.html#addTransition">addTransition</a></li><li data-type='method'><a href="TransitionManager.html#clearTransitions">clearTransitions</a></li><li data-type='method'><a href="TransitionManager.html#revertTransition">revertTransition</a></li><li data-type='method'><a href="TransitionManager.html#startTransition">startTransition</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Color.html">Color</a><ul class='methods'><li data-type='method'><a href="Color.html#clamp">clamp</a></li><li data-type='method'><a href="Color.html#operate">operate</a></li><li data-type='method'><a href="Color.html#toRGBA">toRGBA</a></li><li data-type='method'><a href="Color.html#toString">toString</a></li><li data-type='method'><a href="Color.html#.fromHex">fromHex</a></li><li data-type='method'><a href="Color.html#.fromRgb">fromRgb</a></li></ul></li><li><a href="DynSJS.html">DynSJS</a><ul class='methods'><li data-type='method'><a href="DynSJS.html#active">active</a></li><li data-type='method'><a href="DynSJS.html#flexLayout">flexLayout</a></li><li data-type='method'><a href="DynSJS.html#focus">focus</a></li><li data-type='method'><a href="DynSJS.html#hover">hover</a></li><li data-type='method'><a href="DynSJS.html#media">media</a></li><li data-type='method'><a href="DynSJS.html#nested">nested</a></li><li data-type='method'><a href="DynSJS.html#set">set</a></li><li data-type='method'><a href="DynSJS.html#setColor">setColor</a></li><li data-type='method'><a href="DynSJS.html#setText">setText</a></li><li data-type='method'><a href="DynSJS.html#transitionManager">transitionManager</a></li><li data-type='method'><a href="DynSJS.html#when">when</a></li></ul></li><li><a href="TransitionManager.html">TransitionManager</a><ul class='methods'><li data-type='method'><a href="TransitionManager.html#addTransition">addTransition</a></li><li data-type='method'><a href="TransitionManager.html#clearTransitions">clearTransitions</a></li><li data-type='method'><a href="TransitionManager.html#revertTransition">revertTransition</a></li><li data-type='method'><a href="TransitionManager.html#startTransition">startTransition</a></li></ul></li></ul>
     
 </nav>
 
@@ -532,135 +532,6 @@ button:active { background-color: blue; }</code></pre>
     
     </tbody>
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-        
-<div class="param-desc">
-    - L'instance actuelle pour permettre le chaînage.
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="DynSJS.html">DynSJS</a></span>
-
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="end"><span class="type-signature"></span>end<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Revenir au(x) sélecteur(s) précédent(s).</li></ul></dd>
-    
-
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-examples">Example</h5>
-    
-    <pre class="prettyprint"><code>&lt;div class="container">
-    &lt;button>Click me!&lt;/button>
-&lt;/div>
-
-const styles = new DynSJS('.container');
-
-styles.rule('.container') // Sélecteur principal
-  .set({ padding: '10px', backgroundColor: 'gray' }) // Styles pour le conteneur
-  .nested('button') // Sélecteur enfant
-     .set({ color: 'red' })
-     .hover({ color: 'blue' }) // Styles pour l'état de survol du bouton
-  .end() // Revenir au sélecteur principal
-  .set({ border: '1px solid black' }); // Ajouter une bordure au conteneur
-
-export default styles;
-
-
-CSS généré :
-
-.container { padding: 10px; background-color: gray; border: 1px solid black; }
-.container button { color: red; }
-.container button:hover { color: blue; }</code></pre>
-
-
 
 
 
@@ -1876,7 +1747,7 @@ article.rule('article') // Sélecteur principal
 
     
 
-    <h4 class="name" id="nested"><span class="type-signature"></span>nested<span class="signature">(selector)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span></h4>
+    <h4 class="name" id="nested"><span class="type-signature"></span>nested<span class="signature">(&hellip;selectors)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span></h4>
 
     
 
@@ -1967,6 +1838,8 @@ article.rule('article') // Sélecteur principal
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -1979,24 +1852,28 @@ article.rule('article') // Sélecteur principal
 
         <tr>
             
-                <td class="name"><code>selector</code></td>
+                <td class="name"><code>selectors</code></td>
             
 
             <td class="type">
             
-                
-<span class="param-type">string</span>
-
-
-
-            
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
 
             
 
-            <td class="description last">Sélecteur à ajouter.</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -2910,7 +2787,7 @@ article.rule('article')
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Fri Aug 25 2023 01:16:11 GMT+0200 (heure d’été d’Europe centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sat Aug 26 2023 01:59:11 GMT+0200 (heure d’été d’Europe centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

@@ -6,9 +6,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist/build/*",
+    "build:prod": "node compileStyles.js",
     "build": "npm run clean && webpack --config webpack.config.cjs",
-    "build:prod": "npm run clean && webpack --mode production --config webpack.config.cjs",
     "watch": "webpack --watch --config webpack.config.cjs",
+    "build:prod:watch": "chokidar 'src/**/*' -c 'npm run build:prod:watch'",
+    "build:prod:clean": "rm -rf dist/build/*",
+    "build:prod:minify": "terser-webpack-plugin dist/build/index.js dist/build/index.min.js",
+    "build:dev": "node compileStyles.js",
+    "build:dev:clean": "rm -rf dist/build/*",
+    "build:dev:minify": "terser-webpack-plugin dist/build/index.js dist/build/index.min.js",
+    "build:dev:watcher": "webpack --watch --config webpack.config.cjs",
+    "build:dev:watch": "printf '\\033[32mWatching...\\033[0m\n' && chokidar 'src/**/*' --silent -c 'npm run build:dev:watcher' > /dev/null 2>&1",
     "doc": "jsdoc -c jsdoc.json"
   },
   "keywords": [

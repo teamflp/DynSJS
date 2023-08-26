@@ -1,44 +1,45 @@
 import { StyleSheet } from '../Classes/StyleSheet.js';
-import { Color } from '../Classes/Color.js';
+import { colorYellow, colorBlack } from './vars.js';
 
-const header = new StyleSheet()
+const header = new StyleSheet();
 
-// Définition des couleurs
-const colorBlue = new Color(125, 255, 0, 0.5);
-const colorRed = new Color(255, 0, 0, 0.5);
+header.rule('nav', 'footer')
+    .setColor(colorBlack, 'backgroundColor')
+    .set({ padding: '20px 20px' })
+    .flexLayout({ display: 'flex', direction: 'row', align: 'center' });
 
-// Supposons que cette fonction renvoie true pendant la journée et false la nuit.
-function isNighttime() {
-    const currentHour = new Date().getHours();
-    return currentHour < 6 || currentHour > 18;
-}
+header.rule('nav a')
+    .setColor(colorYellow, 'color')
+    .set({ margin: '0 10px', textDecoration: 'none'});
 
-/*function isDaytime() {
-    const currentHour = new Date().getHours();
-    return currentHour >= 6 && currentHour <= 18;
-}*/
-
-
-//let color = isNighttime()? colorBlue : colorRed;
-
+// Media Query pour les écrans jusqu'à 768px
 header.rule('header')
-    .when(isNighttime)  // Utilisez la méthode 'when' pour appliquer la couleur en fonction de la condition.
-    .setColor(colorRed, 'backgroundColor') // Cette règle ne sera appliquée que si isDaytime() retourne true.
-    .nested('h1:hover')
-        //.hover('color: green')
-        .set({color: '#FFFFFF'})
+    .media('(max-width: 768px)')
+        .nested('nav')
+            .set({ padding: '15px 15px' });
 
+header.rule('nav a')
+    .media('(max-width: 768px)')
+        .set({ margin: '0 8px' });
 
-header.rule('@keyframes rotateInfinite')
-    .set({
-        '0%': { transform: 'rotate(0deg)' },
-        '100%': { transform: 'rotate(360deg)' },
-    });
-
+// Media Query pour les écrans jusqu'à 576px
 header.rule('header')
-    .nested('h1')
-       .set({
-           animation: 'rotateInfinite 5s linear infinite',
-       })
+    .media('(max-width: 576px)')
+        .nested('nav')
+            .set({ padding: '10px 10px' });
+
+header.rule('nav a')
+    .media('(max-width: 576px)')
+        .set({ margin: '0 6px' });
+
+// Media Query pour les écrans jusqu'à 480px
+header.rule('header')
+    .media('(max-width: 480px)')
+        .nested('nav')
+            .set({ padding: '5px 5px' });
+
+header.rule('nav a')
+    .media('(max-width: 480px)')
+        .set({ margin: '0 4px' });
 
 export default header;

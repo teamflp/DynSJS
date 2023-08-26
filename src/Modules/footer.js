@@ -1,35 +1,33 @@
 import { StyleSheet } from '../Classes/StyleSheet.js';
-import { colorRed, colorGreen, colorWhite, colorYellow } from './vars.js';
+import { colorDark, colorBlack } from './vars.js';
 
 const footer = new StyleSheet();
 
-footer.rule('div');
 footer.rule('footer')
-    .setColor(colorRed, 'backgroundColor')
-    .set({width: '50%'})
-    .transitionManager({ backgroundColor: '0.5s', width: '0.3s' }) // Utilisation de transitionManager
-    .flexLayout({ direction: 'row', justify: 'center', align: 'center' })
+    .setColor(colorDark, 'backgroundColor')
+    .flexLayout({ display: 'flex', direction: 'row', justify: 'center', align: 'center' });
 
 footer.rule('footer')
     .nested('p')
-    .setColor(colorGreen, 'backgroundColor', colorWhite, 'color')
-    .set({textAlign: 'center', padding: '10px', width: '100%'})
-    .transitionManager({ backgroundColor: '0.5s', color: '0.5s' }) // Utilisation de transitionManager
-    .nested('::before')
-    .setText("C'est le footer!")
-    .end();
+    .setColor(colorBlack, 'color')
+    .set({ margin: '0 10px', fontSize: '1.2em' });
 
+// Media Query pour les écrans jusqu'à 768px
 footer.rule('footer')
-    .nested('p');
+    .media('(max-width: 768px)')
+    .nested('p')
+    .set({ margin: '0 8px', fontSize: '1.1em' });
 
+// Media Query pour les écrans jusqu'à 576px
 footer.rule('footer')
-    .nested('button:hover')
-    .setColor(colorGreen, 'backgroundColor')
-    .transitionManager({ backgroundColor: '0.3s' }); // Utilisation de transitionManager
+    .media('(max-width: 576px)')
+    .nested('p')
+    .set({ margin: '0 6px', fontSize: '1em' });
 
+// Media Query pour les écrans jusqu'à 480px
 footer.rule('footer')
-    .nested('button:focus')
-    .setColor(colorYellow, 'backgroundColor')
-    .transitionManager({ backgroundColor: '0.3s' }); // Utilisation de transitionManager
+    .media('(max-width: 480px)')
+    .nested('p')
+    .set({ margin: '0 4px', fontSize: '0.9em' });
 
 export default footer;

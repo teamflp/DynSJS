@@ -1,4 +1,13 @@
-import { Color } from "./Color.js";
+/**
+ * @file DynSJS - Dynamic StyleSheet JavaScript
+ * @author Paterne Guélablé Gnonzion
+ * @version v1.0.0
+ * @date 2023-06-01
+ * @description Générateur de feuilles de style dynamiques.
+ * @license MIT
+ */
+
+import {Color} from "./Color.js";
 
 /**
  * Classe pour générer dynamiquement des styles CSS.
@@ -117,7 +126,6 @@ export class DynSJS {
 
     /**
      * Ajoute un sélecteur enfant au(x) sélecteur(s) actuel(s).
-     * @param {string} selector - Sélecteur à ajouter.
      * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
      * @example
      *
@@ -137,10 +145,13 @@ export class DynSJS {
      *   CSS généré :
      *
      *   article h1 { color: blue; }
+     * @param selectors
      */
-    nested(selector) {
+    nested(...selectors) {
         this._selectorStack.push([...this._selectors]);
-        this._selectors = this._selectors.map(s => selector.startsWith("::") ? `${s}${selector}` : `${s} ${selector}`);
+        this._selectors = selectors.map(selector => {
+            return this._selectors.map(s => selector.startsWith("::") ? `${s}${selector}` : `${s} ${selector}`);
+        }).flat();
         return this;
     }
 
@@ -251,6 +262,7 @@ export class DynSJS {
         this.set({ content: `"${text.replace(/"/g, '\\"')}"` });
         return this;
     }
+    
     /**
      * Définit des styles pour l'état de survol d'un élément.
      * @param {Object} properties - Propriétés CSS à définir.
@@ -370,6 +382,7 @@ export class DynSJS {
      */
     flexLayout(params = {}) {
         const flexTranslations = {
+            display: 'display',
             direction: 'flex-direction',
             justify: 'justify-content',
             align: 'align-items',
@@ -423,56 +436,41 @@ export class DynSJS {
         return this;
     }
 
-    /**
-     * Revenir au(x) sélecteur(s) précédent(s).
-     * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
-     * @example
-     *
-     * <div class="container">
-     *     <button>Click me!</button>
-     * </div>
-     *
-     * const styles = new DynSJS('.container');
-     *
-     * styles.rule('.container') // Sélecteur principal
-     *   .set({ padding: '10px', backgroundColor: 'gray' }) // Styles pour le conteneur
-     *   .nested('button') // Sélecteur enfant
-     *      .set({ color: 'red' })
-     *      .hover({ color: 'blue' }) // Styles pour l'état de survol du bouton
-     *   .end() // Revenir au sélecteur principal
-     *   .set({ border: '1px solid black' }); // Ajouter une bordure au conteneur
-     *
-     * export default styles;
-     *
-     *
-     * CSS généré :
-     *
-     * .container { padding: 10px; background-color: gray; border: 1px solid black; }
-     * .container button { color: red; }
-     * .container button:hover { color: blue; }
-     */
-    end() {
-        this._selectors = this._selectorStack.pop() || [];
-        return this;
-    }
     toCSS(parentSelector = '') {
         if (!this._isConditionMet()) return null;
 
         const combinedSelectors = this._generateSelectors(parentSelector);
+        if (!combinedSelectors || combinedSelectors.trim() === "") {
+            console.warn("Aucun sélecteur combiné trouvé");
+            return null;
+        }
+
         const properties = this._generateProperties();
-        let result = (properties && combinedSelectors) ? { selector: combinedSelectors, properties } : null;
+        let result = (properties && combinedSelectors) ? {selector: combinedSelectors, properties} : null;
 
         const childrenCSSList = this._children.map(child => child.toCSS(combinedSelectors)).filter(Boolean);
-        let childrenCssString = childrenCSSList.map(({ result }) => result && result.properties ? `${result.selector} { ${result.properties} }` : '').join('\n').trim();
+
+        let childrenCssString = childrenCSSList.map(({result}) => {
+            if (result && result.properties) {
+                return `${result.selector} { ${result.properties} }`;
+            }
+            return '';
+        }).join('\n').trim();
 
         const mediaCSS = this._mediaQueries.map(({ query, rule }) => {
-            const cssResult = rule.toCSS(combinedSelectors);
+            const cssResult = rule.toCSS(); // Notez le changement ici
+            let cssString = "";
+            if (cssResult && cssResult.result && cssResult.result.properties) {
+                cssString = `${cssResult.result.selector} { ${cssResult.result.properties} }`;
+                cssString = cssString.replace(/\n/g, '\n  ');
+            }
             return {
                 query,
-                css: cssResult && cssResult.result && cssResult.result.properties ? `${cssResult.result.selector} { ${cssResult.result.properties} }` : ''
+                css: cssString
             };
         }).filter(m => m.css);
 
-        return { result, childrenCSS: childrenCssString, mediaCSS };
+        return {result, childrenCSS: childrenCssString, mediaCSS};
     }
+
 }
