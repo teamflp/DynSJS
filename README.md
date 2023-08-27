@@ -135,12 +135,82 @@ export function mixins(stylesheet) {
 
 CSS généré :
 
-.texte-1 { margin: 1.2em; }
-.texte-2 { margin: 2.4em; }
-.texte-3 { margin: 3.5999999999999996em; }
-.texte-4 { margin: 4.8em; }
-.texte-5 { margin: 6em; }
-.texte-6 { margin: 7.199999999999999em; }
+.text-1 { font-size: 1.2em; }
+.text-2 { font-size: 2.4em; }
+.text-3 { font-size: 3.5999999999999996em; }
+.text-4 { font-size: 4.8em; }
+.text-5 { font-size: 6em; }
+.text-6 { font-size: 7.199999999999999em; }
+```
+
+### Animation : ***La méthode setAnimation()*** 
+En utilisant la méthode ***setAnimation()***, vous pouvez définir des animations. La méthode ***setAnimation()*** prend un seul paramètre, qui peut être de type string ou object. Voici un exemple :
+- Option 1 : setAnimation - paramètres en tant que Chaîne de caractères
+```javascript
+article.rule('@keyframes slideIn')
+    .set({ 
+        '0%': { transform: 'translateX(-100%)' },
+        '100%': { transform: 'translateX(0)' }
+    });
+
+article.rule('button')
+    .setAnimation('slideIn 0.5s ease-in-out');
+```
+- Option 2 : setAnimation - paramètres en tant qu'Objet
+```javascript
+article.rule('@keyframes slideIn')
+    .set({ 
+        '0%': { transform: 'translateX(-100%)' },
+        '100%': { transform: 'translateX(0)' }
+    });
+
+article.rule('button')
+    .setAnimation({ 
+        name: 'slideIn', 
+        duration: '0.5s', 
+        timingFunction: 'ease-in-out' 
+    });
+```
+
+### Grid : ***La méthode gridLayout()***
+En utilisant la méthode ***gridLayout()***, vous pouvez définir des propriétés grid. La méthode ***gridLayout()*** prend un seul paramètre, qui peut être de type string ou object. Voici un exemple :
+
+- Option 1 : gridLayout - paramètres en tant que Chaîne de caractères
+```javascript
+article.rule('article')
+    .gridLayout('1fr 1fr 1fr / 1fr 1fr 1fr');
+```
+- Option 2 : gridLayout - paramètres en tant qu'Objet
+```javascript
+article.rule('article')
+    .gridLayout({ 
+        template: '1fr 1fr 1fr / 1fr 1fr 1fr', 
+        gap: '10px' 
+    });
+```
+
+### Les pseudo-classes : ***La méthode setPseudo()***
+En utilisant la méthode ***setPseudo()***, vous pouvez définir des pseudo-classes. La méthode ***setPseudo()*** prend un seul paramètre, qui peut être de type string ou object. Voici un exemple :
+
+- Option 1 : setPseudo - paramètres en tant que Chaîne de caractères
+```javascript
+article.rule('article')
+    .setPseudo('hover', { 
+        color: 'red', 
+        backgroundColor: 'blue' 
+    });
+```
+
+- Option 2 : setPseudo - paramètres en tant qu'Objet
+```javascript
+article.rule('article')
+    .setPseudo({ 
+        pseudo: 'hover', 
+        properties: { 
+            color: 'red', 
+            backgroundColor: 'blue' 
+        } 
+    });
 ```
 
 
@@ -162,9 +232,9 @@ Importez le fichier ***styles.css*** dans votre fichier HTML selon l'architectur
 ```javascript
 npm run new:module article
 ```
-La commande ***npm run new:module*** va générer un fichier ***header.js*** dans le dossier ***src/modules/***
+La commande ***npm run new:module*** va générer un fichier ***article.js*** dans le dossier ***src/modules/***
 
-### Créez votre première règle dans le fichier ***header.js*** : 
+### Créez votre première règle dans le fichier ***article.js*** : 
 ```javascript
 article.rule('article')
     .setColor(colorBlack, 'backgroundColor')
@@ -187,17 +257,3 @@ article {
 ```
 
 -----------------------------------------------------------------------------
-
-##  Informations complémentaires
-### Les méthodes de la classe Rule
-- ***rule()*** : Crée une nouvelle règle CSS.
-- ***set()*** : Définit les propriétés CSS.
-- ***nested()*** : Définit les sélecteurs enfants.
-- ***media()*** : Définit les media queries.
-- ***when()*** : Définit les conditions.
-- ***setColor()*** : Définit les couleurs.
-- ***setText()*** : Définit le texte pour les pseudo-éléments ::before et ::after.
-- ***flexLayout()*** : Définit les propriétés flexbox.
-- ***flexItem()*** : Définit les propriétés flexbox.
-- ***setTransition()*** : Définit les transitions.
-- ***setAnimation()*** : Définit les animations.

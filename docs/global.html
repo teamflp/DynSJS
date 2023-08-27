@@ -29,7 +29,7 @@
 <nav >
     
     
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Color.html">Color</a><ul class='methods'><li data-type='method'><a href="Color.html#clamp">clamp</a></li><li data-type='method'><a href="Color.html#operate">operate</a></li><li data-type='method'><a href="Color.html#toRGBA">toRGBA</a></li><li data-type='method'><a href="Color.html#toString">toString</a></li><li data-type='method'><a href="Color.html#.fromHex">fromHex</a></li><li data-type='method'><a href="Color.html#.fromRgb">fromRgb</a></li></ul></li><li><a href="DynSJS.html">DynSJS</a><ul class='methods'><li data-type='method'><a href="DynSJS.html#flexItem">flexItem</a></li><li data-type='method'><a href="DynSJS.html#flexLayout">flexLayout</a></li><li data-type='method'><a href="DynSJS.html#media">media</a></li><li data-type='method'><a href="DynSJS.html#nested">nested</a></li><li data-type='method'><a href="DynSJS.html#set">set</a></li><li data-type='method'><a href="DynSJS.html#setColor">setColor</a></li><li data-type='method'><a href="DynSJS.html#setText">setText</a></li><li data-type='method'><a href="DynSJS.html#setTransition">setTransition</a></li><li data-type='method'><a href="DynSJS.html#when">when</a></li></ul></li><li><a href="TransitionManager.html">TransitionManager</a><ul class='methods'><li data-type='method'><a href="TransitionManager.html#addTransition">addTransition</a></li><li data-type='method'><a href="TransitionManager.html#clearTransitions">clearTransitions</a></li><li data-type='method'><a href="TransitionManager.html#revertTransition">revertTransition</a></li><li data-type='method'><a href="TransitionManager.html#startTransition">startTransition</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#generate">generate</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Color.html">Color</a><ul class='methods'><li data-type='method'><a href="Color.html#clamp">clamp</a></li><li data-type='method'><a href="Color.html#operate">operate</a></li><li data-type='method'><a href="Color.html#toRGBA">toRGBA</a></li><li data-type='method'><a href="Color.html#toString">toString</a></li><li data-type='method'><a href="Color.html#.fromHex">fromHex</a></li><li data-type='method'><a href="Color.html#.fromRgb">fromRgb</a></li></ul></li><li><a href="DynSJS.html">DynSJS</a><ul class='methods'><li data-type='method'><a href="DynSJS.html#flexItem">flexItem</a></li><li data-type='method'><a href="DynSJS.html#flexLayout">flexLayout</a></li><li data-type='method'><a href="DynSJS.html#media">media</a></li><li data-type='method'><a href="DynSJS.html#nested">nested</a></li><li data-type='method'><a href="DynSJS.html#set">set</a></li><li data-type='method'><a href="DynSJS.html#setAnimation">setAnimation</a></li><li data-type='method'><a href="DynSJS.html#setColor">setColor</a></li><li data-type='method'><a href="DynSJS.html#setGrid">setGrid</a></li><li data-type='method'><a href="DynSJS.html#setPseudo">setPseudo</a></li><li data-type='method'><a href="DynSJS.html#setText">setText</a></li><li data-type='method'><a href="DynSJS.html#setTransform">setTransform</a></li><li data-type='method'><a href="DynSJS.html#setTransition">setTransition</a></li><li data-type='method'><a href="DynSJS.html#when">when</a></li></ul></li><li><a href="TransitionManager.html">TransitionManager</a><ul class='methods'><li data-type='method'><a href="TransitionManager.html#addTransition">addTransition</a></li><li data-type='method'><a href="TransitionManager.html#clearTransitions">clearTransitions</a></li><li data-type='method'><a href="TransitionManager.html#revertTransition">revertTransition</a></li><li data-type='method'><a href="TransitionManager.html#startTransition">startTransition</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#mixins">mixins</a></li></ul>
     
 </nav>
 
@@ -130,7 +130,7 @@
 
     
 
-    <h4 class="name" id="generate"><span class="type-signature"></span>generate<span class="signature">(stylesheet)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="mixins"><span class="type-signature"></span>mixins<span class="signature">(stylesheet)</span><span class="type-signature"></span></h4>
 
     
 
@@ -188,13 +188,13 @@
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>import { generate } from './generate.js';
+    <pre class="prettyprint"><code>import { mixins } from './mixins.js';
 import { StyleSheet } from '../Classes/StyleSheet.js';
 
 const stylesheet = new StyleSheet();
-generate(stylesheet);
+mixins(stylesheet);
 
-// Dans ce cas, la fonction `generate` ajoutera les classes suivantes à l'instance `stylesheet` :
+// Dans ce cas, la fonction `mixins` ajoutera les classes suivantes à l'instance `stylesheet` :
 // .texte-1 { font-size: 1.2em; }
 // .texte-2 { font-size: 1.2em; }
 // ...
@@ -294,7 +294,7 @@ generate(stylesheet);
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sun Aug 27 2023 02:29:11 GMT+0200 (heure d’été d’Europe centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Aug 28 2023 00:25:57 GMT+0200 (heure d’été d’Europe centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

@@ -1,4 +1,6 @@
 .idea/
 docs/
+jsdoc.json
 node_modules/
+test/
 

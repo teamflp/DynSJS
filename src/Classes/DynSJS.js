@@ -241,6 +241,11 @@ export class DynSJS {
             .map(([key, value]) => typeof value === 'object' && !Array.isArray(value) ? `${key} { ${Object.entries(value).map(([k, v]) => `${k}: ${v};`).join(' ')} }` : `${DynSJS.camelToKebab(key)}: ${value};`)
             .join(' ');
     }
+    _generateKeyframes() {
+        if (!this._keyframesCSS) return '';
+        return this._keyframesCSS;
+    }
+
     _addPseudoClassRule(pseudoClass, properties) {
         const rule = new DynSJS(...this._selectors.map(s => `${s}${pseudoClass}`));
         rule.set(properties);
@@ -440,6 +445,195 @@ export class DynSJS {
         return this;
     }
 
+    /**
+     * Définit les propriétés de la grille de l'élément.
+     *
+     * @param {Object} grid - Un objet contenant les propriétés de la grille.
+     * @returns {DynSJS} L'instance DynSJS pour le chaînage des méthodes.
+     *
+     * @throws {Error} Lance une erreur si l'argument fourni n'est pas un objet de propriétés.
+     *
+     * @example
+     * HTML :
+     * <div class="grid-container"></div>
+     *
+     * Option 1 : objet
+     * JS :
+     * const gridContainer = new StyleSheet();
+     *
+     * gridContainer.rule('.grid-container')
+     *   .setGrid({
+     *      display: 'grid',
+     *      gridTemplateColumns: 'repeat(3, 1fr)',
+     *      gridGap: '10px'
+     *   });
+     *
+     * Option 2 : chaîne de caractères
+     *
+     * gridContainer.rule('.grid-container')
+     *  .setGrid('display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 10px;');
+     */
+    setGrid(grid) {
+        if (typeof grid === 'object') {
+            const gridConfig = Object.keys(grid).reduce((acc, prop) => {
+                acc[prop] = grid[prop];
+                return acc;
+            }, {});
+            this.set(gridConfig);
+        } else {
+            throw new Error("L'argument fourni doit être un objet de propriétés.");
+        }
+        return this;
+    }
+
+    /**
+     * Définit l'animation de l'élément : nom, durée, fonction d'atténuation, délai, nombre d'itérations, direction, mode de remplissage et état de lecture.
+     *
+     * @param {string|Object} animation - Une chaîne CSS d'animation ou un objet contenant les propriétés de l'animation.
+     * @param {string} [animation.name] - Le nom de l'animation.
+     * @param {string} [animation.duration] - La durée de l'animation.
+     * @param {string} [animation.timingFunction] - La fonction d'atténuation de l'animation.
+     * @param {string} [animation.delay] - Le délai avant le début de l'animation.
+     * @param {string} [animation.iterationCount] - Le nombre de fois que l'animation doit être jouée.
+     * @param {string} [animation.direction] - La direction de l'animation.
+     * @param {string} [animation.fillMode] - La manière dont l'animation doit appliquer les styles à sa cible avant et après son exécution.
+     * @param {string} [animation.playState] - L'état de lecture de l'animation.
+     * @param {Object} [animation.keyframes] - Les keyframes de l'animation.
+     * @returns {DynSJS} L'instance DynSJS pour le chaînage des méthodes.
+     *
+     * @throws {Error} Lance une erreur si une propriété ou une valeur invalide est fournie.
+     *
+     * @example
+     *
+     * <button>Click me</button>
+     *
+     * JS :
+     *
+     * const button = new StyleSheet();
+     *
+     * button.rule('@keyframes bounce')
+     *    .set({ '0%': { transform: 'scale(1)' }, '50%': { transform: 'scale(1.1)' }, '100%': { transform: 'scale(1)' } });
+     *
+     * button.rule('button')
+     *    .setAnimation(bounce)
+     *
+     */
+    setAnimation(animation) {
+        if (typeof animation === 'string') {
+            this._properties.animation = animation;
+        } else if (typeof animation === 'object') {
+            const { name, duration, timingFunction, delay, iterationCount, direction, fillMode, playState, keyframes } = animation;
+            this._properties.animation = [name, duration, timingFunction, delay, iterationCount, direction, fillMode, playState].filter(Boolean).join(' ');
+
+            // Ajouter les keyframes au CSS généré
+            if (keyframes) {
+                const keyframesString = Object.entries(keyframes).map(([key, value]) => {
+                    const properties = Object.entries(value).map(([k, v]) => `${k}: ${v};`).join(' ');
+                    return `${key} { ${properties} }`;
+                }).join(' ');
+
+                this._keyframesCSS = `@keyframes ${name} { ${keyframesString} }`;
+            }
+        } else {
+            throw new Error("L'argument fourni doit être une chaîne CSS ou un objet de propriétés.");
+        }
+        return this;
+    }
+
+    /**
+     * Définit la transformation de l'élément.
+     *
+     * @param {string|Object} transform - Une chaîne CSS de transformation ou un objet contenant les propriétés de transformation.
+     * @returns {DynSJS} L'instance DynSJS pour le chaînage des méthodes.
+     *
+     * @throws {Error} Lance une erreur si une propriété ou une valeur invalide est fournie.
+     *
+     * @example
+     * HTML :
+     * <button>Click me</button>
+     *
+     * JS :
+     * Option 1 : Chaîne de caractères
+     *
+     * button.rule('button')
+     *   .setTransform('rotate(45deg) scale(1.5)');
+     *
+     * Option 2 : Objet
+     *
+     * button.rule('button')
+     *   .setTransform({
+     *      rotate: '45deg',
+     *      scale: '1.5'
+     *   });
+     *
+     */
+    setTransform(transform) {
+        if (typeof transform === 'string') {
+            this._properties.transform = transform;
+        } else if (typeof transform === 'object') {
+            this._properties.transform = Object.entries(transform)
+                .map(([key, value]) => `${key}(${value})`)
+                .join(' ');
+        } else {
+            throw new Error("L'argument fourni doit être une chaîne CSS ou un objet de propriétés.");
+        }
+        return this;
+    }
+
+    /**
+     * Définit les propriétés de la pseudo-classe de l'élément.
+     *
+     * @param {string|Object} pseudoClass - Le nom de la pseudo-classe (par exemple, 'hover', 'active', etc.) ou un objet contenant les pseudo-classes et leurs propriétés.
+     * @param {Object} [properties] - Un objet contenant les propriétés CSS à appliquer à la pseudo-classe. Ignoré si `pseudoClass` est un objet.
+     * @returns {DynSJS} L'instance DynSJS pour le chaînage des méthodes.<br><b>
+     *
+     * <br>Pour plus d'informations sur les pseudo-classes, consultez la documentation de MDN :
+     * <a href="https://developer.mozilla.org/fr/docs/Web/CSS/Pseudo-classes" target="_blank">Pseudo-classes MDN</a>
+     *
+     * @example
+     * <button>Click me</button>
+     *
+     * JS :
+     *
+     * const button = new StyleSheet()
+     *
+     * // Option 1 : Chaîne de caractères
+     * button.rule('button')
+     *   .setPseudo('hover', {
+     *      backgroundColor: 'blue',
+     *      color: 'white'
+     *   });
+     *
+     * // Option 2 : Objet
+     * button.rule('button')
+     *   .setPseudo({
+     *      hover: {
+     *          backgroundColor: 'blue',
+     *          color: 'white'
+     *      },
+     *      active: {
+     *          backgroundColor: 'red',
+     *          color: 'white'
+     *      }
+     *   });
+     *
+     */
+    setPseudo(pseudoClass, properties) {
+        if (typeof pseudoClass === 'string') {
+            return this._addPseudoClassRule(`:${pseudoClass}`, properties);
+        } else if (typeof pseudoClass === 'object') {
+            Object.entries(pseudoClass).forEach(([key, value]) => {
+                this._addPseudoClassRule(`:${key}`, value);
+            });
+            return this;
+        } else {
+            throw new Error("L'argument 'pseudoClass' doit être une chaîne de caractères ou un objet de propriétés.");
+        }
+    }
+
+
+
+
     toCSS(parentSelector = '') {
         if (!this._isConditionMet()) return null;
 
@@ -474,7 +668,13 @@ export class DynSJS {
             };
         }).filter(m => m.css);
 
-        return {result, childrenCSS: childrenCssString, mediaCSS};
+        const keyframesCSS = this._generateKeyframes();
+
+        // Ajoutez cette ligne pour inclure les keyframes dans la chaîne CSS générée
+        childrenCssString = `${keyframesCSS}\n${childrenCssString}`;
+
+        return {result, childrenCSS: childrenCssString, mediaCSS, keyframesCSS};
     }
+
 
 }

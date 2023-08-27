@@ -1,5 +1,6 @@
 import { StyleSheet } from '../Classes/StyleSheet.js';
-import {colorBlack, colorDark, colorOrange} from './vars.js';
+import {colorBlack, colorDark, colorOrange } from './vars.js';
+import {bounceAnimation, bounceKeyframes} from "./animations.js";
 
 const article = new StyleSheet();
 
@@ -9,22 +10,35 @@ article.rule('article')
 article.rule('article')
     .nested('h1','h3')
         .set({ fontSize: '24px', marginBottom: '20px'})
-        .setColor(colorDark, 'color');
+        .setColor(colorDark, 'color')
 
 article.rule('article')
     .nested('p')
         .set({ fontSize: '16px', lineHeight: '1.5' })
+        //.setTransform({ rotate: '45deg', scale: '1.5' });
+
+article.rule('@keyframes bounce')
+    .set(bounceKeyframes)
 
 article.rule('article')
     .nested('button')
         .set({ padding: '10px 20px', border: 'none', borderRadius: '5px', color: '#fff', fontSize: '16px', cursor: 'pointer' })
         .setColor(colorBlack, 'backgroundColor')
         .setTransition('all 0.8s ease-in-out 0s')
+        .setAnimation(bounceAnimation)
 
 article.rule('article')
     .nested('button:hover')
         .setColor(colorOrange, 'backgroundColor')
         .setTransition('all 0.8s ease-in-out 0s')
+
+// Grid
+article.rule('.grid-container')
+    .set({ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridGap: '20px', border: '1px solid #ccc', padding: '20px' })
+    .nested('p')
+        .setPseudo(':hover', {
+            backgroundColor: 'pink',
+        })
 
 // Media Query pour les écrans jusqu'à 768px
 article.rule('article')

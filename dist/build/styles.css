@@ -1,9 +1,9 @@
-.texte-1 { margin: 1.2em; }
-.texte-2 { margin: 2.4em; }
-.texte-3 { margin: 3.5999999999999996em; }
-.texte-4 { margin: 4.8em; }
-.texte-5 { margin: 6em; }
-.texte-6 { margin: 7.199999999999999em; }
+.text-1 { font-size: 1.2em; }
+.text-2 { font-size: 2.4em; }
+.text-3 { font-size: 3.5999999999999996em; }
+.text-4 { font-size: 4.8em; }
+.text-5 { font-size: 6em; }
+.text-6 { font-size: 7.199999999999999em; }
 .m-1 { margin: 10px; }
 .m-2 { margin: 20px; }
 .m-3 { margin: 30px; }
@@ -31,7 +31,9 @@ nav a { color: rgba(255,255,0,255); margin: 0 10px; text-decoration: none; }
 article { padding: 20px; width: 90%; max-width: 100%; margin: 0 auto; }
 article h1, article h3 { font-size: 24px; margin-bottom: 20px; color: rgba(0,0,0,0.1); }
 article p { font-size: 16px; line-height: 1.5; }
-article button { padding: 10px 20px; border: none; border-radius: 5px; color: #fff; font-size: 16px; cursor: pointer; background-color: rgba(0,0,0,255); transition: all 0.8s ease-in-out 0s; }
+@keyframes bounce { 0% { transform: scale(1,1); } 50% { transform: scale(1.1,1.1); } 100% { transform: scale(1,1); } }
+article button { padding: 10px 20px; border: none; border-radius: 5px; color: #fff; font-size: 16px; cursor: pointer; background-color: rgba(0,0,0,255); transition: all 0.8s ease-in-out 0s; animation: bounce 2s ease-in-out infinite; }
 article button:hover { background-color: rgba(255,165,0,0.5); transition: all 0.8s ease-in-out 0s; }
+.grid-container p { display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 20px; border: 1px solid #ccc; padding: 20px; }
 footer { background-color: rgba(0,0,0,0.1); display: flex; flex-direction: row; justify-content: center; align-items: center; }
 footer p { color: rgba(0,0,0,255); margin: 0 10px; font-size: 1.2em; }

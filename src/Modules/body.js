@@ -14,5 +14,4 @@ body.rule('body')
     })
 
 
-
 export default body;

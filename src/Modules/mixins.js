@@ -23,10 +23,10 @@
  */
 export function mixins(stylesheet) {
     stylesheet.generateClasses({
-        prefix: 'texte',
+        prefix: 'text',
         count: 6,
         properties: i => ({
-            margin: `${1.2 * i}em`
+            fontSize: `${1.2 * i}em`
         })
     });
 

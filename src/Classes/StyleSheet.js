@@ -49,7 +49,6 @@ export class StyleSheet {
 
         return compiledCSS;
     }
-
     generateClasses(config) {
         const { prefix, count, properties } = config;
         for (let i = 1; i <= count; i++) {
