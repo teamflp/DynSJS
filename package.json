@@ -17,6 +17,7 @@
     "build:dev:minify": "terser-webpack-plugin dist/build/index.js dist/build/index.min.js",
     "build:dev:watcher": "webpack --watch --config webpack.config.cjs",
     "build:dev:watch": "printf '\\033[32mWatching...\\033[0m\n' && chokidar 'src/**/*' --silent -c 'npm run build:dev:watcher' > /dev/null 2>&1",
+    "new:module": "node generateModule.js",
     "doc": "jsdoc -c jsdoc.json"
   },
   "keywords": [

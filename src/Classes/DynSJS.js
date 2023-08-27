@@ -209,14 +209,27 @@ export class DynSJS {
 
     /**
      * Définit une fonction de condition pour la règle.
-     * @param {function} conditionFn - Fonction pour évaluer la condition.
      * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
+     * @param condition
      */
-    when(conditionFn) {
-        if (typeof conditionFn !== 'function') throw new Error("`conditionFn` doit être une fonction.");
-        this._conditionFn = conditionFn;
+    when(condition) {
+        if (typeof condition === 'function') {
+            this._conditionFn = () => {
+                if (typeof window !== 'undefined') {
+                    return condition();
+                } else if (process.env.SCREEN_WIDTH) {
+                    return condition(Number(process.env.SCREEN_WIDTH));
+                } else {
+                    console.warn('La condition ne peut pas être évaluée dans l\'environnement Node.js');
+                    return false;
+                }
+            };
+        } else {
+            this._conditionFn = () => condition;
+        }
         return this;
     }
+
     _isConditionMet() {
         return this._parent && !this._parent._isConditionMet() ? false : this._conditionFn ? this._conditionFn() : true;
     }
@@ -227,6 +240,12 @@ export class DynSJS {
         return Object.entries(this._properties)
             .map(([key, value]) => typeof value === 'object' && !Array.isArray(value) ? `${key} { ${Object.entries(value).map(([k, v]) => `${k}: ${v};`).join(' ')} }` : `${DynSJS.camelToKebab(key)}: ${value};`)
             .join(' ');
+    }
+    _addPseudoClassRule(pseudoClass, properties) {
+        const rule = new DynSJS(...this._selectors.map(s => `${s}${pseudoClass}`));
+        rule.set(properties);
+        this._children.push(rule);
+        return this;
     }
 
     /**
@@ -249,6 +268,48 @@ export class DynSJS {
     }
 
     /**
+     * Définit la propriété de transition de l'élément.
+     *
+     * @param {string|Object} transition - Une chaîne CSS de transition ou un objet contenant les propriétés de transition.
+     * @param {string} [transition.property] - La propriété à animer.
+     * @param {string} [transition.duration] - La durée de l'animation.
+     * @param {string} [transition.timingFunction] - La fonction d'atténuation de l'animation.
+     * @returns {DynSJS} L'instance DynSJS pour le chaînage des méthodes.
+     *
+     * @example
+     * HTML :
+     * <article>
+     *     <h1>Dynamic StyleSheet JavaScript</h1>
+     *     <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
+     * </article>
+     *
+     * JS :
+     * // Définit la transition de l'élément article
+     * article.rule('article')
+     *     .setTransition({
+     *         property: 'all',
+     *         duration: '0.5s',
+     *         timingFunction: 'ease-in-out'
+     *     });
+     *
+     *   CSS généré :
+     *   article {
+     *       transition: all 0.5s ease-in-out;
+     *   }
+     */
+    setTransition(transition) {
+        if (typeof transition === 'string') {
+            this._properties.transition = transition;
+        } else if (typeof transition === 'object') {
+            const { property, duration, timingFunction } = transition;
+            this._properties.transition = `${property} ${duration} ${timingFunction}`;
+        } else {
+            throw new Error("L'argument fourni doit être une chaîne CSS ou un objet de propriétés.");
+        }
+        return this;
+    }
+
+    /**
      * Définit le texte pour le pseudo-élément ::before ou ::after.
      * @param {string} text - Texte à définir.
      * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
@@ -260,86 +321,6 @@ export class DynSJS {
     setText(text) {
         if (typeof text !== 'string') throw new Error('Le texte fourni doit être une chaine de caractères.');
         this.set({ content: `"${text.replace(/"/g, '\\"')}"` });
-        return this;
-    }
-    
-    /**
-     * Définit des styles pour l'état de survol d'un élément.
-     * @param {Object} properties - Propriétés CSS à définir.
-     * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
-     * @example
-     *
-     * <button class="hover-button">Hover over me!</button>
-     *
-     * const button = new DynSJS('.hover-button');
-     *
-     * button.rule('.hover-button') // Sélecteur principal
-     *   .set({ padding: '10px', backgroundColor: 'green', color: 'white' }) // Styles initiaux pour le bouton
-     *   .hover({ backgroundColor: 'blue' }); // Styles pour l'état de survol du bouton
-     *
-     * export default button;
-     *
-     *
-     * CSS généré :
-     *
-     * .hover-button { padding: 10px; background-color: green; color: white; }
-     * .hover-button:hover { background-color: blue; }
-     */
-    hover(properties) {
-        return this._addPseudoClassRule(':hover', properties);
-    }
-
-    /**
-     * Définit des styles pour l'état actif d'un élément.
-     * @param {Object} properties - Propriétés CSS à définir.
-     * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
-     * @example
-     *
-     * <button>Click Me</button>
-     *
-     * const btn = new DynSJS('button');
-     *
-     * btn.rule('button') // Sélecteur principal
-     *   .active({ backgroundColor: 'blue' }); // Styles pour l'état actif
-     *
-     * export default btn;
-     *
-     *
-     * CSS généré :
-     *
-     * button:active { background-color: blue; }
-     */
-    active(properties) {
-        return this._addPseudoClassRule(':active', properties);
-    }
-
-    /**
-     * Définit des styles pour l'état de focus d'un élément.
-     * @param {Object} properties - Propriétés CSS à définir.
-     * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
-     * @example
-     *
-     * <input type="text" placeholder="Focus on me">
-     *
-     * const input = new DynSJS('input');
-     *
-     * input.rule('input') // Sélecteur principal
-     *   .focus({ borderColor: 'blue' }); // Styles pour l'état de focus
-     *
-     * export default input;
-     *
-     *
-     * CSS généré :
-     *
-     * input:focus { border-color: blue; }
-     */
-    focus(properties) {
-        return this._addPseudoClassRule(':focus', properties);
-    }
-    _addPseudoClassRule(pseudoClass, properties) {
-        const rule = new DynSJS(...this._selectors.map(s => `${s}${pseudoClass}`));
-        rule.set(properties);
-        this._children.push(rule);
         return this;
     }
 
@@ -404,35 +385,58 @@ export class DynSJS {
     }
 
     /**
-     * Gère les transitions CSS pour les propriétés spécifiées.
-     * @param {Object} properties - Un objet contenant les propriétés à animer et leur durée.
-     * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
-     * @example
+     * Définit les propriétés flex de l'élément.
      *
+     * @param {Object} params - Un objet contenant les propriétés flex à définir.
+     * @param {number} [params.flexGrow] - La valeur de la propriété flex-grow.
+     * @param {number} [params.flexShrink] - La valeur de la propriété flex-shrink.
+     * @param {string|number} [params.flexBasis] - La valeur de la propriété flex-basis.
+     * @param {number} [params.order] - La valeur de la propriété order.
+     * @param {string} [params.alignSelf] - La valeur de la propriété align-self.
+     * @returns {DynSJS} L'instance DynSJS pour le chaînage des méthodes.
+     *
+     * @example
+     * HTML :
      * <article>
      *     <h1>Dynamic StyleSheet JavaScript</h1>
+     *     <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
      * </article>
      *
-     * const article = new DynSJS('article');
-     *
+     * JS :
+     * // Définit les propriétés flex de l'élément article
      * article.rule('article')
-     *    .transitionManager({ backgroundColor: '0.5s', width: '0.3s' });
+     *     .flexItem({
+     *         flexGrow: 1,
+     *         flexShrink: 2,
+     *         flexBasis: '50%',
+     *         order: 1,
+     *         alignSelf: 'center'
+     *     });
      *
-     *    CSS généré :
-     *
-     *    article {
-     *       transition: background-color 0.5s, width 0.3s;
-     *    }
+     *   CSS généré :
+     *   article {
+     *       flex-grow: 1;
+     *       flex-shrink: 2;
+     *       flex-basis: 50%;
+     *       order: 1;
+     *       align-self: center;
+     *   }
      */
-    transitionManager(properties) {
-        const transitions = [];
+    flexItem(params = {}) {
+        const flexTranslations = {
+            flexGrow: 'flex-grow',
+            flexShrink: 'flex-shrink',
+            flexBasis: 'flex-basis',
+            order: 'order',
+            alignSelf: 'align-self'
+        };
 
-        for (let property in properties) {
-            const duration = properties[property];
-            transitions.push(`${property} ${duration}`);
-        }
+        const flexConfig = Object.keys(params).reduce((acc, prop) => {
+            if (flexTranslations[prop]) acc[flexTranslations[prop]] = params[prop];
+            return acc;
+        }, {});
 
-        this.set({ transition: transitions.join(', ') });
+        this.set(flexConfig);
         return this;
     }
 

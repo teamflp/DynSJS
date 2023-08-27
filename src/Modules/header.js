@@ -3,10 +3,11 @@ import { colorYellow, colorBlack } from './vars.js';
 
 const header = new StyleSheet();
 
-header.rule('nav', 'footer')
+header.rule('header', 'footer')
     .setColor(colorBlack, 'backgroundColor')
     .set({ padding: '20px 20px' })
     .flexLayout({ display: 'flex', direction: 'row', align: 'center' });
+
 
 header.rule('nav a')
     .setColor(colorYellow, 'color')

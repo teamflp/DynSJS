@@ -29,7 +29,7 @@
 <nav >
     
     
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Color.html">Color</a><ul class='methods'><li data-type='method'><a href="Color.html#clamp">clamp</a></li><li data-type='method'><a href="Color.html#operate">operate</a></li><li data-type='method'><a href="Color.html#toRGBA">toRGBA</a></li><li data-type='method'><a href="Color.html#toString">toString</a></li><li data-type='method'><a href="Color.html#.fromHex">fromHex</a></li><li data-type='method'><a href="Color.html#.fromRgb">fromRgb</a></li></ul></li><li><a href="DynSJS.html">DynSJS</a><ul class='methods'><li data-type='method'><a href="DynSJS.html#active">active</a></li><li data-type='method'><a href="DynSJS.html#flexLayout">flexLayout</a></li><li data-type='method'><a href="DynSJS.html#focus">focus</a></li><li data-type='method'><a href="DynSJS.html#hover">hover</a></li><li data-type='method'><a href="DynSJS.html#media">media</a></li><li data-type='method'><a href="DynSJS.html#nested">nested</a></li><li data-type='method'><a href="DynSJS.html#set">set</a></li><li data-type='method'><a href="DynSJS.html#setColor">setColor</a></li><li data-type='method'><a href="DynSJS.html#setText">setText</a></li><li data-type='method'><a href="DynSJS.html#transitionManager">transitionManager</a></li><li data-type='method'><a href="DynSJS.html#when">when</a></li></ul></li><li><a href="TransitionManager.html">TransitionManager</a><ul class='methods'><li data-type='method'><a href="TransitionManager.html#addTransition">addTransition</a></li><li data-type='method'><a href="TransitionManager.html#clearTransitions">clearTransitions</a></li><li data-type='method'><a href="TransitionManager.html#revertTransition">revertTransition</a></li><li data-type='method'><a href="TransitionManager.html#startTransition">startTransition</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Color.html">Color</a><ul class='methods'><li data-type='method'><a href="Color.html#clamp">clamp</a></li><li data-type='method'><a href="Color.html#operate">operate</a></li><li data-type='method'><a href="Color.html#toRGBA">toRGBA</a></li><li data-type='method'><a href="Color.html#toString">toString</a></li><li data-type='method'><a href="Color.html#.fromHex">fromHex</a></li><li data-type='method'><a href="Color.html#.fromRgb">fromRgb</a></li></ul></li><li><a href="DynSJS.html">DynSJS</a><ul class='methods'><li data-type='method'><a href="DynSJS.html#flexItem">flexItem</a></li><li data-type='method'><a href="DynSJS.html#flexLayout">flexLayout</a></li><li data-type='method'><a href="DynSJS.html#media">media</a></li><li data-type='method'><a href="DynSJS.html#nested">nested</a></li><li data-type='method'><a href="DynSJS.html#set">set</a></li><li data-type='method'><a href="DynSJS.html#setColor">setColor</a></li><li data-type='method'><a href="DynSJS.html#setText">setText</a></li><li data-type='method'><a href="DynSJS.html#setTransition">setTransition</a></li><li data-type='method'><a href="DynSJS.html#when">when</a></li></ul></li><li><a href="TransitionManager.html">TransitionManager</a><ul class='methods'><li data-type='method'><a href="TransitionManager.html#addTransition">addTransition</a></li><li data-type='method'><a href="TransitionManager.html#clearTransitions">clearTransitions</a></li><li data-type='method'><a href="TransitionManager.html#revertTransition">revertTransition</a></li><li data-type='method'><a href="TransitionManager.html#startTransition">startTransition</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#generate">generate</a></li></ul>
     
 </nav>
 
@@ -409,7 +409,7 @@ export default footer;</code></pre>
 
     
 
-    <h4 class="name" id="active"><span class="type-signature"></span>active<span class="signature">(properties)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span></h4>
+    <h4 class="name" id="flexItem"><span class="type-signature"></span>flexItem<span class="signature">(params)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span></h4>
 
     
 
@@ -419,7 +419,7 @@ export default footer;</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Définit des styles pour l'état actif d'un élément.</li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li>Définit les propriétés flex de l'élément.</li></ul></dd>
     
 
 
@@ -467,19 +467,31 @@ export default footer;</code></pre>
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>&lt;button>Click Me&lt;/button>
+    <pre class="prettyprint"><code>HTML :
+&lt;article>
+    &lt;h1>Dynamic StyleSheet JavaScript&lt;/h1>
+    &lt;p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.&lt;/p>
+&lt;/article>
 
-const btn = new DynSJS('button');
+JS :
+// Définit les propriétés flex de l'élément article
+article.rule('article')
+    .flexItem({
+        flexGrow: 1,
+        flexShrink: 2,
+        flexBasis: '50%',
+        order: 1,
+        alignSelf: 'center'
+    });
 
-btn.rule('button') // Sélecteur principal
-  .active({ backgroundColor: 'blue' }); // Styles pour l'état actif
-
-export default btn;
-
-
-CSS généré :
-
-button:active { background-color: blue; }</code></pre>
+  CSS généré :
+  article {
+      flex-grow: 1;
+      flex-shrink: 2;
+      flex-basis: 50%;
+      order: 1;
+      align-self: center;
+  }</code></pre>
 
 
 
@@ -509,7 +521,7 @@ button:active { background-color: blue; }</code></pre>
 
         <tr>
             
-                <td class="name"><code>properties</code></td>
+                <td class="name"><code>params</code></td>
             
 
             <td class="type">
@@ -526,7 +538,208 @@ button:active { background-color: blue; }</code></pre>
 
             
 
-            <td class="description last">Propriétés CSS à définir.</td>
+            <td class="description last">Un objet contenant les propriétés flex à définir.
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>flexGrow</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La valeur de la propriété flex-grow.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>flexShrink</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La valeur de la propriété flex-shrink.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>flexBasis</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La valeur de la propriété flex-basis.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>order</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La valeur de la propriété order.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>alignSelf</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La valeur de la propriété align-self.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -552,7 +765,7 @@ button:active { background-color: blue; }</code></pre>
 
         
 <div class="param-desc">
-    - L'instance actuelle pour permettre le chaînage.
+    L'instance DynSJS pour le chaînage des méthodes.
 </div>
 
 
@@ -1203,348 +1416,6 @@ article.rule('article')
     <dd>
         
 <span class="param-type">StyleSheet</span>
-
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="focus"><span class="type-signature"></span>focus<span class="signature">(properties)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Définit des styles pour l'état de focus d'un élément.</li></ul></dd>
-    
-
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-examples">Example</h5>
-    
-    <pre class="prettyprint"><code>&lt;input type="text" placeholder="Focus on me">
-
-const input = new DynSJS('input');
-
-input.rule('input') // Sélecteur principal
-  .focus({ borderColor: 'blue' }); // Styles pour l'état de focus
-
-export default input;
-
-
-CSS généré :
-
-input:focus { border-color: blue; }</code></pre>
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>properties</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Propriétés CSS à définir.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-        
-<div class="param-desc">
-    - L'instance actuelle pour permettre le chaînage.
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="DynSJS.html">DynSJS</a></span>
-
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="hover"><span class="type-signature"></span>hover<span class="signature">(properties)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Définit des styles pour l'état de survol d'un élément.</li></ul></dd>
-    
-
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-examples">Example</h5>
-    
-    <pre class="prettyprint"><code>&lt;button class="hover-button">Hover over me!&lt;/button>
-
-const button = new DynSJS('.hover-button');
-
-button.rule('.hover-button') // Sélecteur principal
-  .set({ padding: '10px', backgroundColor: 'green', color: 'white' }) // Styles initiaux pour le bouton
-  .hover({ backgroundColor: 'blue' }); // Styles pour l'état de survol du bouton
-
-export default button;
-
-
-CSS généré :
-
-.hover-button { padding: 10px; background-color: green; color: white; }
-.hover-button:hover { background-color: blue; }</code></pre>
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>properties</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Propriétés CSS à définir.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-        
-<div class="param-desc">
-    - L'instance actuelle pour permettre le chaînage.
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="DynSJS.html">DynSJS</a></span>
 
 
 
@@ -2448,7 +2319,7 @@ style.nested('::before').setText('Hello');</code></pre>
 
     
 
-    <h4 class="name" id="transitionManager"><span class="type-signature"></span>transitionManager<span class="signature">(properties)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span></h4>
+    <h4 class="name" id="setTransition"><span class="type-signature"></span>setTransition<span class="signature">(transition)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span></h4>
 
     
 
@@ -2458,7 +2329,7 @@ style.nested('::before').setText('Hello');</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Gère les transitions CSS pour les propriétés spécifiées.</li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li>Définit la propriété de transition de l'élément.</li></ul></dd>
     
 
 
@@ -2506,20 +2377,25 @@ style.nested('::before').setText('Hello');</code></pre>
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>&lt;article>
+    <pre class="prettyprint"><code>HTML :
+&lt;article>
     &lt;h1>Dynamic StyleSheet JavaScript&lt;/h1>
+    &lt;p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.&lt;/p>
 &lt;/article>
 
-const article = new DynSJS('article');
-
+JS :
+// Définit la transition de l'élément article
 article.rule('article')
-   .transitionManager({ backgroundColor: '0.5s', width: '0.3s' });
+    .setTransition({
+        property: 'all',
+        duration: '0.5s',
+        timingFunction: 'ease-in-out'
+    });
 
-   CSS généré :
-
-   article {
-      transition: background-color 0.5s, width 0.3s;
-   }</code></pre>
+  CSS généré :
+  article {
+      transition: all 0.5s ease-in-out;
+  }</code></pre>
 
 
 
@@ -2549,12 +2425,15 @@ article.rule('article')
 
         <tr>
             
-                <td class="name"><code>properties</code></td>
+                <td class="name"><code>transition</code></td>
             
 
             <td class="type">
             
                 
+<span class="param-type">string</span>
+|
+
 <span class="param-type">Object</span>
 
 
@@ -2566,7 +2445,137 @@ article.rule('article')
 
             
 
-            <td class="description last">Un objet contenant les propriétés à animer et leur durée.</td>
+            <td class="description last">Une chaîne CSS de transition ou un objet contenant les propriétés de transition.
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>property</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La propriété à animer.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>duration</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La durée de l'animation.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timingFunction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La fonction d'atténuation de l'animation.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -2592,7 +2601,7 @@ article.rule('article')
 
         
 <div class="param-desc">
-    - L'instance actuelle pour permettre le chaînage.
+    L'instance DynSJS pour le chaînage des méthodes.
 </div>
 
 
@@ -2619,7 +2628,7 @@ article.rule('article')
 
     
 
-    <h4 class="name" id="when"><span class="type-signature"></span>when<span class="signature">(conditionFn)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span></h4>
+    <h4 class="name" id="when"><span class="type-signature"></span>when<span class="signature">(condition)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span></h4>
 
     
 
@@ -2702,16 +2711,10 @@ article.rule('article')
 
         <tr>
             
-                <td class="name"><code>conditionFn</code></td>
+                <td class="name"><code>condition</code></td>
             
 
             <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-
             
             </td>
 
@@ -2719,7 +2722,7 @@ article.rule('article')
 
             
 
-            <td class="description last">Fonction pour évaluer la condition.</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -2787,7 +2790,7 @@ article.rule('article')
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sat Aug 26 2023 01:59:11 GMT+0200 (heure d’été d’Europe centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sun Aug 27 2023 02:29:11 GMT+0200 (heure d’été d’Europe centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

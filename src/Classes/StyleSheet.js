@@ -49,6 +49,17 @@ export class StyleSheet {
 
         return compiledCSS;
     }
+
+    generateClasses(config) {
+        const { prefix, count, properties } = config;
+        for (let i = 1; i <= count; i++) {
+            const computedProperties = typeof properties === 'function' ? properties(i) : properties;
+            this.rule(`.${prefix}-${i}`)
+                .set(computedProperties);
+        }
+        return this;
+    }
+
     combine(...stylesheets) {
         for (let sheet of stylesheets) {
             if (Array.isArray(sheet._rules)) {
