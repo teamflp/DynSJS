@@ -1,11 +1,11 @@
 import { StyleSheet } from '../Classes/StyleSheet.js';
 import {colorBlack, colorDark, colorOrange } from './vars.js';
-import {bounceAnimation, bounceKeyframes} from "./animations.js";
+import {bounceAnimation, bounceKeyframes, tadaAnimation, tadaKeyframes} from "./animations.js";
 
 const article = new StyleSheet();
 
 article.rule('article')
-    .set({ padding: '20px', width: '90%', maxWidth: '100%', margin: '0 auto' });
+    .set({ padding: '20px', width: '90%', maxWidth: '100%', margin: '0 auto' })
 
 article.rule('article')
     .nested('h1','h3')
@@ -17,15 +17,15 @@ article.rule('article')
         .set({ fontSize: '16px', lineHeight: '1.5' })
         //.setTransform({ rotate: '45deg', scale: '1.5' });
 
-article.rule('@keyframes bounce')
-    .set(bounceKeyframes)
+article.rule('@keyframes tada')
+    .set(tadaKeyframes)
 
 article.rule('article')
     .nested('button')
         .set({ padding: '10px 20px', border: 'none', borderRadius: '5px', color: '#fff', fontSize: '16px', cursor: 'pointer' })
         .setColor(colorBlack, 'backgroundColor')
         .setTransition('all 0.8s ease-in-out 0s')
-        .setAnimation(bounceAnimation)
+        .setAnimation(tadaAnimation)
 
 article.rule('article')
     .nested('button:hover')
@@ -36,9 +36,7 @@ article.rule('article')
 article.rule('.grid-container')
     .set({ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridGap: '20px', border: '1px solid #ccc', padding: '20px' })
     .nested('p')
-        .setPseudo(':hover', {
-            backgroundColor: 'pink',
-        })
+        .set({ padding: '20px', border: '1px solid #ccc' })
 
 // Media Query pour les écrans jusqu'à 768px
 article.rule('article')

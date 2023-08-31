@@ -3,7 +3,7 @@ import { colorYellow, colorBlack } from './vars.js';
 
 const header = new StyleSheet();
 
-header.rule('header', 'footer')
+header.rule('header')
     .setColor(colorBlack, 'backgroundColor')
     .set({ padding: '20px 20px' })
     .flexLayout({ display: 'flex', direction: 'row', align: 'center' });
@@ -17,7 +17,7 @@ header.rule('nav a')
 header.rule('header')
     .media('(max-width: 768px)')
         .nested('nav')
-            .set({ padding: '15px 15px' });
+            .set({ padding: '15px 15px' })
 
 header.rule('nav a')
     .media('(max-width: 768px)')

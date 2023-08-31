@@ -3,7 +3,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 const JSDocPlugin = require('jsdoc-webpack-plugin');
 
 module.exports = {
-    entry: './src/DynSJS.js',
+    entry: './src/index.js',
     output: {
         filename: 'dynsjs.bundle.js',
         path: path.resolve(__dirname, 'dist/build'),
@@ -28,5 +28,12 @@ module.exports = {
         new JSDocPlugin({
             conf: './jsdoc.json',
         })
-    ]
+    ],
+    optimization: {
+        minimize: true,
+        minimizer: [new TerserPlugin({
+            extractComments: false,
+        })],
+    },
+
 };

@@ -16,8 +16,9 @@
 .mb-4 { margin-bottom: 40px; }
 .mb-5 { margin-bottom: 50px; }
 .mb-6 { margin-bottom: 60px; }
+*, *::before, *::after { box-sizing: border-box; }
 body { font-family: Arial, sans-serif; padding: 0; margin: 0 auto; font-size: 16px; }
-header, footer { background-color: rgba(0,0,0,255); padding: 20px 20px; display: flex; flex-direction: row; align-items: center; }
+header { background-color: rgba(0,0,0,255); padding: 20px 20px; display: flex; flex-direction: row; align-items: center; }
 nav a { color: rgba(255,255,0,255); margin: 0 10px; text-decoration: none; }
 @media (max-width: 768px) {
   header nav { padding: 15px 15px; } nav a { margin: 0 8px; } article h1, article h3 { font-size: 20px; } article p { font-size: 14px; } footer p { margin: 0 8px; font-size: 1.1em; }
@@ -31,9 +32,9 @@ nav a { color: rgba(255,255,0,255); margin: 0 10px; text-decoration: none; }
 article { padding: 20px; width: 90%; max-width: 100%; margin: 0 auto; }
 article h1, article h3 { font-size: 24px; margin-bottom: 20px; color: rgba(0,0,0,0.1); }
 article p { font-size: 16px; line-height: 1.5; }
-@keyframes bounce { 0% { transform: scale(1,1); } 50% { transform: scale(1.1,1.1); } 100% { transform: scale(1,1); } }
-article button { padding: 10px 20px; border: none; border-radius: 5px; color: #fff; font-size: 16px; cursor: pointer; background-color: rgba(0,0,0,255); transition: all 0.8s ease-in-out 0s; animation: bounce 2s ease-in-out infinite; }
+@keyframes tada { 0% { transform: translateY(-10px) rotate(-3deg); } 50% { transform: translateY(10px) rotate(3deg); } 100% { transform: translateY(-10px) rotate(-3deg); } 0% { transform: translateY(-10px) rotate(-3deg); } 50% { transform: translateY(10px) rotate(3deg); } 100% { transform: translateY(-10px) rotate(-3deg); } }
+article button { padding: 10px 20px; border: none; border-radius: 5px; color: #fff; font-size: 16px; cursor: pointer; background-color: rgba(0,0,0,255); transition: all 0.8s ease-in-out 0s; animation: tada 2s ease-in-out infinite; }
 article button:hover { background-color: rgba(255,165,0,0.5); transition: all 0.8s ease-in-out 0s; }
-.grid-container p { display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 20px; border: 1px solid #ccc; padding: 20px; }
-footer { background-color: rgba(0,0,0,0.1); display: flex; flex-direction: row; justify-content: center; align-items: center; }
-footer p { color: rgba(0,0,0,255); margin: 0 10px; font-size: 1.2em; }
+.grid-container p { padding: 20px; border: 1px solid #ccc; }
+footer { background-color: rgba(255,0,0,0.5); width: 100%; padding: 30px; text-align: center; webkit-width: 100%; moz-width: 100%; ms-width: 100%; o-width: 100%; flex-direction: row; justify-content: center; align-items: center; }
+footer b:after { color: rgba(0,0,255,0.5); font-family: "Font Awesome 5 Free", serif; content: "\f015"; }

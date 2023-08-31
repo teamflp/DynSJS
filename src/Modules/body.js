@@ -5,6 +5,9 @@ const body = new StyleSheet();
 
 mixins(body);
 
+body.rule('*, *::before, *::after')
+    .set({ boxSizing: 'border-box' })
+
 body.rule('body')
     .set({
         fontFamily: 'Arial, sans-serif',

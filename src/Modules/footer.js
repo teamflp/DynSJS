@@ -1,16 +1,34 @@
 import { StyleSheet } from '../Classes/StyleSheet.js';
-import { colorDark, colorBlack } from './vars.js';
+import { colorBlue, colorRed } from './vars.js';
+import { tadaKeyframes } from "./animations.js";
+import {DynSJS} from "../Classes/DynSJS.js";
 
 const footer = new StyleSheet();
 
-footer.rule('footer')
-    .setColor(colorDark, 'backgroundColor')
-    .flexLayout({ display: 'flex', direction: 'row', justify: 'center', align: 'center' });
+/*footer.rule('footer')
+        .setColor(colorDark, 'backgroundColor')
+        .set({
+            fontSize: '1.2em',
+            textAlign: 'center',
+            padding: '30px',
+        })*/
+
+// Styles principaux pour le footer
+footer.rule('footer') // Sélecteur principal
+    .setColor(colorRed, 'backgroundColor')
+    .set({ width: '100%', padding: '30px', textAlign: 'center' })
+    .set(DynSJS.addPrefixes({ width: '100%' }))
+    .flexLayout({ direction: 'row', justify: 'center', align: 'center' });
+
+
+footer.rule('@keyframes tada')
+    .set(tadaKeyframes)
 
 footer.rule('footer')
-    .nested('p')
-    .setColor(colorBlack, 'color')
-    .set({ margin: '0 10px', fontSize: '1.2em' });
+    .nested('b:after')
+        .setColor(colorBlue, 'color')
+        .set({ fontFamily: '"Font Awesome 5 Free", serif' })
+        .setText('\\f015')
 
 // Media Query pour les écrans jusqu'à 768px
 footer.rule('footer')

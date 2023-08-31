@@ -3,7 +3,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 const JSDocPlugin = require('jsdoc-webpack-plugin');
 
 module.exports = {
-    entry: './src/DynSJS.js',
+    entry: './src/index.js',
     output: {
         filename: 'dynsjs.bundle.js',
         path: path.resolve(__dirname, 'dist/build'),
@@ -28,5 +28,23 @@ module.exports = {
         new JSDocPlugin({
             conf: './jsdoc.json',
         })
-    ]
+    ],
+    resolve: {
+        fallback: {
+            util: require.resolve("util/"),
+            net: require.resolve("stream"),
+            tls: require.resolve("tls"),
+            http: require.resolve("stream-http"),
+            https: require.resolve("https-browserify"),
+            fs: false, // You might need to adjust your code to avoid using 'fs'
+            crypto: require.resolve("crypto-browserify"),
+            buffer: require.resolve("buffer/"),
+        },
+    },
+    optimization: {
+        minimize: true,
+        minimizer: [new TerserPlugin({
+            extractComments: false,
+        })],
+    },
 };

@@ -7,10 +7,22 @@
  * @license MIT
  */
 
-import {Color} from "./Color.js";
+import { Color } from "./Color.js";
+import { JSDOM } from "jsdom";
 
 /**
- * Classe pour générer dynamiquement des styles CSS.
+ *
+ * La bibliothèque DynSJS, ou Dynamic StyleSheet JavaScript, est une bibliothèque JavaScript
+ * qui permet de générer dynamiquement des feuilles de style (CSS) en JavaScript.
+ * Voici quelques-uns de ses avantages :<br><br>
+ * 1. Dynamisme : Permet de créer des styles qui peuvent être modifiés dynamiquement en fonction des actions de l'utilisateur,
+ *    des données en temps réel, etc. Cela peut être particulièrement utile pour les applications web interactives.<br>
+ *
+ * <br>2. Modularité : Permet de structurer le code CSS en modules JavaScript, ce qui peut rendre le code plus lisible, réutilisable et maintenable.<br>
+ *
+ * <br>3. Programmabilité : Permet d'utiliser toute la puissance de JavaScript pour créer des styles, y compris des boucles, des conditions, des fonctions, etc.<br>
+ *
+ * <br>4. Compatibilité : Facilite la gestion des préfixes de navigateur et des incompatibilités entre navigateurs.<br>
  *
  * @property {string[]} _selectors - Sélecteurs CSS pour la règle.
  * @property {Object} _properties - Propriétés CSS pour la règle.
@@ -19,47 +31,14 @@ import {Color} from "./Color.js";
  * @property {function} _conditionFn - Fonction de condition pour la règle.
  * @property {string[]} _selectorStack - Pile de sélecteurs pour la règle.
  * @property {DynSJS} _parent - Parent de la règle.
- * @example
  *
- * import { StyleSheet } from '../Classes/StyleSheet.js';
- * import { colorRed, colorGreen, colorWhite, colorYellow } from './vars.js';
- *
- * const footer = new StyleSheet(); // Crée une nouvelle instance de StyleSheet
- *
- * // Styles principaux pour le footer
- * footer.rule('footer') // Sélecteur principal
- *     .setColor(colorRed, 'backgroundColor') // Définit la couleur de fond
- *     .set({ width: '50%' }) // Définit la largeur
- *     .transitionManager({ backgroundColor: '0.5s', width: '0.3s' }) // Définit les transitions
- *     .flexLayout({ direction: 'row', justify: 'center', align: 'center' }); // Définit les propriétés flexbox
- *
- * // Styles pour les paragraphes à l'intérieur du footer
- * footer.rule('footer')
- *     .nested('p') // Sélecteur enfant
- *     .setColor(colorGreen, 'backgroundColor', colorWhite, 'color') // Définit la couleur de fond et la couleur du texte
- *     .set({ textAlign: 'center', padding: '10px', width: '100%' }) // Définit le texte centré, le rembourrage et la largeur
- *     .transitionManager({ backgroundColor: '0.5s', color: '0.5s' }) // Définit les transitions
- *     .nested('::before') // Sélecteur pseudo-élément
- *     .setText("C'est le footer!") // Définit le texte du pseudo-élément
- *
- * // Styles pour les boutons à l'intérieur du footer lorsqu'ils sont survolés ou focalisés
- * const buttonTransitions = { backgroundColor: '0.3s' }; // Transitions communes pour les boutons
- *
- * footer.rule('footer')
- *     .nested('button:hover')
- *     .setColor(colorGreen, 'backgroundColor')
- *     .transitionManager(buttonTransitions);
- *
- * footer.rule('footer')
- *     .nested('button:focus')
- *     .setColor(colorYellow, 'backgroundColor')
- *     .transitionManager(buttonTransitions);
- *
- * export default footer;
  */
 export class DynSJS {
 
     _parent;
+    styleSheet;
+    _propertyStack;
+    _pseudoClasses;
 
     constructor(...selectors) {
         if (!selectors.every(DynSJS._isValidSelector)) {
@@ -72,17 +51,80 @@ export class DynSJS {
         this._mediaQueries = [];
         this._conditionFn = null;
         this._selectorStack = [];
+        this._propertyStack = [];
+        this._pseudoClasses = [];
     }
 
     static _isValidSelector(sel) {
         return typeof sel === 'string' && sel.trim();
     }
+
     static _isValidProperty(key, value) {
         return typeof key === 'string' && typeof value === 'string';
     }
+
     static camelToKebab(string) {
         return string.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
     }
+
+    /**
+     * Ajoute des préfixes de navigateur aux propriétés spécifiées pour assurer la compatibilité
+     * avec différents navigateurs.
+     *
+     * @param {Object} properties - Les propriétés à préfixer.
+     * @returns {Object} Un objet contenant les propriétés préfixées.
+     *
+     * @example
+     *
+     * import { StyleSheet } from '../Classes/StyleSheet.js';
+     * import { colorRed } from './vars.js';
+     * import {DynSJS} from "../Classes/DynSJS.js";
+     *
+     * const footer = new StyleSheet();
+     *
+     * // Styles principaux pour le footer
+     * footer.rule('footer') // Sélecteur principal
+     *     .setColor(colorRed, 'backgroundColor')
+     *     .set({ width: '100%', padding: '30px', textAlign: 'center' })
+     *     .set(DynSJS.addPrefixes({ width: '100%' }))
+     *     .flexLayout({ direction: 'row', justify: 'center', align: 'center' });
+     *
+     *
+     * Cela génère le CSS suivant :
+     *
+     * footer {
+     *      background-color: rgba(255,0,0,0.5);
+     *      width: 100%;
+     *      padding: 30px;
+     *      text-align: center;
+     *      webkit-width: 100%;
+     *      moz-width: 100%;
+     *      ms-width: 100%;
+     *      o-width: 100%;
+     *      flex-direction: row;
+     *      justify-content: center;
+     *      align-items: center;
+     * }
+     */
+    static addPrefixes(properties) {
+        const prefixes = ['webkit', 'moz', 'ms', 'o'];
+        const prefixedProperties = {};
+
+        for (let key in properties) {
+            const value = properties[key];
+            const camelCaseKey = key.replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
+
+            prefixes.forEach(prefix => {
+                const prefixedKey = `${prefix}${camelCaseKey.charAt(0).toUpperCase()}${camelCaseKey.slice(1)}`;
+                prefixedProperties[prefixedKey] = value;
+            });
+
+            prefixedProperties[key] = value;
+        }
+
+        return prefixedProperties;
+    }
+
 
     /**
      * Définit les propriétés CSS pour les sélecteurs actuels.
@@ -149,9 +191,25 @@ export class DynSJS {
      */
     nested(...selectors) {
         this._selectorStack.push([...this._selectors]);
+        this._propertyStack.push({...this._properties});  // sauvegarder les propriétés actuelles
+        this._properties = {};  // réinitialiser les propriétés
         this._selectors = selectors.map(selector => {
             return this._selectors.map(s => selector.startsWith("::") ? `${s}${selector}` : `${s} ${selector}`);
         }).flat();
+        return this;
+    }
+
+    /**
+     * Retire le(s) sélecteur(s) actuel(s).
+     * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
+     */
+    end() {
+        if (this._selectorStack.length) {
+            this._selectors = this._selectorStack.pop();
+        }
+        if (this._propertyStack.length) {
+            this._properties = this._propertyStack.pop();  // restaurer les propriétés précédentes
+        }
         return this;
     }
 
@@ -203,7 +261,7 @@ export class DynSJS {
     media(query) {
         if (!query.trim()) throw new Error("Requête media invalide.");
         const rule = new DynSJS(...this._selectors);
-        this._mediaQueries.push({ query, rule });
+        this._mediaQueries.push({query, rule});
         return rule;
     }
 
@@ -233,6 +291,7 @@ export class DynSJS {
     _isConditionMet() {
         return this._parent && !this._parent._isConditionMet() ? false : this._conditionFn ? this._conditionFn() : true;
     }
+
     _generateSelectors(parentSelector) {
         return parentSelector ? this._selectors.map(selector => `${parentSelector} ${selector}`).join(', ') : this._selectors.join(', ');
     }
@@ -241,6 +300,7 @@ export class DynSJS {
             .map(([key, value]) => typeof value === 'object' && !Array.isArray(value) ? `${key} { ${Object.entries(value).map(([k, v]) => `${k}: ${v};`).join(' ')} }` : `${DynSJS.camelToKebab(key)}: ${value};`)
             .join(' ');
     }
+
     _generateKeyframes() {
         if (!this._keyframesCSS) return '';
         return this._keyframesCSS;
@@ -306,7 +366,7 @@ export class DynSJS {
         if (typeof transition === 'string') {
             this._properties.transition = transition;
         } else if (typeof transition === 'object') {
-            const { property, duration, timingFunction } = transition;
+            const {property, duration, timingFunction} = transition;
             this._properties.transition = `${property} ${duration} ${timingFunction}`;
         } else {
             throw new Error("L'argument fourni doit être une chaîne CSS ou un objet de propriétés.");
@@ -325,7 +385,24 @@ export class DynSJS {
      */
     setText(text) {
         if (typeof text !== 'string') throw new Error('Le texte fourni doit être une chaine de caractères.');
-        this.set({ content: `"${text.replace(/"/g, '\\"')}"` });
+        this.set({content: `"${text.replace(/"/g, '\\"')}"`});
+        return this;
+    }
+
+    setIcon(selector, iconClass) {
+        console.log('setIcon', selector, iconClass);
+        if (typeof selector !== 'string' || typeof iconClass !== 'string') {
+            throw new Error('Le sélecteur et la classe d\'icône doivent être des chaînes de caractères.');
+        }
+
+        const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>');
+        const document = dom.window.document;
+
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+            element.classList.add(iconClass);
+        });
+
         return this;
     }
 
@@ -522,7 +599,17 @@ export class DynSJS {
         if (typeof animation === 'string') {
             this._properties.animation = animation;
         } else if (typeof animation === 'object') {
-            const { name, duration, timingFunction, delay, iterationCount, direction, fillMode, playState, keyframes } = animation;
+            const {
+                name,
+                duration,
+                timingFunction,
+                delay,
+                iterationCount,
+                direction,
+                fillMode,
+                playState,
+                keyframes
+            } = animation;
             this._properties.animation = [name, duration, timingFunction, delay, iterationCount, direction, fillMode, playState].filter(Boolean).join(' ');
 
             // Ajouter les keyframes au CSS généré
@@ -581,58 +668,60 @@ export class DynSJS {
     }
 
     /**
-     * Définit les propriétés de la pseudo-classe de l'élément.
+     * Exécute une fonction pour chaque élément d'un tableau avec des options de filtrage et de transformation.
      *
-     * @param {string|Object} pseudoClass - Le nom de la pseudo-classe (par exemple, 'hover', 'active', etc.) ou un objet contenant les pseudo-classes et leurs propriétés.
-     * @param {Object} [properties] - Un objet contenant les propriétés CSS à appliquer à la pseudo-classe. Ignoré si `pseudoClass` est un objet.
-     * @returns {DynSJS} L'instance DynSJS pour le chaînage des méthodes.<br><b>
-     *
-     * <br>Pour plus d'informations sur les pseudo-classes, consultez la documentation de MDN :
-     * <a href="https://developer.mozilla.org/fr/docs/Web/CSS/Pseudo-classes" target="_blank">Pseudo-classes MDN</a>
-     *
-     * @example
-     * <button>Click me</button>
-     *
-     * JS :
-     *
-     * const button = new StyleSheet()
-     *
-     * // Option 1 : Chaîne de caractères
-     * button.rule('button')
-     *   .setPseudo('hover', {
-     *      backgroundColor: 'blue',
-     *      color: 'white'
-     *   });
-     *
-     * // Option 2 : Objet
-     * button.rule('button')
-     *   .setPseudo({
-     *      hover: {
-     *          backgroundColor: 'blue',
-     *          color: 'white'
-     *      },
-     *      active: {
-     *          backgroundColor: 'red',
-     *          color: 'white'
-     *      }
-     *   });
-     *
+     * @param {Array} array - Le tableau sur lequel itérer.
+     * @param {Function} callback - La fonction à exécuter pour chaque élément du tableau.
+     * @param {Object} [options] - Les options de filtrage et de transformation.
+     * @param {Function} [options.filter] - Une fonction qui détermine si un élément doit être inclus dans la boucle.
+     * @param {Function} [options.transform] - Une fonction qui transforme un élément avant qu'il ne soit passé au callback.
+     * @returns {DynSJS} L'instance actuelle de DynSJS pour permettre le chaînage des méthodes.
      */
-    setPseudo(pseudoClass, properties) {
-        if (typeof pseudoClass === 'string') {
-            return this._addPseudoClassRule(`:${pseudoClass}`, properties);
-        } else if (typeof pseudoClass === 'object') {
-            Object.entries(pseudoClass).forEach(([key, value]) => {
-                this._addPseudoClassRule(`:${key}`, value);
-            });
-            return this;
-        } else {
-            throw new Error("L'argument 'pseudoClass' doit être une chaîne de caractères ou un objet de propriétés.");
-        }
+    each(array, callback, options = {}) {
+        const {filter, transform} = options;
+        array.forEach((item, index) => {
+            if (filter && !filter(item, index)) return;
+            let value = item;
+            if (transform) value = transform(item, index);
+            callback(value, index);
+        });
+        return this;
     }
 
-
-
+    /**
+     * Exécute plusieurs méthodes de l'instance DynSJS actuelle.
+     *
+     * @param {Object} methods - Un objet dont les clés sont les noms des méthodes à appeler et les valeurs sont des tableaux d'arguments à passer à ces méthodes.
+     * @returns {Object} Un objet contenant les résultats des méthodes appelées.
+     * @throws {Error} Si les arguments pour une méthode ne sont pas dans un tableau.
+     * @throws {Error} Si une méthode spécifiée n'existe pas dans DynSJS.
+     * @throws {Error} Si une erreur se produit lors de l'appel d'une méthode.
+     * @async
+     */
+    async delegate(methods) {
+        const results = {};
+        for (let method in methods) {
+            if (typeof this[method] === 'function') {
+                const args = methods[method];
+                if (!Array.isArray(args)) {
+                    throw new Error(`Les arguments pour ${method} doivent être dans un tableau.`);
+                }
+                try {
+                    const result = this[method](...args);
+                    if (result instanceof Promise) {
+                        results[method] = await result;
+                    } else {
+                        results[method] = result;
+                    }
+                } catch (error) {
+                    throw new Error(`Erreur lors de l'appel de la méthode ${method}: ${error}`);
+                }
+            } else {
+                throw new Error(`${method} n'est pas une méthode de DynSJS.`);
+            }
+        }
+        return results;
+    }
 
     toCSS(parentSelector = '') {
         if (!this._isConditionMet()) return null;
@@ -655,7 +744,7 @@ export class DynSJS {
             return '';
         }).join('\n').trim();
 
-        const mediaCSS = this._mediaQueries.map(({ query, rule }) => {
+        const mediaCSS = this._mediaQueries.map(({query, rule}) => {
             const cssResult = rule.toCSS(); // Notez le changement ici
             let cssString = "";
             if (cssResult && cssResult.result && cssResult.result.properties) {
@@ -675,6 +764,5 @@ export class DynSJS {
 
         return {result, childrenCSS: childrenCssString, mediaCSS, keyframesCSS};
     }
-
 
 }
