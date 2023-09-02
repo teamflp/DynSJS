@@ -1,16 +1,16 @@
 import { StyleSheet } from '../Classes/StyleSheet.js';
-import {colorBlack, colorDark, colorOrange } from './vars.js';
-import {bounceAnimation, bounceKeyframes, tadaAnimation, tadaKeyframes} from "./animations.js";
+import { colorBlack, colorDark, colorOrange } from './vars.js';
+import { tadaAnimation, tadaKeyframes } from "./animations.js";
 
 const article = new StyleSheet();
 
 article.rule('article')
-    .set({ padding: '20px', width: '90%', maxWidth: '100%', margin: '0 auto' })
+    .set({ padding: '10px 0', width: '90%', maxWidth: '100%', margin: '0 auto' })
 
 article.rule('article')
     .nested('h1','h3')
         .set({ fontSize: '24px', marginBottom: '20px'})
-        .setColor(colorDark, 'color')
+        .setColor(colorBlack, 'color')
 
 article.rule('article')
     .nested('p')
@@ -28,48 +28,89 @@ article.rule('article')
         .setAnimation(tadaAnimation)
 
 article.rule('article')
+    .nested('button i')
+        .set({ marginRight: '10px' })
+
+article.rule('article')
     .nested('button:hover')
         .setColor(colorOrange, 'backgroundColor')
         .setTransition('all 0.8s ease-in-out 0s')
 
 // Grid
 article.rule('.grid-container')
-    .set({ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridGap: '20px', border: '1px solid #ccc', padding: '20px' })
-    .nested('p')
-        .set({ padding: '20px', border: '1px solid #ccc' })
+    .flexLayout({ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' })
+
+article.rule('.grid-container')
+    .nested('p:nth-child(2n)')
+        .setColor(colorDark, 'backgroundColor' )
 
 // Media Query pour les écrans jusqu'à 768px
 article.rule('article')
     .media('(max-width: 768px)')
-    .nested('h1', 'h3')
-        .set({ fontSize: '20px' });
+        .set({ width: '100%' })
+        .nested('h1', 'h3')
+            .set({ fontSize: '20px' });
 
+article.rule('.container')
+    .media('(max-width: 768px)',
+        '(max-width: 576px)',
+        '(max-width: 480px)',
+        '(max-width: 320px)',
+        '(orientation: portrait)',
+        '(orientation: landscape)')
+        .flexLayout({ display: 'flex', direction: 'column' })
 
 article.rule('article')
-    .media('(max-width: 768px)')
-    .nested('p')
-        .set({ fontSize: '14px' });
+    .media(
+        '(max-width: 768px)',
+        '(max-width: 576px)',
+        '(max-width: 480px)',
+        '(max-width: 320px)',
+        '(orientation: portrait)',
+        '(orientation: landscape)')
+        .nested('p')
+            .set({ fontSize: '20px', width: '100%' })
+        .flexLayout({ display: 'flex', direction: 'column' })
 
 // Media Query pour les écrans jusqu'à 576px
 article.rule('article')
-    .media('(max-width: 576px)')
-    .nested('h1', 'h3')
-        .set({ fontSize: '18px' });
+    .media('(max-width: 768px)',
+        '(max-width: 576px)',
+        '(max-width: 480px)',
+        '(max-width: 320px)',
+        '(orientation: portrait)',
+        '(orientation: landscape)')
+        .set({ width: '100%' })
+        .nested('h1', 'h3')
+            .set({ fontSize: '20px' });
 
 article.rule('article')
-    .media('(max-width: 576px)')
-    .nested('p')
-        .set({ fontSize: '12px' });
+    .media('(max-width: 768px)',
+        '(max-width: 576px)',
+        '(max-width: 480px)',
+        '(max-width: 320px)',
+        '(orientation: portrait)',
+        '(orientation: landscape)')
+        .set({ maxWidth: '100%' })
+        .nested('p')
+            .set({ fontSize: '20px' });
 
 // Media Query pour les écrans jusqu'à 480px
 article.rule('article')
-    .media('(max-width: 480px)')
-    .nested('h1', 'h3')
-        .set({ fontSize: '16px' });
+    .media('(max-width: 768px)',
+        '(max-width: 576px)',
+        '(max-width: 480px)',
+        '(max-width: 320px)',
+        '(orientation: portrait)',
+        '(orientation: landscape)')
+        .set({ width: '100%' })
+        .nested('h1', 'h3')
+            .set({ fontSize: '20px' });
 
 article.rule('article')
     .media('(max-width: 480px)')
-    .nested('p')
-        .set({ fontSize: '10px' });
+        .set({ width: '100%' })
+        .nested('p')
+            .set({ fontSize: '20px' });
 
 export default article;

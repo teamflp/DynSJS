@@ -10,6 +10,9 @@
 import { Color } from "./Color.js";
 import { JSDOM } from "jsdom";
 
+const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>');
+const document = dom.window.document;
+
 /**
  *
  * La bibliothèque DynSJS, ou Dynamic StyleSheet JavaScript, est une bibliothèque JavaScript
@@ -34,11 +37,11 @@ import { JSDOM } from "jsdom";
  *
  */
 export class DynSJS {
-
     _parent;
     styleSheet;
     _propertyStack;
     _pseudoClasses;
+    _rules;
 
     constructor(...selectors) {
         if (!selectors.every(DynSJS._isValidSelector)) {
@@ -53,6 +56,7 @@ export class DynSJS {
         this._selectorStack = [];
         this._propertyStack = [];
         this._pseudoClasses = [];
+        this._rules = [];
     }
 
     static _isValidSelector(sel) {
@@ -125,7 +129,6 @@ export class DynSJS {
         return prefixedProperties;
     }
 
-
     /**
      * Définit les propriétés CSS pour les sélecteurs actuels.
      * @param {Object} props - Les propriétés CSS à définir.
@@ -189,13 +192,24 @@ export class DynSJS {
      *   article h1 { color: blue; }
      * @param selectors
      */
-    nested(...selectors) {
+   /* nested(...selectors) {
         this._selectorStack.push([...this._selectors]);
         this._propertyStack.push({...this._properties});  // sauvegarder les propriétés actuelles
         this._properties = {};  // réinitialiser les propriétés
         this._selectors = selectors.map(selector => {
             return this._selectors.map(s => selector.startsWith("::") ? `${s}${selector}` : `${s} ${selector}`);
         }).flat();
+        return this;
+    }*/
+    nested(...selectors) {
+        console.log('nested', selectors);
+        this._selectorStack.push([...this._selectors]);
+        this._propertyStack.push({...this._properties, ...this._properties});  // ajouter les propriétés actuelles
+        this._properties = {};  // réinitialiser les propriétés
+        this._selectors = selectors.map(selector => {
+            return this._selectors.map(s => selector.startsWith("::") ? `${s}${selector}` : `${s} ${selector}`);
+        }).flat();
+        console.log('nested', this._selectors);
         return this;
     }
 
@@ -208,55 +222,28 @@ export class DynSJS {
             this._selectors = this._selectorStack.pop();
         }
         if (this._propertyStack.length) {
-            this._properties = this._propertyStack.pop();  // restaurer les propriétés précédentes
+            // Fusionner les propriétés actuelles avec les propriétés précédentes
+            this._properties = {...this._propertyStack.pop(), ...this._properties};
         }
         return this;
     }
 
     /**
-     * Ajoute une règle de requête média au(x) sélecteur(s) actuel(s).
-     * @param {string} query - Condition de la requête média.
-     * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
+     * Ajoute une requête media à la règle.
      *
+     * L'avantage de cette méthode est sa flexibilité et sa facilité d'utilisation : <br>
+     * <br>1. Multiple Queries : Elle permet d'ajouter plusieurs requêtes média en une seule fois, ce qui facilite la gestion des styles pour différents points de rupture ou orientations.<br>
+     * 2. Chaînage des méthodes : Elle retourne l'objet `DynSJS` courant, ce qui permet de chaîner d'autres méthodes à la suite. Cela rend le code plus lisible et plus compact.<br>
+     * 3. Gestion des erreurs : Elle vérifie que chaque requête média est valide avant de l'ajouter à la liste des requêtes média, ce qui aide à prévenir les erreurs.<br>
+     * 4. Modularité : En retournant une nouvelle instance de `DynSJS` pour chaque requête média, elle permet d'appliquer des styles spécifiques à chaque requête média, tout en gardant le code organisé et facile à comprendre.<br>
+     *
+     * @param {string} query - La requête media.
+     * @throws {Error} Si la requête media est invalide.
+     * @return {DynSJS} L'instance courante de DynSJS.
      * @example
-     *
-     * code html :
-     * <article>
-     *     <h1>Dynamic StyleSheet JavaScript</h1>
-     * </article>
-     *
-     * code js :
-     * const article = new DynSJS('article');
-     *
-     * article.rule('article') // Sélecteur principal
-     *   .set({ backgroundColor: 'red' }); // Propriétés CSS
-     *   .nested('h1')
-     *      .set({ color: 'blue' }); // Sélecteur enfant
-     *   .media('(max-width: 600px)') // Condition de la requête média
-     *      .set({ backgroundColor: 'red' }); // Propriétés CSS
-     *      .nested('h1')
-     *          .set({ color: 'blue' }); // Sélecteur enfant
-     *
-     *   export default article;
-     *
-     *   CSS généré :
-     *
-     *   article {
-     *      background-color: red;
-     *   }
-     *
-     *   article h1 {
-     *      color: blue;
-     *   }
-     *
-     *   @media (max-width: 600px) {
-     *      article {
-     *          background-color: red;
-     *      }
-     *      article h1 {
-     *          color: blue;
-     *      }
-     *   }
+     * article.rule('.container')
+     *    .media('(max-width: 768px)', '(max-width: 576px)', '(max-width: 480px)', '(max-width: 320px)')
+     *        .flexLayout({ display: 'flex', direction: 'column' })
      */
     media(query) {
         if (!query.trim()) throw new Error("Requête media invalide.");
@@ -312,6 +299,7 @@ export class DynSJS {
         this._children.push(rule);
         return this;
     }
+
 
     /**
      * Définit la couleur pour la propriété donnée.
@@ -389,6 +377,27 @@ export class DynSJS {
         return this;
     }
 
+    /**
+     * Ajoute une classe d'icône à tous les éléments correspondant au sélecteur donné.
+     *
+     * @param {string} selector - Le sélecteur CSS des éléments auxquels ajouter la classe d'icône.
+     * @param {string} iconClass - La classe d'icône à ajouter aux éléments.
+     * @throws {Error} Le sélecteur et la classe d'icône doivent être des chaînes de caractères.
+     * @returns {object} L'instance de la classe.
+     *
+     * @example
+     * // Supposons que vous avez un élément dans votre HTML comme suit :
+     * <i id="my-icon"></i>
+     *
+     * // Et que vous appelez :
+     * setIcon('#my-icon', 'fa fa-home');
+     *
+     * // L'élément dans le DOM serait mis à jour pour ressembler à ceci :
+     * <i id="my-icon" class="fa fa-home"></i>
+     *
+     * // Cela signifie que les styles associés à la classe 'fa' et 'fa-home'
+     * // dans votre CSS seront appliqués à cet élément.
+     */
     setIcon(selector, iconClass) {
         console.log('setIcon', selector, iconClass);
         if (typeof selector !== 'string' || typeof iconClass !== 'string') {

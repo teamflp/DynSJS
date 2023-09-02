@@ -25,7 +25,6 @@ sheet.rule('.my-class')
 
 sheet.rule('button')
     .setColor(primaryColor, 'backgroundColor')  // 3. Utilisez setColor
-    .hover({ backgroundColor: hoverColor })
     .set({
         padding: '10px 20px',
         fontSize: '16px',

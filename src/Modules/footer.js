@@ -1,7 +1,8 @@
 import { StyleSheet } from '../Classes/StyleSheet.js';
 import { colorBlue, colorRed } from './vars.js';
 import { tadaKeyframes } from "./animations.js";
-import {DynSJS} from "../Classes/DynSJS.js";
+import { DynSJS } from "../Classes/DynSJS.js";
+import { JSDOM} from "jsdom";
 
 const footer = new StyleSheet();
 
@@ -25,10 +26,10 @@ footer.rule('@keyframes tada')
     .set(tadaKeyframes)
 
 footer.rule('footer')
-    .nested('b:after')
+    .nested('b:before')
         .setColor(colorBlue, 'color')
         .set({ fontFamily: '"Font Awesome 5 Free", serif' })
-        .setText('\\f015')
+        .setText('\\f015  ')
 
 // Media Query pour les écrans jusqu'à 768px
 footer.rule('footer')
