@@ -1,71 +1,37 @@
 import { DynSJS } from "./DynSJS.js";
 
+/**
+ * Classe représentant une feuille de style.
+ */
 export class StyleSheet {
+    /**
+     * Crée une nouvelle feuille de style.
+     */
     constructor() {
+        /**
+         * @type {Array<DynSJS>}
+         * @private
+         */
         this._rules = [];
     }
-   /* rule(...selectors) {
-        const rule = new DynSJS(...selectors);
-        this._rules.push(rule);
-        return rule;
-    }*/
 
-    /*rule(...selectors) {
-        this._parentSelector = selectors;
-        this._selectors = selectors;
-        this._properties = {};
-        return this;
-    }*/
-
+    /**
+     * Ajoute une nouvelle règle à la feuille de style.
+     * @param {...string} selectors - Les sélecteurs de la règle.
+     * @returns {DynSJS} La règle créée.
+     */
     rule(...selectors) {
         const rule = new DynSJS(...selectors);
         this._rules.push(rule);
         return rule;
     }
 
-
-
-    /* _mergeCSS(cssObjects) {
-         let cssMap = {};
-
-         cssObjects.forEach(obj => {
-             if (obj.result && obj.result.selector && obj.result.properties) {
-                 const { selector, properties } = obj.result;
-                 cssMap[selector] = cssMap[selector] ? `${cssMap[selector]} ${properties}` : properties;
-             }
-
-             if (Array.isArray(obj.childrenCSS)) {
-                 obj.childrenCSS.forEach(child => {
-                     if (child && child.selector && child.properties) {
-                         const { selector, properties } = child;
-                         cssMap[selector] = cssMap[selector] ? `${cssMap[selector]} ${properties}` : properties;
-                     }
-                 });
-             }
-
-             if (Array.isArray(obj.mediaCSS)) {
-                 obj.mediaCSS.forEach(media => {
-                     if (media && media.query && media.css) {
-                         const { query, css } = media;
-                         const mediaKey = `@media ${query}`;
-                         cssMap[mediaKey] = cssMap[mediaKey] ? `${cssMap[mediaKey]} ${css}` : css;
-                     }
-                 });
-             }
-         });
-
-         let compiledCSS = "";
-         for (let selector in cssMap) {
-             if (selector.startsWith('@media')) {
-                 compiledCSS += `${selector} {\n  ${cssMap[selector]}\n}\n`;
-             } else {
-                 compiledCSS += `${selector} { ${cssMap[selector]} }\n`;
-             }
-         }
-
-         return compiledCSS;
-     }*/
-
+    /**
+     * Fusionne les objets CSS en une seule chaîne CSS.
+     * @param {Array<Object>} cssObjects - Les objets CSS à fusionner.
+     * @returns {string} Le CSS fusionné.
+     * @private
+     */
     _mergeCSS(cssObjects) {
         let cssMap = {};
         let compiledCSS = "";
@@ -104,7 +70,11 @@ export class StyleSheet {
         return compiledCSS;
     }
 
-
+    /**
+     * Génère des classes utilitaires.
+     * @param {Object} config - La configuration des classes à générer.
+     * @returns {StyleSheet} La feuille de style.
+     */
     generateClasses(config) {
         const { prefix, count, properties } = config;
         for (let i = 1; i <= count; i++) {
@@ -115,6 +85,11 @@ export class StyleSheet {
         return this;
     }
 
+    /**
+     * Combine plusieurs feuilles de style en une seule.
+     * @param {...StyleSheet} stylesheets - Les feuilles de style à combiner.
+     * @throws {Error} Si un paramètre n'est pas une instance de StyleSheet.
+     */
     combine(...stylesheets) {
         for (let sheet of stylesheets) {
             if (Array.isArray(sheet._rules)) {
@@ -124,11 +99,11 @@ export class StyleSheet {
             }
         }
     }
-    /*compile() {
-        const intermediateCSS = this._rules.map(rule => rule.toCSS()).filter(Boolean);
-        return this._mergeCSS(intermediateCSS);
-    }*/
 
+    /**
+     * Compile la feuille de style en une chaîne CSS.
+     * @returns {string} Le CSS compilé.
+     */
     compile() {
         const intermediateCSS = this._rules.map(rule => rule.toCSS());
         return this._mergeCSS(intermediateCSS);

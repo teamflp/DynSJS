@@ -1,5 +1,5 @@
 import { StyleSheet } from '../Classes/StyleSheet.js';
-import { colorBlack, colorDark, colorOrange } from './vars.js';
+import { colorBlack, colorOrange } from './vars.js';
 import { tadaAnimation, tadaKeyframes } from "./animations.js";
 
 const article = new StyleSheet();
@@ -11,6 +11,7 @@ article.rule('.container')
     .nested('h1','h3')
         .set({ fontSize: '24px', marginBottom: '20px'})
         .setColor(colorBlack, 'color')
+    //.end()
 
 article.rule('article')
     .nested('p')

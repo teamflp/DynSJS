@@ -39,6 +39,7 @@ export class DynSJS {
     _propertyStack;
     _pseudoClasses;
     _rules;
+    _children;
 
     constructor(...selectors) {
         if (!selectors.every(DynSJS._isValidSelector)) {
@@ -208,6 +209,25 @@ export class DynSJS {
         return this;
     }
 
+    /*end() {
+        if (this._selectorStack.length > 0 && this._propertyStack.length > 0) {
+            this._selectors = this._selectorStack.pop();
+            this._properties = this._propertyStack.pop();
+        } else {
+            console.warn("Aucun état précédent à restaurer");
+        }
+        return this;
+    }*/
+
+    end() {
+        if (this._selectorStack.length > 0) {
+            this._selectors = this._selectorStack.pop();
+        } else {
+            console.warn("Aucun état précédent à restaurer");
+        }
+        return this;
+    }
+
     /**
      * Ajoute une requête media à la règle.
      *
@@ -306,8 +326,6 @@ export class DynSJS {
         }
         return this;
     }
-
-
 
     /**
      * Définit la propriété de transition de l'élément.
