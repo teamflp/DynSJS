@@ -4,10 +4,10 @@ import { tadaAnimation, tadaKeyframes } from "./animations.js";
 
 const article = new StyleSheet();
 
-article.rule('article')
+article.rule('.container')
     .set({ padding: '10px 0', width: '90%', maxWidth: '100%', margin: '0 auto' })
 
-article.rule('article')
+article.rule('.container')
     .nested('h1','h3')
         .set({ fontSize: '24px', marginBottom: '20px'})
         .setColor(colorBlack, 'color')
@@ -37,15 +37,21 @@ article.rule('article')
         .setTransition('all 0.8s ease-in-out 0s')
 
 // Grid
-article.rule('.grid-container')
-    .flexLayout({ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' })
+/*article.rule('.container')
+    .flexLayout({ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' })*/
 
-article.rule('.grid-container')
-    .nested('p:nth-child(2n)')
-        .setColor(colorDark, 'backgroundColor' )
+article.rule('.container')
+    .nested('img')
+        .set({
+            width: '100%',
+            height: '50vh',
+            borderRadius: '5px',
+            boxShadow: '0 0 10px rgba(0,0,0,0.5)'
+        })
+
 
 // Media Query pour les écrans jusqu'à 768px
-article.rule('article')
+article.rule('.container')
     .media('(max-width: 768px)')
         .set({ width: '100%' })
         .nested('h1', 'h3')
@@ -60,7 +66,7 @@ article.rule('.container')
         '(orientation: landscape)')
         .flexLayout({ display: 'flex', direction: 'column' })
 
-article.rule('article')
+article.rule('.container')
     .media(
         '(max-width: 768px)',
         '(max-width: 576px)',
@@ -72,8 +78,19 @@ article.rule('article')
             .set({ fontSize: '20px', width: '100%' })
         .flexLayout({ display: 'flex', direction: 'column' })
 
+article.rule('.container')
+    .media(
+        '(max-width: 768px)',
+        '(max-width: 576px)',
+        '(max-width: 480px)',
+        '(max-width: 320px)',
+        '(orientation: portrait)',
+        '(orientation: landscape)')
+        .nested('img')
+            .set({ width: '100%', height: '40vh' })
+
 // Media Query pour les écrans jusqu'à 576px
-article.rule('article')
+article.rule('.container')
     .media('(max-width: 768px)',
         '(max-width: 576px)',
         '(max-width: 480px)',
@@ -84,7 +101,7 @@ article.rule('article')
         .nested('h1', 'h3')
             .set({ fontSize: '20px' });
 
-article.rule('article')
+article.rule('.container')
     .media('(max-width: 768px)',
         '(max-width: 576px)',
         '(max-width: 480px)',
@@ -96,7 +113,7 @@ article.rule('article')
             .set({ fontSize: '20px' });
 
 // Media Query pour les écrans jusqu'à 480px
-article.rule('article')
+article.rule('.container')
     .media('(max-width: 768px)',
         '(max-width: 576px)',
         '(max-width: 480px)',
@@ -107,7 +124,7 @@ article.rule('article')
         .nested('h1', 'h3')
             .set({ fontSize: '20px' });
 
-article.rule('article')
+article.rule('.container')
     .media('(max-width: 480px)')
         .set({ width: '100%' })
         .nested('p')

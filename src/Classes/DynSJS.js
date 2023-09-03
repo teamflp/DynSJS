@@ -10,9 +10,6 @@
 import { Color } from "./Color.js";
 import { JSDOM } from "jsdom";
 
-const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>');
-const document = dom.window.document;
-
 /**
  *
  * La bibliothèque DynSJS, ou Dynamic StyleSheet JavaScript, est une bibliothèque JavaScript
@@ -58,15 +55,12 @@ export class DynSJS {
         this._pseudoClasses = [];
         this._rules = [];
     }
-
     static _isValidSelector(sel) {
         return typeof sel === 'string' && sel.trim();
     }
-
     static _isValidProperty(key, value) {
         return typeof key === 'string' && typeof value === 'string';
     }
-
     static camelToKebab(string) {
         return string.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
     }
@@ -158,10 +152,20 @@ export class DynSJS {
      *      font-size: 16px;
      *   }
      */
-    set(props) {
+    /*set(props) {
         for (let key in props) {
             if (DynSJS._isValidProperty(key, props[key]) || typeof props[key] === 'object' && !Array.isArray(props[key])) {
                 this._properties[key] = props[key];
+            } else {
+                throw new Error(`La propriété ou la valeur ${key}: ${props[key]} est invalide.`);
+            }
+        }
+        return this;
+    }*/
+    set(props) {
+        for (let key in props) {
+            if (DynSJS._isValidProperty(key, props[key]) || typeof props[key] === 'object' && !Array.isArray(props[key])) {
+                this._properties = {...this._properties, ...{[key]: props[key]}}; // mise à jour ici
             } else {
                 throw new Error(`La propriété ou la valeur ${key}: ${props[key]} est invalide.`);
             }
@@ -192,39 +196,15 @@ export class DynSJS {
      *   article h1 { color: blue; }
      * @param selectors
      */
-   /* nested(...selectors) {
-        this._selectorStack.push([...this._selectors]);
-        this._propertyStack.push({...this._properties});  // sauvegarder les propriétés actuelles
-        this._properties = {};  // réinitialiser les propriétés
-        this._selectors = selectors.map(selector => {
-            return this._selectors.map(s => selector.startsWith("::") ? `${s}${selector}` : `${s} ${selector}`);
-        }).flat();
-        return this;
-    }*/
     nested(...selectors) {
-        console.log('nested', selectors);
         this._selectorStack.push([...this._selectors]);
-        this._propertyStack.push({...this._properties, ...this._properties});  // ajouter les propriétés actuelles
-        this._properties = {};  // réinitialiser les propriétés
+        this._propertyStack.push({...this._properties});  // ajouter les propriétés actuelles
+        // Réinitialiser les propriétés
+        this._properties = {};
+        // Remplacer les sélecteurs actuels par les nouveaux sélecteurs
         this._selectors = selectors.map(selector => {
             return this._selectors.map(s => selector.startsWith("::") ? `${s}${selector}` : `${s} ${selector}`);
         }).flat();
-        console.log('nested', this._selectors);
-        return this;
-    }
-
-    /**
-     * Retire le(s) sélecteur(s) actuel(s).
-     * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
-     */
-    end() {
-        if (this._selectorStack.length) {
-            this._selectors = this._selectorStack.pop();
-        }
-        if (this._propertyStack.length) {
-            // Fusionner les propriétés actuelles avec les propriétés précédentes
-            this._properties = {...this._propertyStack.pop(), ...this._properties};
-        }
         return this;
     }
 
@@ -300,25 +280,34 @@ export class DynSJS {
         return this;
     }
 
-
     /**
-     * Définit la couleur pour la propriété donnée.
-     * @param {Color} color - Couleur à définir.
-     * @param {string} property - Propriété pour laquelle définir la couleur.
-     * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
-     * @example
+     * Définit la couleur d'une propriété CSS.
      *
-     * const redColor = new Color(255, 0, 0);
-     * const style = new DynSJS('article');
+     * Cette méthode accepte une liste d'arguments où chaque paire d'arguments représente une couleur et une propriété CSS.
+     * Par exemple, pour définir la couleur de fond en rouge et la couleur du texte en bleu, vous pouvez appeler
+     * @exemple
      *
-     * article.rule('article')
-     *   .setColor(redColor, 'backgroundColor');
+     * @param {...*} args - Une liste d'arguments où chaque paire d'arguments est une couleur (une instance de la classe Color)
+     * et une propriété CSS (une chaîne de caractères). Par exemple, `setColor(rouge, 'backgroundColor', bleu, 'color')`.
+     *
+     * @throws {Error} Lance une exception si un des arguments de couleur n'est pas une instance de la classe Color.
+     *
+     * @returns {DynSJS} Renvoie l'instance actuelle de DynSJS pour permettre les appels de méthodes en chaîne.
+     *
+     *  footer.rule('footer')
+     *      setColor(colorBlack, 'backgroundColor', colorWhite, 'color').
      */
-    setColor(color, property) {
-        if (!(color instanceof Color)) throw new Error("L'argument fourni n'est pas une instance de Color.");
-        this._properties[property] = color.toRGBA();
+    setColor(...args) {
+        for (let i = 0; i < args.length; i += 2) {
+            const color = args[i];
+            const property = args[i + 1];
+            if (!(color instanceof Color)) throw new Error("L'argument fourni n'est pas une instance de Color.");
+            this._properties[property] = color.toRGBA();
+        }
         return this;
     }
+
+
 
     /**
      * Définit la propriété de transition de l'élément.

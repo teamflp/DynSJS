@@ -1,26 +1,17 @@
 import { StyleSheet } from '../Classes/StyleSheet.js';
-import { colorBlue, colorRed } from './vars.js';
+import { colorBlack, colorWhite, colorBlue } from './vars.js';
 import { tadaKeyframes } from "./animations.js";
 import { DynSJS } from "../Classes/DynSJS.js";
 import { JSDOM} from "jsdom";
 
 const footer = new StyleSheet();
 
-/*footer.rule('footer')
-        .setColor(colorDark, 'backgroundColor')
-        .set({
-            fontSize: '1.2em',
-            textAlign: 'center',
-            padding: '30px',
-        })*/
-
 // Styles principaux pour le footer
 footer.rule('footer') // Sélecteur principal
-    .setColor(colorRed, 'backgroundColor')
+    .setColor(colorBlack, 'backgroundColor', colorWhite, 'color')
     .set({ width: '100%', padding: '30px', textAlign: 'center' })
     .set(DynSJS.addPrefixes({ width: '100%' }))
     .flexLayout({ direction: 'row', justify: 'center', align: 'center' });
-
 
 footer.rule('@keyframes tada')
     .set(tadaKeyframes)
