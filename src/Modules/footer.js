@@ -1,8 +1,7 @@
 import { StyleSheet } from '../Classes/StyleSheet.js';
-import { colorBlack, colorWhite, colorBlue } from './vars.js';
+import {colorBlack, colorWhite, colorBlue, colorYellow} from './vars.js';
 import { tadaKeyframes } from "./animations.js";
 import { DynSJS } from "../Classes/DynSJS.js";
-import { JSDOM} from "jsdom";
 
 const footer = new StyleSheet();
 
@@ -21,6 +20,23 @@ footer.rule('footer')
         .setColor(colorBlue, 'color')
         .set({ fontFamily: '"Font Awesome 5 Free", serif' })
         .setText('\\f015  ')
+
+footer.rule('footer')
+   .nested('.actor')
+    .setColor(colorYellow, 'color')
+
+// Social Networks
+footer.rule('footer')
+    .nested('.social-network a')
+        .set({ margin: '0 10px', fontSize: '1.5em' })
+        .setColor(colorYellow, 'color')
+        .set(
+            DynSJS.addPrefixes({ transition: 'all 0.3s ease-in-out' }),
+            {
+                textDecoration: 'none',
+                transform: 'scale(1.2)'
+            }
+        )
 
 // Media Query pour les écrans jusqu'à 768px
 footer.rule('footer')

@@ -1,0 +1,5406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Class: DynSJS | Class: DynSJS</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+    
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="">
+        
+            <img src="img/toast-ui.png" width="100%" height="100%">
+        
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">Class: DynSJS</a></h1>
+        
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+    
+    <div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="ColorManager.html">ColorManager</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ColorManager_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ColorManager.html#clamp">clamp</a></li><li><a href="ColorManager.html#operate">operate</a></li><li><a href="ColorManager.html#toRGBA">toRGBA</a></li><li><a href="ColorManager.html#toString">toString</a></li><li><a href="ColorManager.html#.fromHex">fromHex</a></li><li><a href="ColorManager.html#.fromRgb">fromRgb</a></li></ul></div></li><li><a href="DynSJS.html">DynSJS</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="DynSJS_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="DynSJS.html#delegate">delegate</a></li><li><a href="DynSJS.html#each">each</a></li><li><a href="DynSJS.html#flexItem">flexItem</a></li><li><a href="DynSJS.html#flexLayout">flexLayout</a></li><li><a href="DynSJS.html#media">media</a></li><li><a href="DynSJS.html#nested">nested</a></li><li><a href="DynSJS.html#otherwise">otherwise</a></li><li><a href="DynSJS.html#set">set</a></li><li><a href="DynSJS.html#setAnimation">setAnimation</a></li><li><a href="DynSJS.html#setColor">setColor</a></li><li><a href="DynSJS.html#setFilter">setFilter</a></li><li><a href="DynSJS.html#setGrid">setGrid</a></li><li><a href="DynSJS.html#setIcon">setIcon</a></li><li><a href="DynSJS.html#setPseudo">setPseudo</a></li><li><a href="DynSJS.html#setText">setText</a></li><li><a href="DynSJS.html#setTransform">setTransform</a></li><li><a href="DynSJS.html#setTransition">setTransition</a></li><li><a href="DynSJS.html#when">when</a></li><li><a href="DynSJS.html#.addPrefixes">addPrefixes</a></li></ul></div></li><li><a href="StyleSheet.html">StyleSheet</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="StyleSheet_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="StyleSheet.html#combine">combine</a></li><li><a href="StyleSheet.html#compile">compile</a></li><li><a href="StyleSheet.html#generateClasses">generateClasses</a></li><li><a href="StyleSheet.html#rule">rule</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Global</h3><ul><li><a href="global.html#mixins">mixins</a></li></ul></div>
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>DynSJS<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description">La bibliothèque DynSJS, ou Dynamic StyleSheet JavaScript, est une bibliothèque JavaScript
+qui permet de générer dynamiquement des feuilles de style (CSS) en JavaScript.
+Voici quelques-uns de ses avantages :<br><br>
+1. Dynamisme : Permet de créer des styles qui peuvent être modifiés dynamiquement en fonction des actions de l'utilisateur,
+   des données en temps réel, etc. Cela peut être particulièrement utile pour les applications web interactives.<br>
+
+<br>2. Modularité : Permet de structurer le code CSS en modules JavaScript, ce qui peut rendre le code plus lisible, réutilisable et maintenable.<br>
+
+<br>3. Programmabilité : Permet d'utiliser toute la puissance de JavaScript pour créer des styles, y compris des boucles, des conditions, des fonctions, etc.<br>
+
+<br>4. Compatibilité : Facilite la gestion des préfixes de navigateur et des incompatibilités entre navigateurs.<br></div>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dt>
+    
+        <h4 class="name" id="DynSJS">
+            
+                new <span class="type-signature"></span>DynSJS<span class="signature">()</span><span class="type-signature"></span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line34">line 34</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>_selectors</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Sélecteurs CSS pour la règle.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>_properties</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Propriétés CSS pour la règle.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>_children</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="DynSJS.html">DynSJS</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Sélecteurs enfants pour la règle.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>_mediaQueries</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Règles de requête média pour la règle.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>_conditionFn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Fonction de condition pour la règle.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>_selectorStack</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Pile de sélecteurs pour la règle.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>_parent</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="DynSJS.html">DynSJS</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Parent de la règle.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+        
+        </div>
+    
+
+    
+
+    
+
+    
+            <h3 class="subsection-title">Classes</h3>
+            
+
+<dl>
+    
+        <dt>
+            <h4 class="name">
+                <a href="DynSJS.html">DynSJS</a>
+                <div class="container-source members">
+                    <code><a href="DynSJS.html">DynSJS</a></code>
+                </div>
+            </h4>
+        </dt>
+        
+    
+</dl>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+                
+
+<dt>
+    
+        <h4 class="name" id="delegate">
+            
+                <span class="type-signature"><span class="icon green">async</span> </span>delegate<span class="signature">(methods)</span><span class="type-signature"> &rarr; {Object}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line873">line 873</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Exécute plusieurs méthodes de l'instance DynSJS actuelle.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>methods</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Un objet dont les clés sont les noms des méthodes à appeler et les valeurs sont des tableaux d'arguments à passer à ces méthodes.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Throws:</h5>
+    <ul>
+            <li>
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Si les arguments pour une méthode ne sont pas dans un tableau.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+        
+            <li>
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Si une méthode spécifiée n'existe pas dans DynSJS.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+        
+            <li>
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Si une erreur se produit lors de l'appel d'une méthode.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+        </ul>
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Object</span>
+
+
+
+
+
+- Un objet contenant les résultats des méthodes appelées.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>const myStyle = new StyleSheet();
+
+const results = await myStyle.delegate({
+    set: [{ backgroundColor: 'red' }],
+    setColor: [['yellow', 'color']]
+});
+
+console.log(results.set);  // Expected: myStyle instance after `set` method call
+console.log(results.setColor);  // Expected: myStyle instance after `setColor` method call</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="each">
+            
+                <span class="type-signature"></span>each<span class="signature">(array, callback, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line837">line 837</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Exécute une fonction pour chaque élément d'un tableau avec des options de filtrage et de transformation.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>array</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Le tableau sur lequel itérer.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La fonction à exécuter pour chaque élément du tableau.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Les options de filtrage et de transformation.
+                <h6>Properties</h6>
+                
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>filter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Une fonction qui détermine si un élément doit être inclus dans la boucle.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>transform</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Une fonction qui transforme un élément avant qu'il ne soit passé au callback.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type"><a href="DynSJS.html">DynSJS</a></span>
+
+
+
+
+
+- L'instance actuelle de DynSJS pour permettre le chaînage des méthodes.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>const myStyle = new StyleSheet();
+const colors = ['red', 'green', 'blue'];
+
+myStyle.each(colors, (color, index) => {
+   myStyle.rule(`.color-${index}`)
+       .set({ backgroundColor: color });
+}, {
+   filter: color => color !== 'green',  // Exclude 'green'
+   transform: color => color.toUpperCase()  // Transform colors to uppercase
+});
+
+// Cela générera le CSS suivant :
+// .color-0 { backgroundColor: 'RED'; }
+// .color-2 { backgroundColor: 'BLUE'; }</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="flexItem">
+            
+                <span class="type-signature"></span>flexItem<span class="signature">(params)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line635">line 635</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Définit les propriétés flex de l'élément.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Un objet contenant les propriétés flex à définir.
+                <h6>Properties</h6>
+                
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>flexGrow</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La valeur de la propriété flex-grow.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>flexShrink</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La valeur de la propriété flex-shrink.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>flexBasis</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La valeur de la propriété flex-basis.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>order</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La valeur de la propriété order.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>alignSelf</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La valeur de la propriété align-self.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type"><a href="DynSJS.html">DynSJS</a></span>
+
+
+
+
+
+- L'instance DynSJS pour le chaînage des méthodes.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>HTML :
+&lt;article>
+    &lt;h1>Dynamic StyleSheet JavaScript&lt;/h1>
+    &lt;p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.&lt;/p>
+&lt;/article>
+
+JS :
+// Définit les propriétés flex de l'élément article
+article.rule('article')
+    .flexItem({
+        flexGrow: 1,
+        flexShrink: 2,
+        flexBasis: '50%',
+        order: 1,
+        alignSelf: 'center'
+    });
+
+  CSS généré :
+  article {
+      flex-grow: 1;
+      flex-shrink: 2;
+      flex-basis: 50%;
+      order: 1;
+      align-self: center;
+  }</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="flexLayout">
+            
+                <span class="type-signature"></span>flexLayout<span class="signature">(params)</span><span class="type-signature"> &rarr; {<a href="StyleSheet.html">StyleSheet</a>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line571">line 571</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Configure les propriétés flexbox pour une règle.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params.direction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">'row'</span>
+|
+
+<span class="param-type">'row-reverse'</span>
+|
+
+<span class="param-type">'column'</span>
+|
+
+<span class="param-type">'column-reverse'</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    'row'
+                
+                </td>
+            
+
+            <td class="description last">Définit la direction des éléments flex.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>params.justify</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">'start'</span>
+|
+
+<span class="param-type">'end'</span>
+|
+
+<span class="param-type">'center'</span>
+|
+
+<span class="param-type">'between'</span>
+|
+
+<span class="param-type">'around'</span>
+|
+
+<span class="param-type">'evenly'</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    'start'
+                
+                </td>
+            
+
+            <td class="description last">Aligne les éléments flex le long de l'axe principal.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>params.align</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">'start'</span>
+|
+
+<span class="param-type">'end'</span>
+|
+
+<span class="param-type">'center'</span>
+|
+
+<span class="param-type">'stretch'</span>
+|
+
+<span class="param-type">'baseline'</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    'stretch'
+                
+                </td>
+            
+
+            <td class="description last">Aligne les éléments flex le long de l'axe transversal.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>params.wrap</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">'nowrap'</span>
+|
+
+<span class="param-type">'wrap'</span>
+|
+
+<span class="param-type">'wrap-reverse'</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    'nowrap'
+                
+                </td>
+            
+
+            <td class="description last">Indique si les éléments flex doivent être enroulés ou non.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>params.alignContent</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">'start'</span>
+|
+
+<span class="param-type">'end'</span>
+|
+
+<span class="param-type">'center'</span>
+|
+
+<span class="param-type">'stretch'</span>
+|
+
+<span class="param-type">'between'</span>
+|
+
+<span class="param-type">'around'</span>
+|
+
+<span class="param-type">'evenly'</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    'stretch'
+                
+                </td>
+            
+
+            <td class="description last">Aligne les lignes flex.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>params.flexGrow</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last">Définit la capacité d'un élément flex à grandir.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>params.flexShrink</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description last">Définit la capacité d'un élément flex à rétrécir.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>params.flexBasis</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">'auto'</span>
+|
+
+<span class="param-type">number</span>
+|
+
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    'auto'
+                
+                </td>
+            
+
+            <td class="description last">Définit la taille par défaut d'un élément flex.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>params.order</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last">Définit l'ordre pour positionner un élément flex.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Throws:</h5>
+    
+            
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Lance une erreur si une propriété ou une valeur invalide est fournie.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+        
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type"><a href="StyleSheet.html">StyleSheet</a></span>
+
+
+
+
+
+- L'instance actuelle de StyleSheet pour chaînage.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>&lt;article>
+    &lt;h1>Dynamic StyleSheet JavaScript&lt;/h1>
+&lt;/article>
+
+const article = new DynSJS('article');
+article.rule('article')
+   .flexLayout({ direction: 'row', justify: 'center', align: 'center' });
+
+   CSS généré :
+
+   article {
+       display: flex;
+       flex-direction: row;
+       justify-content: center;
+       align-items: center;
+   }</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="media">
+            
+                <span class="type-signature"></span>media<span class="signature">(query)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line239">line 239</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Ajoute une requête media à la règle.
+
+L'avantage de cette méthode est sa flexibilité et sa facilité d'utilisation : <br>
+<br>1. Multiple Queries : Elle permet d'ajouter plusieurs requêtes média en une seule fois, ce qui facilite la gestion des styles pour différents points de rupture ou orientations.<br>
+2. Chaînage des méthodes : Elle retourne l'objet `DynSJS` courant, ce qui permet de chaîner d'autres méthodes à la suite. Cela rend le code plus lisible et plus compact.<br>
+3. Gestion des erreurs : Elle vérifie que chaque requête média est valide avant de l'ajouter à la liste des requêtes média, ce qui aide à prévenir les erreurs.<br>
+4. Modularité : En retournant une nouvelle instance de `DynSJS` pour chaque requête média, elle permet d'appliquer des styles spécifiques à chaque requête média, tout en gardant le code organisé et facile à comprendre.<br>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>query</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">La requête media.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Throws:</h5>
+    
+            
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Si la requête media est invalide.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+        
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type"><a href="DynSJS.html">DynSJS</a></span>
+
+
+
+
+
+- L'instance courante de DynSJS.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>article.rule('.container')
+   .media('(max-width: 768px)', '(max-width: 576px)', '(max-width: 480px)', '(max-width: 320px)')
+       .flexLayout({ display: 'flex', direction: 'column' })</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="nested">
+            
+                <span class="type-signature"></span>nested<span class="signature">(&hellip;selectors)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line194">line 194</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Ajoute un sélecteur enfant au(x) sélecteur(s) actuel(s).
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>selectors</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type"><a href="DynSJS.html">DynSJS</a></span>
+
+
+
+
+
+- - L'instance actuelle pour permettre le chaînage.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>&lt;article>
+    &lt;h1>Dynamic StyleSheet JavaScript&lt;/h1>
+&lt;/article>
+
+const article = new DynSJS('article');
+
+article.rule('article') // Sélecteur principal
+  .nested('h1')
+     .set({ color: 'blue' }); // Sélecteur enfant
+
+  export default article;
+
+
+  CSS généré :
+
+  article h1 { color: blue; }</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="otherwise">
+            
+                <span class="type-signature"></span>otherwise<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line308">line 308</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        La méthode `otherwise` est utilisée pour définir des styles qui doivent être appliqués lorsque la condition définie par la méthode `when` est évaluée à `false`.
+Si la condition est évaluée à `true`, les méthodes chaînées après `otherwise` seront ignorées.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type"><a href="DynSJS.html">DynSJS</a></span>
+
+
+
+
+
+- - L'instance actuelle pour permettre le chaînage.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>const myStyle = new StyleSheet();
+
+function isNightTime() {
+    const currentHour = new Date().getHours();
+    return currentHour &lt; 6 || currentHour > 18;  // Supposons que la nuit soit entre 18h00 et 6h00.
+}
+
+myStyle.rule('.theme')
+  .when(isNightTime)
+     .set({ backgroundColor: 'black', color: 'white' })
+  .otherwise()
+  .set({ backgroundColor: 'white', color: 'black' });</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="set">
+            
+                <span class="type-signature"></span>set<span class="signature">(props)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line157">line 157</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Définit les propriétés CSS pour les sélecteurs actuels.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>props</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Les propriétés CSS à définir.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type"><a href="DynSJS.html">DynSJS</a></span>
+
+
+
+
+
+- - L'instance actuelle pour permettre le chaînage.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>code html :
+&lt;article>
+    &lt;h1>Dynamic StyleSheet JavaScript&lt;/h1>
+&lt;/article>
+
+code js :
+const article = new DynSJS('article');
+
+article.rule('article') // Sélecteur principal
+  .set({ backgroundColor: 'red', fontSize: '16px' }); <a href="DynSJS.html#set">DynSJS#set</a> Voir la méthode set
+  .nested('h1') <a href="DynSJS.html#nested">DynSJS#nested</a> Voir la méthode nested
+
+  export default article;
+
+  CSS généré :
+
+  article {
+     background-color: red;
+     font-size: 16px;
+  }</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="setAnimation">
+            
+                <span class="type-signature"></span>setAnimation<span class="signature">(animation)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line732">line 732</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Définit l'animation de l'élément : nom, durée, fonction d'atténuation, délai, nombre d'itérations, direction, mode de remplissage et état de lecture.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>animation</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Une chaîne CSS d'animation ou un objet contenant les propriétés de l'animation.
+                <h6>Properties</h6>
+                
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Le nom de l'animation.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>duration</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La durée de l'animation.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timingFunction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La fonction d'atténuation de l'animation.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>delay</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Le délai avant le début de l'animation.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>iterationCount</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Le nombre de fois que l'animation doit être jouée.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>direction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La direction de l'animation.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fillMode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La manière dont l'animation doit appliquer les styles à sa cible avant et après son exécution.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>playState</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">L'état de lecture de l'animation.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>keyframes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Les keyframes de l'animation.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Throws:</h5>
+    
+            
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Lance une erreur si une propriété ou une valeur invalide est fournie.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+        
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type"><a href="DynSJS.html">DynSJS</a></span>
+
+
+
+
+
+- L'instance DynSJS pour le chaînage des méthodes.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>&lt;button>Click me&lt;/button>
+
+JS :
+
+const button = new StyleSheet();
+
+button.rule('@keyframes bounce')
+   .set({ '0%': { transform: 'scale(1)' }, '50%': { transform: 'scale(1.1)' }, '100%': { transform: 'scale(1)' } });
+
+button.rule('button')
+   .setAnimation(bounce)</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="setColor">
+            
+                <span class="type-signature"></span>setColor<span class="signature">(&hellip;args)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line356">line 356</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Définit la couleur d'une propriété CSS.
+
+Cette méthode accepte une liste d'arguments où chaque paire d'arguments représente une couleur et une propriété CSS.
+Par exemple, pour définir la couleur de fond en rouge et la couleur du texte en bleu, vous pouvez appeler
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Une liste d'arguments où chaque paire d'arguments est une couleur (une instance de la classe ColorManager)
+et une propriété CSS (une chaîne de caractères). Par exemple, `setColor(rouge, 'backgroundColor', bleu, 'color')`.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Throws:</h5>
+    
+            
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Lance une exception si un des arguments de couleur n'est pas une instance de la classe Color.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+        
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type"><a href="DynSJS.html">DynSJS</a></span>
+
+
+
+
+
+- Renvoie l'instance actuelle de DynSJS pour permettre les appels de méthodes en chaîne.
+
+ footer.rule('footer')
+     setColor(colorBlack, 'backgroundColor', colorWhite, 'color').
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="setFilter">
+            
+                <span class="type-signature"></span>setFilter<span class="signature">(filter)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line485">line 485</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Définit les propriétés de filtre CSS pour l'élément cible.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>filter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Si c'est une chaîne, elle représente la valeur CSS directe pour la propriété `filter`.
+                               Si c'est un objet, chaque clé représente le nom du filtre et sa valeur représente la valeur du filtre.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Throws:</h5>
+    
+            
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Lance une erreur si l'argument fourni n'est pas une chaîne ou un objet de propriétés.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+        
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type"><a href="DynSJS.html">DynSJS</a></span>
+
+
+
+
+
+- L'instance actuelle de DynSJS pour permettre le chaînage.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>.setFilter('blur(5px)') // Chaîne directe
+.setFilter({ blur: '5px', brightness: '150%' }) // Objet de propriétés</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="setGrid">
+            
+                <span class="type-signature"></span>setGrid<span class="signature">(grid)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line684">line 684</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Définit les propriétés de la grille de l'élément.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>grid</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Un objet contenant les propriétés de la grille.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Throws:</h5>
+    
+            
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Lance une erreur si l'argument fourni n'est pas un objet de propriétés.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+        
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type"><a href="DynSJS.html">DynSJS</a></span>
+
+
+
+
+
+- L'instance DynSJS pour le chaînage des méthodes.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>HTML :
+&lt;div class="grid-container">&lt;/div>
+
+Option 1 : objet
+JS :
+const gridContainer = new StyleSheet();
+
+gridContainer.rule('.grid-container')
+  .setGrid({
+     display: 'grid',
+     gridTemplateColumns: 'repeat(3, 1fr)',
+     gridGap: '10px'
+  });
+
+Option 2 : chaîne de caractères
+
+gridContainer.rule('.grid-container')
+ .setGrid('display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 10px;');</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="setIcon">
+            
+                <span class="type-signature"></span>setIcon<span class="signature">(selector, iconClass)</span><span class="type-signature"> &rarr; {object}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line453">line 453</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Ajoute une classe d'icône à tous les éléments correspondant au sélecteur donné.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>selector</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Le sélecteur CSS des éléments auxquels ajouter la classe d'icône.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>iconClass</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">La classe d'icône à ajouter aux éléments.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Throws:</h5>
+    
+            
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Le sélecteur et la classe d'icône doivent être des chaînes de caractères.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+        
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">object</span>
+
+
+
+
+
+- L'instance de la classe.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// Supposons que vous avez un élément dans votre HTML comme suit :
+&lt;i id="my-icon">&lt;/i>
+
+// Et que vous appelez :
+setIcon('#my-icon', 'fa fa-home');
+
+// L'élément dans le DOM serait mis à jour pour ressembler à ceci :
+&lt;i id="my-icon" class="fa fa-home">&lt;/i>
+
+// Cela signifie que les styles associés à la classe 'fa' et 'fa-home'
+// dans votre CSS seront appliqués à cet élément.</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="setPseudo">
+            
+                <span class="type-signature"></span>setPseudo<span class="signature">(pseudo, properties)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line521">line 521</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Applique une pseudo-classe à un élément et définit ses styles.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>pseudo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">La pseudo-classe à appliquer (par exemple, "hover" pour ":hover").</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>properties</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Les styles à appliquer à cette pseudo-classe.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Throws:</h5>
+    
+            
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Si le pseudo fourni n'est pas une chaîne de caractères.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+        
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type"><a href="DynSJS.html">DynSJS</a></span>
+
+
+
+
+
+- L'instance actuelle pour le chaînage des méthodes.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>const myStyle = new StyleSheet();
+
+myStyle.rule('button')
+   .set({ backgroundColor: 'blue', color: 'white' })
+   .setPseudo('hover', { backgroundColor: 'darkblue' });
+
+// Cela générera le CSS suivant :
+// button { backgroundColor: 'blue'; color: 'white'; }
+// button:hover { backgroundColor: 'darkblue'; }</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="setText">
+            
+                <span class="type-signature"></span>setText<span class="signature">(text)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line423">line 423</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Définit le texte pour le pseudo-élément ::before ou ::after.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>text</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Texte à définir.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type"><a href="DynSJS.html">DynSJS</a></span>
+
+
+
+
+
+- - L'instance actuelle pour permettre le chaînage.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>const style = new DynSJS('div');
+style.nested('::before').setText('Hello');</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="setTransform">
+            
+                <span class="type-signature"></span>setTransform<span class="signature">(transform)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line794">line 794</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Définit la transformation de l'élément.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>transform</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Une chaîne CSS de transformation ou un objet contenant les propriétés de transformation.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Throws:</h5>
+    
+            
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Lance une erreur si une propriété ou une valeur invalide est fournie.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+        
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type"><a href="DynSJS.html">DynSJS</a></span>
+
+
+
+
+
+- L'instance DynSJS pour le chaînage des méthodes.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>HTML :
+&lt;button>Click me&lt;/button>
+
+JS :
+Option 1 : Chaîne de caractères
+
+button.rule('button')
+  .setTransform('rotate(45deg) scale(1.5)');
+
+Option 2 : Objet
+
+button.rule('button')
+  .setTransform({
+     rotate: '45deg',
+     scale: '1.5'
+  });</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="setTransition">
+            
+                <span class="type-signature"></span>setTransition<span class="signature">(transition)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line399">line 399</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Définit la propriété de transition de l'élément.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>transition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Une chaîne CSS de transition ou un objet contenant les propriétés de transition.
+                <h6>Properties</h6>
+                
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>property</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La propriété à animer.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>duration</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La durée de l'animation.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timingFunction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">La fonction d'atténuation de l'animation.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type"><a href="DynSJS.html">DynSJS</a></span>
+
+
+
+
+
+- L'instance DynSJS pour le chaînage des méthodes.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>HTML :
+&lt;article>
+    &lt;h1>Dynamic StyleSheet JavaScript&lt;/h1>
+    &lt;p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.&lt;/p>
+&lt;/article>
+
+JS :
+// Définit la transition de l'élément article
+article.rule('article')
+    .setTransition({
+        property: 'all',
+        duration: '0.5s',
+        timingFunction: 'ease-in-out'
+    });
+
+  CSS généré :
+  article {
+      transition: all 0.5s ease-in-out;
+  }</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="when">
+            
+                <span class="type-signature"></span>when<span class="signature">(condition)</span><span class="type-signature"> &rarr; {<a href="DynSJS.html">DynSJS</a>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line271">line 271</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Applique une condition à la règle. Si la condition est évaluée à `false`,
+les méthodes suivantes de la chaîne seront ignorées jusqu'à ce qu'un `otherwise` soit appelé.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+|
+
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">La condition à évaluer ou une valeur booléenne.
+Si une fonction est fournie, elle sera exécutée et son résultat sera utilisé comme condition.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type"><a href="DynSJS.html">DynSJS</a></span>
+
+
+
+
+
+- - L'instance actuelle pour permettre le chaînage.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>const myStyle = new StyleSheet();
+
+function isNightTime() {
+    const currentHour = new Date().getHours();
+    return currentHour &lt; 6 || currentHour > 18;  // Supposons que la nuit soit entre 18h00 et 6h00.
+}
+
+myStyle.rule('.night-mode')
+  .when(isNightTime)
+     .set({ backgroundColor: 'black', color: 'white' })
+  .otherwise()
+  .set({ backgroundColor: 'white', color: 'black' });</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id=".addPrefixes">
+            
+                <span class="type-signature"><span class="icon green">static</span> </span>addPrefixes<span class="signature">(properties)</span><span class="type-signature"> &rarr; {Object}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="Classes_DynSJS.js.html">Classes/DynSJS.js</a></code>,
+                <code><a href="Classes_DynSJS.js.html#line109">line 109</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Ajoute des préfixes de navigateur aux propriétés spécifiées pour assurer la compatibilité
+avec différents navigateurs.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>properties</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Les propriétés à préfixer.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Object</span>
+
+
+
+
+
+- Un objet contenant les propriétés préfixées.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>import { StyleSheet } from '../Classes/StyleSheet.js';
+import { colorRed } from './vars.js';
+import {DynSJS} from "../Classes/DynSJS.js";
+
+const footer = new StyleSheet();
+
+// Styles principaux pour le footer
+footer.rule('footer') // Sélecteur principal
+    .setColor(colorRed, 'backgroundColor')
+    .set({ width: '100%', padding: '30px', textAlign: 'center' })
+    .set(DynSJS.addPrefixes({ width: '100%' }))
+    .flexLayout({ direction: 'row', justify: 'center', align: 'center' });
+
+
+Cela génère le CSS suivant :
+
+footer {
+     background-color: rgba(255,0,0,0.5);
+     width: 100%;
+     padding: 30px;
+     text-align: center;
+     webkit-width: 100%;
+     moz-width: 100%;
+     ms-width: 100%;
+     o-width: 100%;
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
+}</code></pre>
+
+    
+
+</dd>
+
+            </dl>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<footer>
+    <img class="logo" src="img/toast-ui.png" style="">
+    <div class="footer-text">NHN Entertainment. Frontend Development Lab</div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+    <script>
+        var id = 'DynSJS_sub'.replace(/"/g, '_');
+        var selectedApi = document.getElementById(id); // do not use jquery selector
+        var $selectedApi = $(selectedApi);
+
+        $selectedApi.removeClass('hidden');
+        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+        showLnbApi();
+    </script>
+
+</body>
+</html>

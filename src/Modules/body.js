@@ -3,10 +3,10 @@ import {mixins} from "./mixins.js";
 
 const body = new StyleSheet();
 
-mixins(body);
 
 body.rule('*, *::before, *::after')
     .set({ boxSizing: 'border-box' })
+mixins(body);
 
 body.rule('body')
     .set({

@@ -44,12 +44,11 @@ article.rule('article')
 article.rule('.container')
     .nested('img')
         .set({
-            width: '100%',
+            width: '40%',
             height: '50vh',
             borderRadius: '5px',
             boxShadow: '0 0 10px rgba(0,0,0,0.5)'
         })
-
 
 // Media Query pour les écrans jusqu'à 768px
 article.rule('.container')
@@ -65,7 +64,7 @@ article.rule('.container')
         '(max-width: 320px)',
         '(orientation: portrait)',
         '(orientation: landscape)')
-        .flexLayout({ display: 'flex', direction: 'column' })
+        .flexLayout({ display: 'flex', flexDirection: 'column' })
 
 article.rule('.container')
     .media(

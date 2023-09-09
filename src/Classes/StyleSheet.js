@@ -32,17 +32,17 @@ export class StyleSheet {
      * @returns {string} Le CSS fusionné.
      * @private
      */
-    _mergeCSS(cssObjects) {
+    /*_mergeCSS(cssObjects) {
         let cssMap = {};
         let compiledCSS = "";
 
         cssObjects.forEach(obj => {
-            if (obj.result && obj.result.selector && obj.result.properties) {
+            if (obj && obj.result && obj.result.selector && obj.result.properties) {
                 const { selector, properties } = obj.result;
                 cssMap[selector] = cssMap[selector] ? `${cssMap[selector]} ${properties}` : properties;
             }
 
-            if (Array.isArray(obj.mediaCSS)) {
+            if (obj && Array.isArray(obj.mediaCSS)) {
                 obj.mediaCSS.forEach(media => {
                     if (media && media.query && media.css) {
                         const { query, css } = media;
@@ -62,10 +62,47 @@ export class StyleSheet {
         }
 
         cssObjects.forEach(obj => {
-            if (obj.childrenCSS) {
+            if (obj && obj.childrenCSS) {
                 compiledCSS += `\n${obj.childrenCSS}`;
             }
         });
+
+        return compiledCSS;
+    }*/
+
+    _mergeCSS(cssObjects) {
+        let cssMap = {};
+        let mediaQueries = {};
+
+        cssObjects.forEach(obj => {
+            if (!obj) return;  // Ajout d'une vérification pour éviter des objets null ou undefined.
+
+            // Handling regular CSS rules
+            if (obj.result && obj.result.selector && obj.result.properties) {
+                const { selector, properties } = obj.result;
+                cssMap[selector] = cssMap[selector] ? `${cssMap[selector]} ${properties}` : properties;
+            }
+
+            // Handling media queries
+            if (Array.isArray(obj.mediaCSS)) {
+                obj.mediaCSS.forEach(media => {
+                    if (media && media.query && media.css) {
+                        const { query, css } = media;
+                        mediaQueries[query] = mediaQueries[query] ? `${mediaQueries[query]} ${css}` : css;
+                    }
+                });
+            }
+        });
+
+        let compiledCSS = "";
+
+        for (let selector in cssMap) {
+            compiledCSS += `${selector} { ${cssMap[selector]} }\n`;
+        }
+
+        for (let query in mediaQueries) {
+            compiledCSS += `@media ${query} {\n  ${mediaQueries[query]}\n}\n`;
+        }
 
         return compiledCSS;
     }

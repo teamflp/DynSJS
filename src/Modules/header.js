@@ -1,13 +1,27 @@
 import { StyleSheet } from '../Classes/StyleSheet.js';
-import { colorYellow, colorBlack } from './vars.js';
+import { colorYellow, colorOrange } from './vars.js';
 
 const header = new StyleSheet();
 
-header.rule('header')
-    .setColor(colorBlack, 'backgroundColor')
-    .set({ padding: '20px 20px' })
-    .flexLayout({ display: 'flex', direction: 'row', align: 'center' });
+function isNightTime() {
+    const currentHour = new Date().getHours();
+    return currentHour < 6 || currentHour > 18;  // Supposons que la nuit soit entre 18h00 et 6h00.
+}
 
+header.rule('header')
+    .when(isNightTime)
+        .setColor(colorOrange,'backgroundColor')
+    .set({ padding: '20px 20px' })
+        .flexLayout({ display: 'flex', flexDirection: 'row', align: 'center' });
+
+header.rule('body')
+    .when(isNightTime)
+    .set({
+        backgroundColor: 'black',
+        color: 'teal',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover'
+    });
 
 header.rule('nav a')
     .setColor(colorYellow, 'color')

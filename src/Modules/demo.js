@@ -1,11 +1,11 @@
 import { StyleSheet } from '../Classes/StyleSheet.js';
-import { Color } from '../Classes/Color.js';
+import { ColorManager } from '../Classes/ColorManager.js';
 
 const sheet = new StyleSheet();
 
-// Créez des instances de la classe Color
-const primaryColor = new Color(255, 255, 125);  // 2. Créez des instances de Color
-const hoverColor = new Color(100, 83, 125);
+// Créez des instances de la classe ColorManager
+const primaryColor = new ColorManager(255, 255, 125);  // 2. Créez des instances de ColorManager
+const hoverColor = new ColorManager(100, 83, 125);
 
 sheet.rule('body')
     .set({
