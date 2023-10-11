@@ -1,43 +1,12 @@
-*, *::before, *::after { box-sizing: border-box; }
-.text-1 { font-size: 1.2em; }
-.text-2 { font-size: 2.4em; }
-.text-3 { font-size: 3.5999999999999996em; }
-.text-4 { font-size: 4.8em; }
-.text-5 { font-size: 6em; }
-.text-6 { font-size: 7.199999999999999em; }
-.m-1 { margin: 10px; }
-.m-2 { margin: 20px; }
-.m-3 { margin: 30px; }
-.m-4 { margin: 40px; }
-.m-5 { margin: 50px; }
-.m-6 { margin: 60px; }
-.mb-1 { margin-bottom: 10px; }
-.mb-2 { margin-bottom: 20px; }
-.mb-3 { margin-bottom: 30px; }
-.mb-4 { margin-bottom: 40px; }
-.mb-5 { margin-bottom: 50px; }
-.mb-6 { margin-bottom: 60px; }
-body { font-family: Arial, sans-serif; padding: 0; margin: 0 auto; font-size: 16px; background-color: black; color: teal; background-repeat: no-repeat; background-size: cover; }
-header { background-color: rgba(255,165,0,0.5); padding: 20px 20px; display: flex; flex-direction: row; }
-nav a { color: rgba(255,255,0,255); margin: 0 10px; text-decoration: none; }
-.container { padding: 10px 0; width: 90%; max-width: 100%; margin: 0 auto; }
-.container h1, .container h3 { font-size: 24px; margin-bottom: 20px; color: rgba(0,0,0,255); }
-article p { font-size: 16px; line-height: 1.5; }
-@keyframes tada { 0% { transform: translateY(-10px) rotate(-3deg); } 50% { transform: translateY(10px) rotate(3deg); } 100% { transform: translateY(-10px) rotate(-3deg); } 0% { transform: translateY(-10px) rotate(-3deg); } 50% { transform: translateY(10px) rotate(3deg); } 100% { transform: translateY(-10px) rotate(-3deg); } }
-article button { padding: 10px 20px; border: none; border-radius: 5px; color: #fff; font-size: 16px; cursor: pointer; background-color: rgba(0,0,0,255); transition: all 0.8s ease-in-out 0s; animation: tada 2s ease-in-out infinite; }
-article button i { margin-right: 10px; }
-article button:hover { background-color: rgba(255,165,0,0.5); transition: all 0.8s ease-in-out 0s; }
-.container img { width: 40%; height: 50vh; border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
-footer { background-color: rgba(0,0,0,255); color: rgba(255,255,255,255); width: 100%; padding: 30px; text-align: center; webkit-width: 100%; moz-width: 100%; ms-width: 100%; o-width: 100%; }
-footer b:before { color: rgba(0,0,255,0.5); font-family: "Font Awesome 5 Free", serif; content: "\f015  "; }
-footer .actor { color: rgba(255,255,0,255); }
-footer .social-network a { margin: 0 10px; font-size: 1.5em; color: rgba(255,255,0,255); webkit-transition: all 0.3s ease-in-out; moz-transition: all 0.3s ease-in-out; ms-transition: all 0.3s ease-in-out; o-transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out; }
+nav { padding: 10px 0; background-color: rgba(0,0,0,255); display: flex; justify-content: space-around; align-items: center; }
+nav a { text-decoration: none; padding-bottom: 5px; transition: all 0.5s ease-in-out; color: rgba(255,255,0,255); }
+nav a:hover { color: rgba(255,255,255,255); border-bottom: 1px solid #fff; }
+.navbar { width: 20%; display: flex; justify-content: space-between; align-items: center; align-content: center; }
+.form-search { display: flex; justify-content: end; align-content: center; }
+input { padding: 10px; border: 1px solid #000; }
+button[type="submit"] { color: rgba(0,0,0,255); background-color: rgba(255,255,0,255); padding: 10px; border: 1px solid #000; margin-left: 0; cursor: pointer; outline: none; }
+*, *::before, *::after { box-sizing: border-box; outline: none; }
+body { font-size: 16px; font-family: sans-serif; line-height: 1.5; padding: 0; margin: 0; }
 @media (max-width: 768px) {
-  header nav { padding: 15px 15px; } nav a { margin: 0 8px; } .container h1, .container h3 { font-size: 20px; } .container { display: flex; flex-direction: column; } .container p { font-size: 20px; width: 100%; display: flex; } .container img { width: 100%; height: 40vh; } .container h1, .container h3 { font-size: 20px; } .container p { font-size: 20px; } .container h1, .container h3 { font-size: 20px; } footer p { margin: 0 8px; font-size: 1.1em; }
-}
-@media (max-width: 576px) {
-  header nav { padding: 10px 10px; } nav a { margin: 0 6px; } footer p { margin: 0 6px; font-size: 1em; }
-}
-@media (max-width: 480px) {
-  header nav { padding: 5px 5px; } nav a { margin: 0 4px; } .container p { font-size: 20px; } footer p { margin: 0 4px; font-size: 0.9em; }
+  nav { padding: 10px 0; text-align: center; flex-direction: column; align-items: center; }
 }

@@ -29,19 +29,17 @@ export class ColorManager {
         this.a = a;
     }
 
-    /**
-     * Crée une nouvelle instance de couleur à partir d'une chaîne hexadécimale.
-     * @param hex
-     * @returns {ColorManager}
-     * @example
-     * const blueColor = ColorManager.fromHex("#0000FF");
-     */
     static fromHex(hex) {
+        if (typeof hex !== "string" || !/^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/.test(hex)) {
+            throw new Error("L'argument fourni n'est pas une chaîne hexadécimale valide.");
+        }
+
         let r = parseInt(hex.slice(1, 3), 16);
         let g = parseInt(hex.slice(3, 5), 16);
         let b = parseInt(hex.slice(5, 7), 16);
         return new ColorManager(r, g, b);
     }
+
 
     /**
      * Crée une nouvelle instance de couleur à partir d'une chaîne RGB.

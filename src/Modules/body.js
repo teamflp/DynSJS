@@ -1,20 +1,23 @@
+
 import { StyleSheet } from '../Classes/StyleSheet.js';
-import {mixins} from "./mixins.js";
 
 const body = new StyleSheet();
 
+// put your styles here.
 
 body.rule('*, *::before, *::after')
-    .set({ boxSizing: 'border-box' })
-mixins(body);
-
-body.rule('body')
     .set({
-        fontFamily: 'Arial, sans-serif',
-        padding: '0',
-        margin: '0 auto',
-        fontSize: '16px'
+        boxSizing: 'border-box',
+        outline: 'none',
     })
 
+body.rule('body')
+   .set({
+       fontSize: '16px',
+       fontFamily: 'sans-serif',
+       lineHeight: '1.5',
+       padding: '0',
+       margin: '0',
+   })
 
 export default body;

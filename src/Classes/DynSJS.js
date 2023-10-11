@@ -353,7 +353,7 @@ export class DynSJS {
      *  footer.rule('footer')
      *      setColor(colorBlack, 'backgroundColor', colorWhite, 'color').
      */
-    setColor(...args) {
+    /*setColor(...args) {
         // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
         if (this._isOtherwiseActive) return this;
 
@@ -362,6 +362,33 @@ export class DynSJS {
             const property = args[i + 1];
             if (!(color instanceof ColorManager)) throw new Error("L'argument fourni n'est pas une instance de Color.");
             this._properties[property] = color.toRGBA();
+        }
+        return this;
+    }*/
+
+    setColor(...args) {
+        // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
+        if (this._isOtherwiseActive) return this;
+
+        for (let i = 0; i < args.length; i += 2) {
+            const colorValue = args[i];
+            const property = args[i + 1];
+
+            // Si c'est une instance de ColorManager
+            if (colorValue instanceof ColorManager) {
+                this._properties[property] = colorValue.toRGBA();
+            } else if (typeof colorValue === 'string') {
+                // Si c'est une valeur hexadécimale
+                if (/^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/.test(colorValue)) {
+                    this._properties[property] = ColorManager.fromHex(colorValue).toRGBA();
+                }
+                // Pour d'autres formats comme RGB, RGBA, etc., nous les acceptons directement.
+                else {
+                    this._properties[property] = colorValue;
+                }
+            } else {
+                throw new Error("Format de couleur non supporté.");
+            }
         }
         return this;
     }
@@ -575,7 +602,7 @@ export class DynSJS {
         const flexTranslations = {
             display: 'display',
             flexDirection: 'flex-direction',
-            justifyContet: 'justify-content',
+            justifyContent: 'justify-content',
             alignItems: 'align-items',
             wrap: 'flex-wrap',
             alignContent: 'align-content',

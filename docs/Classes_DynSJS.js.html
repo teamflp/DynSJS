@@ -34,7 +34,7 @@
         <ul></ul>
     </div>
     
-    <div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="ColorManager.html">ColorManager</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ColorManager_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ColorManager.html#clamp">clamp</a></li><li><a href="ColorManager.html#operate">operate</a></li><li><a href="ColorManager.html#toRGBA">toRGBA</a></li><li><a href="ColorManager.html#toString">toString</a></li><li><a href="ColorManager.html#.fromHex">fromHex</a></li><li><a href="ColorManager.html#.fromRgb">fromRgb</a></li></ul></div></li><li><a href="DynSJS.html">DynSJS</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="DynSJS_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="DynSJS.html#delegate">delegate</a></li><li><a href="DynSJS.html#each">each</a></li><li><a href="DynSJS.html#flexItem">flexItem</a></li><li><a href="DynSJS.html#flexLayout">flexLayout</a></li><li><a href="DynSJS.html#media">media</a></li><li><a href="DynSJS.html#nested">nested</a></li><li><a href="DynSJS.html#otherwise">otherwise</a></li><li><a href="DynSJS.html#set">set</a></li><li><a href="DynSJS.html#setAnimation">setAnimation</a></li><li><a href="DynSJS.html#setColor">setColor</a></li><li><a href="DynSJS.html#setFilter">setFilter</a></li><li><a href="DynSJS.html#setGrid">setGrid</a></li><li><a href="DynSJS.html#setIcon">setIcon</a></li><li><a href="DynSJS.html#setPseudo">setPseudo</a></li><li><a href="DynSJS.html#setText">setText</a></li><li><a href="DynSJS.html#setTransform">setTransform</a></li><li><a href="DynSJS.html#setTransition">setTransition</a></li><li><a href="DynSJS.html#when">when</a></li><li><a href="DynSJS.html#.addPrefixes">addPrefixes</a></li></ul></div></li><li><a href="StyleSheet.html">StyleSheet</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="StyleSheet_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="StyleSheet.html#combine">combine</a></li><li><a href="StyleSheet.html#compile">compile</a></li><li><a href="StyleSheet.html#generateClasses">generateClasses</a></li><li><a href="StyleSheet.html#rule">rule</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Global</h3><ul><li><a href="global.html#mixins">mixins</a></li></ul></div>
+    <div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="ColorManager.html">ColorManager</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ColorManager_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ColorManager.html#clamp">clamp</a></li><li><a href="ColorManager.html#operate">operate</a></li><li><a href="ColorManager.html#toRGBA">toRGBA</a></li><li><a href="ColorManager.html#toString">toString</a></li><li><a href="ColorManager.html#.fromRgb">fromRgb</a></li></ul></div></li><li><a href="DynSJS.html">DynSJS</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="DynSJS_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="DynSJS.html#delegate">delegate</a></li><li><a href="DynSJS.html#each">each</a></li><li><a href="DynSJS.html#flexItem">flexItem</a></li><li><a href="DynSJS.html#flexLayout">flexLayout</a></li><li><a href="DynSJS.html#media">media</a></li><li><a href="DynSJS.html#nested">nested</a></li><li><a href="DynSJS.html#otherwise">otherwise</a></li><li><a href="DynSJS.html#set">set</a></li><li><a href="DynSJS.html#setAnimation">setAnimation</a></li><li><a href="DynSJS.html#setFilter">setFilter</a></li><li><a href="DynSJS.html#setGrid">setGrid</a></li><li><a href="DynSJS.html#setIcon">setIcon</a></li><li><a href="DynSJS.html#setPseudo">setPseudo</a></li><li><a href="DynSJS.html#setText">setText</a></li><li><a href="DynSJS.html#setTransform">setTransform</a></li><li><a href="DynSJS.html#setTransition">setTransition</a></li><li><a href="DynSJS.html#when">when</a></li><li><a href="DynSJS.html#.addPrefixes">addPrefixes</a></li></ul></div></li><li><a href="StyleSheet.html">StyleSheet</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="StyleSheet_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="StyleSheet.html#combine">combine</a></li><li><a href="StyleSheet.html#compile">compile</a></li><li><a href="StyleSheet.html#generateClasses">generateClasses</a></li><li><a href="StyleSheet.html#rule">rule</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Global</h3><ul><li><a href="global.html#mixins">mixins</a></li></ul></div>
 </nav>
 <div id="resizer"></div>
 
@@ -401,7 +401,7 @@ export class DynSJS {
      *  footer.rule('footer')
      *      setColor(colorBlack, 'backgroundColor', colorWhite, 'color').
      */
-    setColor(...args) {
+    /*setColor(...args) {
         // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
         if (this._isOtherwiseActive) return this;
 
@@ -412,7 +412,67 @@ export class DynSJS {
             this._properties[property] = color.toRGBA();
         }
         return this;
+    }*/
+
+    setColor(...args) {
+        // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
+        if (this._isOtherwiseActive) return this;
+
+        for (let i = 0; i &lt; args.length; i += 2) {
+            const colorValue = args[i];
+            const property = args[i + 1];
+
+            // Si c'est une instance de ColorManager
+            if (colorValue instanceof ColorManager) {
+                this._properties[property] = colorValue.toRGBA();
+            } else if (typeof colorValue === 'string') {
+                // Si c'est une valeur hexadécimale
+                if (/^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/.test(colorValue)) {
+                    this._properties[property] = ColorManager.fromHex(colorValue).toRGBA();
+                }
+                // Pour d'autres formats comme RGB, RGBA, etc., nous les acceptons directement.
+                else {
+                    this._properties[property] = colorValue;
+                }
+            } else {
+                throw new Error("Format de couleur non supporté.");
+            }
+        }
+        return this;
     }
+
+
+
+    /*setColor(...args) {
+        if (this._isOtherwiseActive) return this;
+
+        for (let i = 0; i &lt; args.length; i += 2) {
+            let color = args[i];
+            const property = args[i + 1];
+
+            if (typeof color === 'string') {
+                if (color.startsWith("#")) {
+                    color = ColorManager.fromHex(color);
+                } else {
+                    throw new Error("Format de couleur non supporté.");
+                }
+            } else if (Array.isArray(color)) {
+                if (color.length === 3) {
+                    color = ColorManager.fromRGB(...color);
+                } else if (color.length === 4) {
+                    color = ColorManager.fromRGBA(...color);
+                } else {
+                    throw new Error("Tableau de couleur invalide.");
+                }
+            } else if (!(color instanceof ColorManager)) {
+                throw new Error("L'argument fourni n'est pas une instance de Color.");
+            }
+
+            this._properties[property] = color.toRGBA();
+        }
+        return this;
+    }*/
+
 
     /**
      * Définit la propriété de transition de l'élément.
