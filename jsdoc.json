@@ -9,6 +9,7 @@
   },
   "opts": {
     "recurse": true,
+    "encoding": "utf8",
     "template": "node_modules/tui-jsdoc-template",
     "destination": "./docs"
   },

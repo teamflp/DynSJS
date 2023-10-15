@@ -38,6 +38,9 @@ export class DynSJS {
     _pseudoClasses;
     _rules;
     _children;
+    _generatedRules;
+    _ruleStack;
+    _cssRules
 
     constructor(...selectors) {
         if (!selectors.every(DynSJS._isValidSelector)) {
@@ -55,6 +58,9 @@ export class DynSJS {
         this._rules = [];
         this.whenStyles = {};
         this.otherwiseStyles = {};
+        this._generatedRules = [];
+        this._ruleStack = [];
+        this._cssRules = [];
         this.currentStyles = this.whenStyles;  // Par défaut, les méthodes modifient les styles "when"
     }
     static _isValidSelector(sel) {
@@ -132,27 +138,26 @@ export class DynSJS {
      *
      * @example
      *
-     *
-     * code html :
      * <article>
      *     <h1>Dynamic StyleSheet JavaScript</h1>
      * </article>
      *
-     * code js :
+     * // javascript
      * const article = new DynSJS('article');
      *
      * article.rule('article') // Sélecteur principal
-     *   .set({ backgroundColor: 'red', fontSize: '16px' }); {@link DynSJS#set} Voir la méthode set
-     *   .nested('h1') {@link DynSJS#nested} Voir la méthode nested
+     *   .set({ backgroundColor: 'red', fontSize: '16px' }) // {@link DynSJS#set} Voir la méthode set
+     *   .nested('h1'); // {@link DynSJS#nested} Voir la méthode nested
      *
-     *   export default article;
+     * export default article;
      *
-     *   CSS généré :
+     * CSS généré :
      *
-     *   article {
+     * article {
      *      background-color: red;
      *      font-size: 16px;
-     *   }
+     * }
+     *
      */
     set(props) {
         // Si _isOtherwiseActive est true, alors ne faites rien et retournez simplement this.
@@ -192,32 +197,35 @@ export class DynSJS {
      * @param selectors
      */
     nested(...selectors) {
-        // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
-        if (this._isOtherwiseActive) return this;
+        console.log("Current Selectors before nested:", this._selectors);
+        // Empiler règles CSS courantes
+        this._ruleStack.push([...this._cssRules]);
 
+        // Empiler sélecteurs courants
         this._selectorStack.push([...this._selectors]);
-        this._propertyStack.push({...this._properties});  // ajouter les propriétés actuelles
 
-        // Réinitialiser les propriétés
-        this._properties = {};
-
-        // Remplacer les sélecteurs actuels par les nouveaux sélecteurs
-        this._selectors = selectors.map(selector => {
+        // Construire nouveaux sélecteurs
+        const newSelectors = selectors.map(selector => {
             return this._selectors.map(s => selector.startsWith("::") ? `${s}${selector}` : `${s} ${selector}`);
         }).flat();
 
+        // Mettre à jour sélecteurs
+        this._selectors = newSelectors;
+
         return this;
     }
-    end() {
-        // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
-        if (this._isOtherwiseActive) return this;
+
+    /*endNested() {
+        // Restaurer état précédent des sélecteurs
         if (this._selectorStack.length > 0) {
-            this._selectors = this._selectorStack.pop();
-        } else {
-            console.warn("Aucun état précédent à restaurer");
+            this._selecteurs = [...this._selectorStack.pop()];
         }
+
+        // Réinitialiser les règles CSS
+        this._cssRules = [...this._ruleStack.pop()];
+
         return this;
-    }
+    }*/
 
     /**
      * Ajoute une requête media à la règle.
@@ -236,14 +244,39 @@ export class DynSJS {
      *    .media('(max-width: 768px)', '(max-width: 576px)', '(max-width: 480px)', '(max-width: 320px)')
      *        .flexLayout({ display: 'flex', direction: 'column' })
      */
-    media(query) {
+    media(...queries) {
         // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
         if (this._isOtherwiseActive) return this;
 
-        if (!query.trim()) throw new Error("Requête media invalide.");
-        const rule = new DynSJS(...this._selectors);
-        this._mediaQueries.push({query, rule});
-        return rule;
+        if (!queries.length) throw new Error("Aucune requête media fournie.");
+
+        // Validation
+        queries.forEach(query => {
+            if (!query.trim()) throw new Error("Requête media invalide.");
+        });
+
+        // Créer une nouvelle règle pour chaque requête media
+        const rules = queries.map(query => {
+            const rule = new DynSJS(...this._selectors);
+            this._mediaQueries.push({query, rule});
+            return rule;
+        });
+
+        // Retourner la dernière règle
+        const proxy = new Proxy(rules, {
+            get: function(target, prop) {
+                if (typeof target[0][prop] === 'function') {
+                    return function(...args) {
+                        for (let rule of target) {
+                            rule[prop](...args);
+                        }
+                        return proxy;
+                    }
+                }
+            }
+        });
+
+        return proxy;
     }
 
     /**
@@ -353,19 +386,6 @@ export class DynSJS {
      *  footer.rule('footer')
      *      setColor(colorBlack, 'backgroundColor', colorWhite, 'color').
      */
-    /*setColor(...args) {
-        // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
-        if (this._isOtherwiseActive) return this;
-
-        for (let i = 0; i < args.length; i += 2) {
-            const color = args[i];
-            const property = args[i + 1];
-            if (!(color instanceof ColorManager)) throw new Error("L'argument fourni n'est pas une instance de Color.");
-            this._properties[property] = color.toRGBA();
-        }
-        return this;
-    }*/
-
     setColor(...args) {
         // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
         if (this._isOtherwiseActive) return this;
@@ -481,7 +501,6 @@ export class DynSJS {
         // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
         if (this._isOtherwiseActive) return this;
 
-        console.log('setIcon', selector, iconClass);
         if (typeof selector !== 'string' || typeof iconClass !== 'string') {
             throw new Error('Le sélecteur et la classe d\'icône doivent être des chaînes de caractères.');
         }
@@ -925,6 +944,11 @@ export class DynSJS {
         return results;
     }
 
+    /**
+     *  Génère le CSS pour la règle actuelle et ses enfants.
+     *  @param {string} [parentSelector] - Le sélecteur CSS du parent de cette règle.
+     *  @returns {object} Un objet contenant le sélecteur CSS et les propriétés CSS de la règle actuelle.
+     */
     toCSS(parentSelector = '') {
         // Si _isOtherwiseActive est true, retournez null.
         if (this._isOtherwiseActive) return null;
@@ -932,6 +956,7 @@ export class DynSJS {
         if (!this._isConditionMet()) return null;
 
         const combinedSelectors = this._generateSelectors(parentSelector);
+
         if (!combinedSelectors || combinedSelectors.trim() === "") {
             console.warn("Aucun sélecteur combiné trouvé");
             return null;

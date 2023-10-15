@@ -12,9 +12,15 @@ import body from './Modules/body.js';
 
 import nav from './Modules/nav.js';
 
+import footer from './Modules/footer.js';
+
+import main from './Modules/main.js';
+
 const MainSheet = new StyleSheet();
 
 MainSheet.combine(
+    main,
+    footer,
     nav,
     body,
     header,

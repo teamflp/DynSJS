@@ -1,43 +1,44 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="utf-8">
-    <title>DynSJS.js - Documentation</title>
-    
-    
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
+    <title>Source: DynSJS.js | Source: DynSJS.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
-    <script src="scripts/nav.js" defer></script>
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
     
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav >
+<nav class="lnb" id="lnb">
+    <div class="logo" style="">
+        
+            <img src="img/toast-ui.png" width="100%" height="100%">
+        
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">Source: DynSJS.js</a></h1>
+        
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
     
-    
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Color.html">Color</a></li><li><a href="TransitionManager.html">TransitionManager</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DynSJS">DynSJS</a></li></ul>
-    
+    <div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="ColorManager.html">ColorManager</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ColorManager_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ColorManager.html#clamp">clamp</a></li><li><a href="ColorManager.html#operate">operate</a></li><li><a href="ColorManager.html#toRGBA">toRGBA</a></li><li><a href="ColorManager.html#toString">toString</a></li><li><a href="ColorManager.html#.fromRgb">fromRgb</a></li></ul></div></li><li><a href="DynSJS.html">DynSJS</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="DynSJS_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="DynSJS.html#delegate">delegate</a></li><li><a href="DynSJS.html#each">each</a></li><li><a href="DynSJS.html#flexItem">flexItem</a></li><li><a href="DynSJS.html#flexLayout">flexLayout</a></li><li><a href="DynSJS.html#media">media</a></li><li><a href="DynSJS.html#nested">nested</a></li><li><a href="DynSJS.html#otherwise">otherwise</a></li><li><a href="DynSJS.html#set">set</a></li><li><a href="DynSJS.html#setAnimation">setAnimation</a></li><li><a href="DynSJS.html#setColor">setColor</a></li><li><a href="DynSJS.html#setFilter">setFilter</a></li><li><a href="DynSJS.html#setGrid">setGrid</a></li><li><a href="DynSJS.html#setIcon">setIcon</a></li><li><a href="DynSJS.html#setPseudo">setPseudo</a></li><li><a href="DynSJS.html#setText">setText</a></li><li><a href="DynSJS.html#setTransform">setTransform</a></li><li><a href="DynSJS.html#setTransition">setTransition</a></li><li><a href="DynSJS.html#toCSS">toCSS</a></li><li><a href="DynSJS.html#when">when</a></li><li><a href="DynSJS.html#.addPrefixes">addPrefixes</a></li></ul></div></li><li><a href="StyleSheet.html">StyleSheet</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="StyleSheet_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="StyleSheet.html#combine">combine</a></li><li><a href="StyleSheet.html#generateClasses">generateClasses</a></li><li><a href="StyleSheet.html#rule">rule</a></li><li><a href="StyleSheet.html#universalRule">universalRule</a></li></ul></div></li></ul></div>
 </nav>
+<div id="resizer"></div>
 
-<div id="main">
-    
-    <h1 class="page-title">DynSJS.js</h1>
-    
-
+<div class="main" id="main">
     
 
 
@@ -53,13 +54,21 @@
  * @description Générateur de feuilles de style dynamiques.
  * @license MIT
  */
-
-import { Color } from "./Color.js";
-import { JSDOM } from "jsdom";
+import { ColorManager } from "./ColorManager.js";
 
 /**
  *
- * La classe DynSJS permet de générer dynamiquement des styles CSS à partir de sélecteurs et de propriétés CSS.
+ * La bibliothèque DynSJS, ou Dynamic StyleSheet JavaScript, est une bibliothèque JavaScript
+ * qui permet de générer dynamiquement des feuilles de style (CSS) en JavaScript.
+ * Voici quelques-uns de ses avantages :&lt;br>&lt;br>
+ * 1. Dynamisme : Permet de créer des styles qui peuvent être modifiés dynamiquement en fonction des actions de l'utilisateur,
+ *    des données en temps réel, etc. Cela peut être particulièrement utile pour les applications web interactives.&lt;br>
+ *
+ * &lt;br>2. Modularité : Permet de structurer le code CSS en modules JavaScript, ce qui peut rendre le code plus lisible, réutilisable et maintenable.&lt;br>
+ *
+ * &lt;br>3. Programmabilité : Permet d'utiliser toute la puissance de JavaScript pour créer des styles, y compris des boucles, des conditions, des fonctions, etc.&lt;br>
+ *
+ * &lt;br>4. Compatibilité : Facilite la gestion des préfixes de navigateur et des incompatibilités entre navigateurs.&lt;br>
  *
  * @property {string[]} _selectors - Sélecteurs CSS pour la règle.
  * @property {Object} _properties - Propriétés CSS pour la règle.
@@ -71,11 +80,15 @@ import { JSDOM } from "jsdom";
  *
  */
 export class DynSJS {
-
     _parent;
     styleSheet;
     _propertyStack;
     _pseudoClasses;
+    _rules;
+    _children;
+    _generatedRules;
+    _ruleStack;
+    _cssRules
 
     constructor(...selectors) {
         if (!selectors.every(DynSJS._isValidSelector)) {
@@ -90,18 +103,80 @@ export class DynSJS {
         this._selectorStack = [];
         this._propertyStack = [];
         this._pseudoClasses = [];
+        this._rules = [];
+        this.whenStyles = {};
+        this.otherwiseStyles = {};
+        this._generatedRules = [];
+        this._ruleStack = [];
+        this._cssRules = [];
+        this.currentStyles = this.whenStyles;  // Par défaut, les méthodes modifient les styles "when"
     }
-
     static _isValidSelector(sel) {
         return typeof sel === 'string' &amp;&amp; sel.trim();
     }
-
     static _isValidProperty(key, value) {
         return typeof key === 'string' &amp;&amp; typeof value === 'string';
     }
-
     static camelToKebab(string) {
         return string.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+    }
+
+    /**
+     * Ajoute des préfixes de navigateur aux propriétés spécifiées pour assurer la compatibilité
+     * avec différents navigateurs.
+     *
+     * @param {Object} properties - Les propriétés à préfixer.
+     * @returns {Object} Un objet contenant les propriétés préfixées.
+     *
+     * @example
+     *
+     * import { StyleSheet } from '../Classes/StyleSheet.js';
+     * import { colorRed } from './vars.js';
+     * import {DynSJS} from "../Classes/DynSJS.js";
+     *
+     * const footer = new StyleSheet();
+     *
+     * // Styles principaux pour le footer
+     * footer.rule('footer') // Sélecteur principal
+     *     .setColor(colorRed, 'backgroundColor')
+     *     .set({ width: '100%', padding: '30px', textAlign: 'center' })
+     *     .set(DynSJS.addPrefixes({ width: '100%' }))
+     *     .flexLayout({ direction: 'row', justify: 'center', align: 'center' });
+     *
+     *
+     * Cela génère le CSS suivant :
+     *
+     * footer {
+     *      background-color: rgba(255,0,0,0.5);
+     *      width: 100%;
+     *      padding: 30px;
+     *      text-align: center;
+     *      webkit-width: 100%;
+     *      moz-width: 100%;
+     *      ms-width: 100%;
+     *      o-width: 100%;
+     *      flex-direction: row;
+     *      justify-content: center;
+     *      align-items: center;
+     * }
+     */
+    static addPrefixes(properties) {
+        const prefixes = ['webkit', 'moz', 'ms', 'o'];
+        const prefixedProperties = {};
+
+        for (let key in properties) {
+            const value = properties[key];
+            const camelCaseKey = key.replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
+
+            prefixes.forEach(prefix => {
+                const prefixedKey = `${prefix}${camelCaseKey.charAt(0).toUpperCase()}${camelCaseKey.slice(1)}`;
+                prefixedProperties[prefixedKey] = value;
+            });
+
+            prefixedProperties[key] = value;
+        }
+
+        return prefixedProperties;
     }
 
     /**
@@ -111,38 +186,41 @@ export class DynSJS {
      *
      * @example
      *
-     *
-     * code html :
      * &lt;article>
      *     &lt;h1>Dynamic StyleSheet JavaScript&lt;/h1>
      * &lt;/article>
      *
-     * code js :
+     * // javascript
      * const article = new DynSJS('article');
      *
      * article.rule('article') // Sélecteur principal
-     *   .set({ backgroundColor: 'red', fontSize: '16px' }); {@link DynSJS#set} Voir la méthode set
-     *   .nested('h1') {@link DynSJS#nested} Voir la méthode nested
+     *   .set({ backgroundColor: 'red', fontSize: '16px' }) // {@link DynSJS#set} Voir la méthode set
+     *   .nested('h1'); // {@link DynSJS#nested} Voir la méthode nested
      *
-     *   export default article;
+     * export default article;
      *
-     *   CSS généré :
+     * CSS généré :
      *
-     *   article {
+     * article {
      *      background-color: red;
      *      font-size: 16px;
-     *   }
+     * }
+     *
      */
     set(props) {
+        // Si _isOtherwiseActive est true, alors ne faites rien et retournez simplement this.
+        if (this._isOtherwiseActive) return this;
+
         for (let key in props) {
             if (DynSJS._isValidProperty(key, props[key]) || typeof props[key] === 'object' &amp;&amp; !Array.isArray(props[key])) {
-                this._properties[key] = props[key];
+                this._properties = {...this._properties, ...{[key]: props[key]}};
             } else {
                 throw new Error(`La propriété ou la valeur ${key}: ${props[key]} est invalide.`);
             }
         }
         return this;
     }
+
 
     /**
      * Ajoute un sélecteur enfant au(x) sélecteur(s) actuel(s).
@@ -168,105 +246,155 @@ export class DynSJS {
      * @param selectors
      */
     nested(...selectors) {
+        console.log("Current Selectors before nested:", this._selectors);
+        // Empiler règles CSS courantes
+        this._ruleStack.push([...this._cssRules]);
+
+        // Empiler sélecteurs courants
         this._selectorStack.push([...this._selectors]);
-        this._propertyStack.push({...this._properties});  // sauvegarder les propriétés actuelles
-        this._properties = {};  // réinitialiser les propriétés
-        this._selectors = selectors.map(selector => {
+
+        // Construire nouveaux sélecteurs
+        const newSelectors = selectors.map(selector => {
             return this._selectors.map(s => selector.startsWith("::") ? `${s}${selector}` : `${s} ${selector}`);
         }).flat();
+
+        // Mettre à jour sélecteurs
+        this._selectors = newSelectors;
+
         return this;
     }
 
-    /**
-     * Retire le(s) sélecteur(s) actuel(s).
-     * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
-     * @example
-     */
-    end() {
-        if (this._selectorStack.length) {
-            this._selectors = this._selectorStack.pop();
+    /*endNested() {
+        // Restaurer état précédent des sélecteurs
+        if (this._selectorStack.length > 0) {
+            this._selecteurs = [...this._selectorStack.pop()];
         }
-        if (this._propertyStack.length) {
-            this._properties = this._propertyStack.pop();  // restaurer les propriétés précédentes
-        }
+
+        // Réinitialiser les règles CSS
+        this._cssRules = [...this._ruleStack.pop()];
+
         return this;
+    }*/
+
+    /**
+     * Ajoute une requête media à la règle.
+     *
+     * L'avantage de cette méthode est sa flexibilité et sa facilité d'utilisation : &lt;br>
+     * &lt;br>1. Multiple Queries : Elle permet d'ajouter plusieurs requêtes média en une seule fois, ce qui facilite la gestion des styles pour différents points de rupture ou orientations.&lt;br>
+     * 2. Chaînage des méthodes : Elle retourne l'objet `DynSJS` courant, ce qui permet de chaîner d'autres méthodes à la suite. Cela rend le code plus lisible et plus compact.&lt;br>
+     * 3. Gestion des erreurs : Elle vérifie que chaque requête média est valide avant de l'ajouter à la liste des requêtes média, ce qui aide à prévenir les erreurs.&lt;br>
+     * 4. Modularité : En retournant une nouvelle instance de `DynSJS` pour chaque requête média, elle permet d'appliquer des styles spécifiques à chaque requête média, tout en gardant le code organisé et facile à comprendre.&lt;br>
+     *
+     * @param {string} query - La requête media.
+     * @throws {Error} Si la requête media est invalide.
+     * @return {DynSJS} L'instance courante de DynSJS.
+     * @example
+     * article.rule('.container')
+     *    .media('(max-width: 768px)', '(max-width: 576px)', '(max-width: 480px)', '(max-width: 320px)')
+     *        .flexLayout({ display: 'flex', direction: 'column' })
+     */
+    media(...queries) {
+        // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
+        if (this._isOtherwiseActive) return this;
+
+        if (!queries.length) throw new Error("Aucune requête media fournie.");
+
+        // Validation
+        queries.forEach(query => {
+            if (!query.trim()) throw new Error("Requête media invalide.");
+        });
+
+        // Créer une nouvelle règle pour chaque requête media
+        const rules = queries.map(query => {
+            const rule = new DynSJS(...this._selectors);
+            this._mediaQueries.push({query, rule});
+            return rule;
+        });
+
+        // Retourner la dernière règle
+        const proxy = new Proxy(rules, {
+            get: function(target, prop) {
+                if (typeof target[0][prop] === 'function') {
+                    return function(...args) {
+                        for (let rule of target) {
+                            rule[prop](...args);
+                        }
+                        return proxy;
+                    }
+                }
+            }
+        });
+
+        return proxy;
     }
 
     /**
-     * Ajoute une règle de requête média au(x) sélecteur(s) actuel(s).
-     * @param {string} query - Condition de la requête média.
+     * Applique une condition à la règle. Si la condition est évaluée à `false`,
+     * les méthodes suivantes de la chaîne seront ignorées jusqu'à ce qu'un `otherwise` soit appelé.
+     *
+     * @param {Function|boolean} condition - La condition à évaluer ou une valeur booléenne.
+     * Si une fonction est fournie, elle sera exécutée et son résultat sera utilisé comme condition.
      * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
      *
      * @example
+     * const myStyle = new StyleSheet();
      *
-     * code html :
-     * &lt;article>
-     *     &lt;h1>Dynamic StyleSheet JavaScript&lt;/h1>
-     * &lt;/article>
+     * function isNightTime() {
+     *     const currentHour = new Date().getHours();
+     *     return currentHour &lt; 6 || currentHour > 18;  // Supposons que la nuit soit entre 18h00 et 6h00.
+     * }
      *
-     * code js :
-     * const article = new DynSJS('article');
-     *
-     * article.rule('article') // Sélecteur principal
-     *   .set({ backgroundColor: 'red' }); // Propriétés CSS
-     *   .nested('h1')
-     *      .set({ color: 'blue' }); // Sélecteur enfant
-     *   .media('(max-width: 600px)') // Condition de la requête média
-     *      .set({ backgroundColor: 'red' }); // Propriétés CSS
-     *      .nested('h1')
-     *          .set({ color: 'blue' }); // Sélecteur enfant
-     *
-     *   export default article;
-     *
-     *   CSS généré :
-     *
-     *   article {
-     *      background-color: red;
-     *   }
-     *
-     *   article h1 {
-     *      color: blue;
-     *   }
-     *
-     *   @media (max-width: 600px) {
-     *      article {
-     *          background-color: red;
-     *      }
-     *      article h1 {
-     *          color: blue;
-     *      }
-     *   }
-     */
-    media(query) {
-        if (!query.trim()) throw new Error("Requête media invalide.");
-        const rule = new DynSJS(...this._selectors);
-        this._mediaQueries.push({query, rule});
-        return rule;
-    }
-
-    /**
-     * Définit une fonction de condition pour la règle.
-     * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
-     * @param condition
+     * myStyle.rule('.night-mode')
+     *   .when(isNightTime)
+     *      .set({ backgroundColor: 'black', color: 'white' })
+     *   .otherwise()
+     *   .set({ backgroundColor: 'white', color: 'black' });
      */
     when(condition) {
+        let conditionResult;
+
         if (typeof condition === 'function') {
-            this._conditionFn = () => {
-                if (typeof window !== 'undefined') {
-                    return condition();
-                } else if (process.env.SCREEN_WIDTH) {
-                    return condition(Number(process.env.SCREEN_WIDTH));
-                } else {
-                    console.warn('La condition ne peut pas être évaluée dans l\'environnement Node.js');
-                    return false;
-                }
-            };
+            conditionResult = condition();
         } else {
-            this._conditionFn = () => condition;
+            conditionResult = condition;
         }
+
+        // Si la condition est fausse, activez _isOtherwiseActive pour ignorer les méthodes suivantes.
+        if (!conditionResult) {
+            this._isOtherwiseActive = true;
+        }
+
         return this;
     }
 
+    /**
+     * La méthode `otherwise` est utilisée pour définir des styles qui doivent être appliqués lorsque la condition définie par la méthode `when` est évaluée à `false`.
+     * Si la condition est évaluée à `true`, les méthodes chaînées après `otherwise` seront ignorées.
+     *
+     * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
+     *
+     * @example
+     * const myStyle = new StyleSheet();
+     *
+     * function isNightTime() {
+     *     const currentHour = new Date().getHours();
+     *     return currentHour &lt; 6 || currentHour > 18;  // Supposons que la nuit soit entre 18h00 et 6h00.
+     * }
+     *
+     * myStyle.rule('.theme')
+     *   .when(isNightTime)
+     *      .set({ backgroundColor: 'black', color: 'white' })
+     *   .otherwise()
+     *   .set({ backgroundColor: 'white', color: 'black' });
+     */
+    otherwise() {
+        if (!this._conditionFn || !this._conditionFn()) {
+            this._isOtherwiseActive = true;
+            return this;
+        }
+        this._isOtherwiseActive = false;
+        return this;
+    }
     _isConditionMet() {
         return this._parent &amp;&amp; !this._parent._isConditionMet() ? false : this._conditionFn ? this._conditionFn() : true;
     }
@@ -279,12 +407,10 @@ export class DynSJS {
             .map(([key, value]) => typeof value === 'object' &amp;&amp; !Array.isArray(value) ? `${key} { ${Object.entries(value).map(([k, v]) => `${k}: ${v};`).join(' ')} }` : `${DynSJS.camelToKebab(key)}: ${value};`)
             .join(' ');
     }
-
     _generateKeyframes() {
         if (!this._keyframesCSS) return '';
         return this._keyframesCSS;
     }
-
     _addPseudoClassRule(pseudoClass, properties) {
         const rule = new DynSJS(...this._selectors.map(s => `${s}${pseudoClass}`));
         rule.set(properties);
@@ -293,21 +419,46 @@ export class DynSJS {
     }
 
     /**
-     * Définit la couleur pour la propriété donnée.
-     * @param {Color} color - Couleur à définir.
-     * @param {string} property - Propriété pour laquelle définir la couleur.
-     * @returns {DynSJS} - L'instance actuelle pour permettre le chaînage.
-     * @example
+     * Définit la couleur d'une propriété CSS.
      *
-     * const redColor = new Color(255, 0, 0);
-     * const style = new DynSJS('article');
+     * Cette méthode accepte une liste d'arguments où chaque paire d'arguments représente une couleur et une propriété CSS.
+     * Par exemple, pour définir la couleur de fond en rouge et la couleur du texte en bleu, vous pouvez appeler
+     * @exemple
      *
-     * article.rule('article')
-     *   .setColor(redColor, 'backgroundColor');
+     * @param {...*} args - Une liste d'arguments où chaque paire d'arguments est une couleur (une instance de la classe ColorManager)
+     * et une propriété CSS (une chaîne de caractères). Par exemple, `setColor(rouge, 'backgroundColor', bleu, 'color')`.
+     *
+     * @throws {Error} Lance une exception si un des arguments de couleur n'est pas une instance de la classe Color.
+     *
+     * @returns {DynSJS} Renvoie l'instance actuelle de DynSJS pour permettre les appels de méthodes en chaîne.
+     *
+     *  footer.rule('footer')
+     *      setColor(colorBlack, 'backgroundColor', colorWhite, 'color').
      */
-    setColor(color, property) {
-        if (!(color instanceof Color)) throw new Error("L'argument fourni n'est pas une instance de Color.");
-        this._properties[property] = color.toRGBA();
+    setColor(...args) {
+        // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
+        if (this._isOtherwiseActive) return this;
+
+        for (let i = 0; i &lt; args.length; i += 2) {
+            const colorValue = args[i];
+            const property = args[i + 1];
+
+            // Si c'est une instance de ColorManager
+            if (colorValue instanceof ColorManager) {
+                this._properties[property] = colorValue.toRGBA();
+            } else if (typeof colorValue === 'string') {
+                // Si c'est une valeur hexadécimale
+                if (/^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/.test(colorValue)) {
+                    this._properties[property] = ColorManager.fromHex(colorValue).toRGBA();
+                }
+                // Pour d'autres formats comme RGB, RGBA, etc., nous les acceptons directement.
+                else {
+                    this._properties[property] = colorValue;
+                }
+            } else {
+                throw new Error("Format de couleur non supporté.");
+            }
+        }
         return this;
     }
 
@@ -342,6 +493,9 @@ export class DynSJS {
      *   }
      */
     setTransition(transition) {
+        // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
+        if (this._isOtherwiseActive) return this;
+
         if (typeof transition === 'string') {
             this._properties.transition = transition;
         } else if (typeof transition === 'object') {
@@ -363,13 +517,39 @@ export class DynSJS {
      * style.nested('::before').setText('Hello');
      */
     setText(text) {
+        // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
+        if (this._isOtherwiseActive) return this;
+
         if (typeof text !== 'string') throw new Error('Le texte fourni doit être une chaine de caractères.');
         this.set({content: `"${text.replace(/"/g, '\\"')}"`});
         return this;
     }
 
+    /**
+     * Ajoute une classe d'icône à tous les éléments correspondant au sélecteur donné.
+     *
+     * @param {string} selector - Le sélecteur CSS des éléments auxquels ajouter la classe d'icône.
+     * @param {string} iconClass - La classe d'icône à ajouter aux éléments.
+     * @throws {Error} Le sélecteur et la classe d'icône doivent être des chaînes de caractères.
+     * @returns {object} L'instance de la classe.
+     *
+     * @example
+     * // Supposons que vous avez un élément dans votre HTML comme suit :
+     * &lt;i id="my-icon">&lt;/i>
+     *
+     * // Et que vous appelez :
+     * setIcon('#my-icon', 'fa fa-home');
+     *
+     * // L'élément dans le DOM serait mis à jour pour ressembler à ceci :
+     * &lt;i id="my-icon" class="fa fa-home">&lt;/i>
+     *
+     * // Cela signifie que les styles associés à la classe 'fa' et 'fa-home'
+     * // dans votre CSS seront appliqués à cet élément.
+     */
     setIcon(selector, iconClass) {
-        console.log('setIcon', selector, iconClass);
+        // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
+        if (this._isOtherwiseActive) return this;
+
         if (typeof selector !== 'string' || typeof iconClass !== 'string') {
             throw new Error('Le sélecteur et la classe d\'icône doivent être des chaînes de caractères.');
         }
@@ -381,6 +561,67 @@ export class DynSJS {
         elements.forEach(element => {
             element.classList.add(iconClass);
         });
+
+        return this;
+    }
+
+    /**
+     * Définit les propriétés de filtre CSS pour l'élément cible.
+     *
+     * @param {string|Object} filter - Si c'est une chaîne, elle représente la valeur CSS directe pour la propriété `filter`.
+     *                                Si c'est un objet, chaque clé représente le nom du filtre et sa valeur représente la valeur du filtre.
+     * @returns {DynSJS} L'instance actuelle de DynSJS pour permettre le chaînage.
+     * @throws {Error} Lance une erreur si l'argument fourni n'est pas une chaîne ou un objet de propriétés.
+     *
+     * @example
+     * .setFilter('blur(5px)') // Chaîne directe
+     * .setFilter({ blur: '5px', brightness: '150%' }) // Objet de propriétés
+     */
+    setFilter(filter) {
+        // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
+        if (this._isOtherwiseActive) return this;
+
+        if (typeof filter === 'string') {
+            this._properties.filter = filter;
+        } else if (typeof filter === 'object') {
+            this._properties.filter = Object.entries(filter)
+                .map(([key, value]) => `${key}(${value})`)
+                .join(' ');
+        } else {
+            throw new Error("L'argument fourni doit être une chaîne CSS ou un objet de propriétés.");
+        }
+        return this;
+    }
+
+    /**
+     * Applique une pseudo-classe à un élément et définit ses styles.
+     *
+     * @param {string} pseudo - La pseudo-classe à appliquer (par exemple, "hover" pour ":hover").
+     * @param {Object} properties - Les styles à appliquer à cette pseudo-classe.
+     * @returns {DynSJS} L'instance actuelle pour le chaînage des méthodes.
+     * @throws {Error} Si le pseudo fourni n'est pas une chaîne de caractères.
+     *
+     * @example
+     * const myStyle = new StyleSheet();
+     *
+     * myStyle.rule('button')
+     *    .set({ backgroundColor: 'blue', color: 'white' })
+     *    .setPseudo('hover', { backgroundColor: 'darkblue' });
+     *
+     * // Cela générera le CSS suivant :
+     * // button { backgroundColor: 'blue'; color: 'white'; }
+     * // button:hover { backgroundColor: 'darkblue'; }
+     *
+     */
+    setPseudo(pseudo, properties) {
+        // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
+        if (this._isOtherwiseActive) return this;
+
+        if (typeof pseudo !== 'string') throw new Error('Le pseudo fourni doit être une chaîne de caractères.');
+
+        const pseudoClass = new DynSJS(`${this._selectors.join(', ')}:${pseudo}`);
+        pseudoClass.set(properties);
+        this._children.push(pseudoClass); // Ajouter cette nouvelle règle à la liste des règles enfants
 
         return this;
     }
@@ -423,11 +664,14 @@ export class DynSJS {
      *    }
      */
     flexLayout(params = {}) {
+        // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
+        if (this._isOtherwiseActive) return this;
+
         const flexTranslations = {
             display: 'display',
-            direction: 'flex-direction',
-            justify: 'justify-content',
-            align: 'align-items',
+            flexDirection: 'flex-direction',
+            justifyContent: 'justify-content',
+            alignItems: 'align-items',
             wrap: 'flex-wrap',
             alignContent: 'align-content',
             flexGrow: 'flex-grow',
@@ -484,6 +728,9 @@ export class DynSJS {
      *   }
      */
     flexItem(params = {}) {
+        // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
+        if (this._isOtherwiseActive) return this;
+
         const flexTranslations = {
             flexGrow: 'flex-grow',
             flexShrink: 'flex-shrink',
@@ -530,6 +777,9 @@ export class DynSJS {
      *  .setGrid('display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 10px;');
      */
     setGrid(grid) {
+        // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
+        if (this._isOtherwiseActive) return this;
+
         if (typeof grid === 'object') {
             const gridConfig = Object.keys(grid).reduce((acc, prop) => {
                 acc[prop] = grid[prop];
@@ -575,6 +825,9 @@ export class DynSJS {
      *
      */
     setAnimation(animation) {
+        // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
+        if (this._isOtherwiseActive) return this;
+
         if (typeof animation === 'string') {
             this._properties.animation = animation;
         } else if (typeof animation === 'object') {
@@ -634,6 +887,9 @@ export class DynSJS {
      *
      */
     setTransform(transform) {
+        // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
+        if (this._isOtherwiseActive) return this;
+
         if (typeof transform === 'string') {
             this._properties.transform = transform;
         } else if (typeof transform === 'object') {
@@ -655,8 +911,28 @@ export class DynSJS {
      * @param {Function} [options.filter] - Une fonction qui détermine si un élément doit être inclus dans la boucle.
      * @param {Function} [options.transform] - Une fonction qui transforme un élément avant qu'il ne soit passé au callback.
      * @returns {DynSJS} L'instance actuelle de DynSJS pour permettre le chaînage des méthodes.
+     *
+     * @example
+     * const myStyle = new StyleSheet();
+     * const colors = ['red', 'green', 'blue'];
+     *
+     * myStyle.each(colors, (color, index) => {
+     *    myStyle.rule(`.color-${index}`)
+     *        .set({ backgroundColor: color });
+     * }, {
+     *    filter: color => color !== 'green',  // Exclude 'green'
+     *    transform: color => color.toUpperCase()  // Transform colors to uppercase
+     * });
+     *
+     * // Cela générera le CSS suivant :
+     * // .color-0 { backgroundColor: 'RED'; }
+     * // .color-2 { backgroundColor: 'BLUE'; }
+     *
      */
     each(array, callback, options = {}) {
+        // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
+        if (this._isOtherwiseActive) return this;
+
         const {filter, transform} = options;
         array.forEach((item, index) => {
             if (filter &amp;&amp; !filter(item, index)) return;
@@ -676,8 +952,23 @@ export class DynSJS {
      * @throws {Error} Si une méthode spécifiée n'existe pas dans DynSJS.
      * @throws {Error} Si une erreur se produit lors de l'appel d'une méthode.
      * @async
+     *
+     * @example
+     * const myStyle = new StyleSheet();
+     *
+     * const results = await myStyle.delegate({
+     *     set: [{ backgroundColor: 'red' }],
+     *     setColor: [['yellow', 'color']]
+     * });
+     *
+     * console.log(results.set);  // Expected: myStyle instance after `set` method call
+     * console.log(results.setColor);  // Expected: myStyle instance after `setColor` method call
+     *
      */
     async delegate(methods) {
+        // Si _isOtherwiseActive est true, alors on ne fait rien et on retourne simplement this.
+        if (this._isOtherwiseActive) return this;
+
         const results = {};
         for (let method in methods) {
             if (typeof this[method] === 'function') {
@@ -702,14 +993,19 @@ export class DynSJS {
         return results;
     }
 
-    comment(comment) {
-        this._children.push(new DynSJS(`/* ${comment} */`));
-        return this;
-    }
+    /**
+     *  Génère le CSS pour la règle actuelle et ses enfants.
+     *  @param {string} [parentSelector] - Le sélecteur CSS du parent de cette règle.
+     *  @returns {object} Un objet contenant le sélecteur CSS et les propriétés CSS de la règle actuelle.
+     */
     toCSS(parentSelector = '') {
+        // Si _isOtherwiseActive est true, retournez null.
+        if (this._isOtherwiseActive) return null;
+
         if (!this._isConditionMet()) return null;
 
         const combinedSelectors = this._generateSelectors(parentSelector);
+
         if (!combinedSelectors || combinedSelectors.trim() === "") {
             console.warn("Aucun sélecteur combiné trouvé");
             return null;
@@ -728,7 +1024,7 @@ export class DynSJS {
         }).join('\n').trim();
 
         const mediaCSS = this._mediaQueries.map(({query, rule}) => {
-            const cssResult = rule.toCSS(); // Notez le changement ici
+            const cssResult = rule.toCSS();
             let cssString = "";
             if (cssResult &amp;&amp; cssResult.result &amp;&amp; cssResult.result.properties) {
                 cssString = `${cssResult.result.selector} { ${cssResult.result.properties} }`;
@@ -742,35 +1038,38 @@ export class DynSJS {
 
         const keyframesCSS = this._generateKeyframes();
 
-        // Ajoutez cette ligne pour inclure les keyframes dans la chaîne CSS générée
         childrenCssString = `${keyframesCSS}\n${childrenCssString}`;
 
         return {result, childrenCSS: childrenCssString, mediaCSS, keyframesCSS};
     }
 
-}
-</code></pre>
+}</code></pre>
         </article>
     </section>
 
 
 
 
-    
-    
 </div>
 
-<br class="clear">
-
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Wed Aug 30 2023 23:30:34 GMT+0200 (heure d’été d’Europe centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    <img class="logo" src="img/toast-ui.png" style="">
+    <div class="footer-text">NHN Entertainment. Frontend Development Lab</div>
 </footer>
-
 <script>prettyPrint();</script>
-<script src="scripts/polyfill.js"></script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
 <script src="scripts/linenumber.js"></script>
 
+    <script>
+        var id = '_sub'.replace(/"/g, '_');
+        var selectedApi = document.getElementById(id); // do not use jquery selector
+        var $selectedApi = $(selectedApi);
 
+        $selectedApi.removeClass('hidden');
+        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+        showLnbApi();
+    </script>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-import { DynSJS } from "./DynSJS.js";
+import {DynSJS} from "./DynSJS.js";
 
 /**
  * Classe représentant une feuille de style.
@@ -13,6 +13,7 @@ export class StyleSheet {
          * @private
          */
         this._rules = [];
+        this._universalSelector = null; // Sélecteur universel
     }
 
     /**
@@ -27,49 +28,23 @@ export class StyleSheet {
     }
 
     /**
+     * Ajoute une règle pour le sélecteur universel.
+     * @returns {DynSJS} La règle créée.
+     */
+    universalRule() {
+        if (!this._universalSelector) {
+            this._universalSelector = new DynSJS();
+        }
+        return this._universalSelector;
+    }
+
+
+    /**
      * Fusionne les objets CSS en une seule chaîne CSS.
      * @param {Array<Object>} cssObjects - Les objets CSS à fusionner.
      * @returns {string} Le CSS fusionné.
      * @private
      */
-    /*_mergeCSS(cssObjects) {
-        let cssMap = {};
-        let compiledCSS = "";
-
-        cssObjects.forEach(obj => {
-            if (obj && obj.result && obj.result.selector && obj.result.properties) {
-                const { selector, properties } = obj.result;
-                cssMap[selector] = cssMap[selector] ? `${cssMap[selector]} ${properties}` : properties;
-            }
-
-            if (obj && Array.isArray(obj.mediaCSS)) {
-                obj.mediaCSS.forEach(media => {
-                    if (media && media.query && media.css) {
-                        const { query, css } = media;
-                        const mediaKey = `@media ${query}`;
-                        cssMap[mediaKey] = cssMap[mediaKey] ? `${cssMap[mediaKey]} ${css}` : css;
-                    }
-                });
-            }
-        });
-
-        for (let selector in cssMap) {
-            if (selector.startsWith('@media')) {
-                compiledCSS += `${selector} {\n  ${cssMap[selector]}\n}\n`;
-            } else {
-                compiledCSS += `${selector} { ${cssMap[selector]} }\n`;
-            }
-        }
-
-        cssObjects.forEach(obj => {
-            if (obj && obj.childrenCSS) {
-                compiledCSS += `\n${obj.childrenCSS}`;
-            }
-        });
-
-        return compiledCSS;
-    }*/
-
     _mergeCSS(cssObjects) {
         let cssMap = {};
         let mediaQueries = {};
@@ -80,6 +55,7 @@ export class StyleSheet {
             // Handling regular CSS rules
             if (obj.result && obj.result.selector && obj.result.properties) {
                 const { selector, properties } = obj.result;
+
                 cssMap[selector] = cssMap[selector] ? `${cssMap[selector]} ${properties}` : properties;
             }
 
@@ -141,9 +117,31 @@ export class StyleSheet {
      * Compile la feuille de style en une chaîne CSS.
      * @returns {string} Le CSS compilé.
      */
-    compile() {
+    /*compile() {
         const intermediateCSS = this._rules.map(rule => rule.toCSS());
         return this._mergeCSS(intermediateCSS);
+    }*/
+
+    compile() {
+        const intermediateCSS = this._rules.map(rule => rule.toCSS());
+
+        // Identifier et extraire le CSS pour le sélecteur universel
+        let universalCSS = "";
+        const otherCSSObjects = [];
+        for (let cssObject of intermediateCSS) {
+            if (cssObject.result && cssObject.result.selector === "*, *::before, *::after") {
+                universalCSS += `${cssObject.result.selector} { ${cssObject.result.properties} }\n`;
+            } else {
+                otherCSSObjects.push(cssObject);
+            }
+        }
+
+        // Fusionner le reste du CSS
+        const restOfCSS = this._mergeCSS(otherCSSObjects);
+
+        // Concaténer le CSS du sélecteur universel au début du reste du CSS
+        return `${universalCSS}${restOfCSS}`;
     }
+
 
 }
