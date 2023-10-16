@@ -11,7 +11,6 @@ main.rule('section')
         width: '80%',
         margin: '0 auto',
         padding: '10px 0',
-        //border: '1px solid #000',
     })
     .flexLayout({
         display: 'flex',

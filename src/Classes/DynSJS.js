@@ -42,7 +42,7 @@ export class DynSJS {
     _ruleStack;
     _cssRules
 
-    constructor(...selectors) {
+    /*constructor(...selectors) {
         if (!selectors.every(DynSJS._isValidSelector)) {
             throw new Error("Un ou plusieurs sélecteurs sont invalides.");
         }
@@ -62,13 +62,69 @@ export class DynSJS {
         this._ruleStack = [];
         this._cssRules = [];
         this.currentStyles = this.whenStyles;  // Par défaut, les méthodes modifient les styles "when"
+    }*/
+
+    constructor(...selectors) {
+        // Aplatir les tableaux
+        selectors = selectors.flat();
+
+        if (!selectors.every(DynSJS._isValidSelector)) {
+            throw new Error("Un ou plusieurs sélecteurs sont invalides.");
+        }
+
+        this._selectors = selectors;  // Aucun besoin de vérifier si selectors[0] est un tableau
+
+        // Le reste de votre code reste inchangé...
+        this._properties = {};
+        this._children = [];
+        this._mediaQueries = [];
+        this._conditionFn = null;
+        this._selectorStack = [];
+        this._propertyStack = [];
+        this._pseudoClasses = [];
+        this._rules = [];
+        this.whenStyles = {};
+        this.otherwiseStyles = {};
+        this._generatedRules = [];
+        this._ruleStack = [];
+        this._cssRules = [];
+        this.currentStyles = this.whenStyles;  // Par défaut, les méthodes modifient les styles "when"
     }
+
+
     static _isValidSelector(sel) {
-        return typeof sel === 'string' && sel.trim();
+        return typeof sel === 'string' && sel.trim() !== ''; // Vérifiez si le sélecteur est une chaîne non vide
     }
+
     static _isValidProperty(key, value) {
-        return typeof key === 'string' && typeof value === 'string';
+        if (typeof key !== 'string' || key.trim().length === 0) {
+            return false;
+        }
+
+        if (typeof value === 'string' || typeof value === 'number') {
+            return true;
+        }
+
+        // Vérifiez si la valeur est un objet avec la structure attendue
+        if (typeof value === 'object' && !Array.isArray(value)) {
+            if ('value' in value && ('important' in value)) {
+                const isValueValid = typeof value.value === 'string' || typeof value.value === 'number';
+                const isImportantValid = typeof value.important === 'boolean';
+                return isValueValid && isImportantValid;
+            }
+        }
+
+        return false;
     }
+
+    /**
+     * Transforme une chaîne de caractères camelCase en chaîne de caractères kebab-case.
+     *
+     * @param {string} string - La chaîne de caractères camelCase.
+     * @returns {string} La chaîne de caractères kebab-case.
+     * @example
+     * DynSJS.camelToKebab('backgroundColor'); // 'background-color'
+     */
     static camelToKebab(string) {
         return string.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
     }
@@ -112,7 +168,7 @@ export class DynSJS {
      *      align-items: center;
      * }
      */
-    static addPrefixes(properties) {
+    /*static addPrefixes(properties) {
         const prefixes = ['webkit', 'moz', 'ms', 'o'];
         const prefixedProperties = {};
 
@@ -129,7 +185,25 @@ export class DynSJS {
         }
 
         return prefixedProperties;
+    }*/
+
+    static addPrefixes(properties) {
+        const prefixes = ['webkit', 'moz', 'ms', 'o'];
+        const result = {};
+
+        for (let key in properties) {
+            result[key] = properties[key]; // Ajouter la propriété originale
+
+            // Ajouter des propriétés avec préfixes
+            for (let prefix of prefixes) {
+                let prefixedKey = prefix + key.charAt(0).toUpperCase() + key.slice(1);
+                result[prefixedKey] = properties[key];
+            }
+        }
+
+        return result;
     }
+
 
     /**
      * Définit les propriétés CSS pour les sélecteurs actuels.
@@ -159,7 +233,7 @@ export class DynSJS {
      * }
      *
      */
-    set(props) {
+  /*  set(props) {
         // Si _isOtherwiseActive est true, alors ne faites rien et retournez simplement this.
         if (this._isOtherwiseActive) return this;
 
@@ -171,7 +245,23 @@ export class DynSJS {
             }
         }
         return this;
+    }*/
+
+    set(props) {
+        // Si _isOtherwiseActive est true, alors ne faites rien et retournez simplement this.
+        if (this._isOtherwiseActive) return this;
+
+        for (let key in props) {
+            if (DynSJS._isValidProperty(key, props[key])) {
+                this._properties = {...this._properties, ...{[key]: props[key]}};
+            } else {
+                let valueString = Array.isArray(props[key]) ? JSON.stringify(props[key]) : props[key];
+                throw new Error(`La propriété ou la valeur ${key}: ${valueString} est invalide.`);
+            }
+        }
+        return this;
     }
+
 
     /**
      * Ajoute un sélecteur enfant au(x) sélecteur(s) actuel(s).
@@ -197,7 +287,6 @@ export class DynSJS {
      * @param selectors
      */
     nested(...selectors) {
-        console.log("Current Selectors before nested:", this._selectors);
         // Empiler règles CSS courantes
         this._ruleStack.push([...this._cssRules]);
 
