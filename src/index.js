@@ -1,7 +1,6 @@
+// --- src/index.js ---
+// index.js exporte l'API publique de la bibliothèque
 
-import { StyleSheet } from './StyleSheet.js';
-
-const sheet = new StyleSheet();
-
-const css = sheet.compile();
-console.log(css);
+export { StyleSheet } from './StyleSheet.js';
+export { Color } from './Color.js';
+export { DynSJS } from './DynSJS.js'; // Exporter DynSJS peut être utile pour le typage ou l'extension
