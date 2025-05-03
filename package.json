@@ -6,15 +6,21 @@
   "main": "dist/dynsjs.cjs.js",
   "module": "dist/dynsjs.esm.js",
   "browser": "dist/dynsjs.umd.js",
+  "types": "dist/ts/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "clean": "rm -rf dist",
-    "build": "npm run clean && rollup -c",
-    "build:watch": "rollup -c -w",
-    "dev": "npm run build:watch"
+    "build:js": "rollup -c",
+    "build:types": "tsc --project tsconfig.json",
+    "build": "npm run clean && npm run build:js && npm run build:types",
+    "watch:js": "rollup -c -w",
+    "watch:types": "tsc --watch --preserveWatchOutput --project tsconfig.json",
+    "dev": "concurrently \"npm:watch:js\" \"npm:watch:types\"",
+    "build:demo": "node compileStyles.js"
   },
   "keywords": [
     "css",
@@ -24,6 +30,11 @@
   ],
   "author": "Paterne G. G",
   "license": "MIT",
+  "browserslist": [
+    "> 0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
   "devDependencies": {
     "@babel/core": "7.27.1",
     "@babel/preset-env": "7.27.1",
@@ -31,7 +42,16 @@
     "@rollup/plugin-commonjs": "28.0.3",
     "@rollup/plugin-node-resolve": "16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
-    "chokidar-cli": "^3.0.0",
-    "rollup": "^4.x.x"
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.1.2",
+    "jsdom": "^26.1.0",
+    "postcss": "^8.5.3",
+    "rollup": "^4.4.0",
+    "tailwindcss": "^4.1.5",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.2"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.5"
   }
 }

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Démo DynSJS (Client-Side)</title>
+    <style>
+        /* Reset très basique */
+        body { margin: 0; padding: 1rem; font-family: sans-serif; line-height: 1.5; }
+        .demo-section { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; }
+        h1, h2 { margin-top: 0; margin-bottom: 0.5rem; }
+        button { margin-right: 0.5rem; }
+    </style>
+</head>
+
+<body>
+    <h1>Démo DynSJS (Injectée Côté Client)</h1>
+
+    <div class="demo-section">
+        <h2>Conteneur et Titre</h2>
+        <div class="container">
+            <h2 class="main-title">Titre Principal</h2>
+            <p>Ce contenu est dans un conteneur.</p>
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Boutons Stylés</h2>
+        <button class="btn btn-primary">Bouton Primaire</button>
+        <button class="btn btn-secondary">Bouton Secondaire</button>
+    </div>
+
+    <div class="demo-section">
+        <h2>Animation</h2>
+        <div class="animated-box"></div>
+    </div>
+
+    <script src="/dist/dynsjs.umd.js"></script>
+
+    <script>
+        if (window.DynSJS) {
+            const { StyleSheet, Color, theme } = window.DynSJS;
+
+            // Définir un thème simple pour la démo
+            const demoTheme = {
+                colors: {
+                    // --- CORRECTION : Stocker comme string ---
+                    primary: '#2563eb', // <-- Chaîne Hex
+                    // --- FIN CORRECTION ---
+                    secondary: '#6b7280',
+                    textLight: '#f1f5f9',
+                    textDark: '#334155',
+                    background: 'green', // Ou toute autre couleur valide
+                },
+                spacing: { sm: '0.5rem', md: '1rem', lg: '1.5rem' },
+                borderRadius: { DEFAULT: '0.25rem', lg: '0.5rem' }
+            };
+
+            const sheet = new StyleSheet(demoTheme);
+
+            // Définir les styles
+            sheet.rule('body').set({
+                color: theme('colors.textDark'),
+                backgroundColor: theme('colors.background')
+            });
+
+            sheet.rule('.demo-section').set({
+                backgroundColor: 'rgba(255, 255, 255, 0.5)', // Semi-transparent pour voir fond body
+                padding: theme('spacing.md'),
+                borderRadius: theme('borderRadius.lg'),
+                marginBottom: theme('spacing.lg') // Utilisation du thème
+            });
+
+            sheet.rule('.container').set({
+                maxWidth: '800px',
+                margin: '0 auto',
+                padding: theme('spacing.lg')
+            });
+
+            sheet.rule('.main-title').set({
+                // --- CORRECTION : Utiliser la string du thème ---
+                // Si on veut l'instance Color ici, il faut la créer : Color.fromHex(theme(...))
+                // Mais pour l'affichage simple, la string suffit :
+                color: theme('colors.primary'), // Utilise la string '#2563eb' directement
+                // --- FIN CORRECTION ---
+                borderBottom: '2px solid #eee',
+                paddingBottom: theme('spacing.sm')
+            });
+
+            sheet.rule('.btn').set({
+                padding: `${theme('spacing.sm')} ${theme('spacing.md')}`,
+                border: 'none',
+                borderRadius: theme('borderRadius.DEFAULT'),
+                cursor: 'pointer',
+                fontWeight: 900 // Changé en 900 pour être plus visible
+            });
+
+            sheet.rule('.btn-primary')
+                .nested('&')
+                .set({
+                    backgroundColor: theme('colors.primary'), // Utilise la string '#2563eb'
+                    color: theme('colors.textLight')
+                })
+                .nested('&:hover')
+                .set({
+                    // --- CORRECTION : Créer l'instance Color ici ---
+                    backgroundColor: (t) => {
+                        // 1. Récupérer la couleur primaire (string) du thème
+                        const primaryColorString = t.colors.primary; // Ou theme('colors.primary')(t) si le helper est conçu différemment
+                        // 2. Créer une instance Color à partir de la chaîne
+                        const colorInstance = Color.fromHex(primaryColorString);
+                        // 3. Appliquer l'opération et convertir en chaîne
+                        return colorInstance.operate('-', 30).toString();
+                    }
+                    // --- FIN CORRECTION ---
+                });
+
+            sheet.rule('.btn-secondary')
+                .nested('&')
+                .set({
+                    backgroundColor: theme('colors.secondary'),
+                    color: theme('colors.textLight')
+                })
+                .nested('&:hover')
+                .set({
+                    backgroundColor: '#5a6268'
+                });
+
+            sheet.keyframes('bounce', { /* ... */ });
+
+            sheet.rule('.animated-box').set({
+                width: '50px', height: '50px',
+                borderRadius: '50%',
+                // --- CORRECTION : Utiliser la string du thème ---
+                backgroundColor: theme('colors.primary'),
+                // --- FIN CORRECTION ---
+                margin: theme('spacing.md'),
+                animation: 'bounce 1s ease-in-out infinite alternate'
+            });
+
+            // Injecter les styles
+            async function applyStyles() {
+                try {
+                    await sheet.inject();
+                    console.log('Styles DynSJS injectés !');
+                } catch (error) {
+                    console.error("Erreur lors de l'injection des styles:", error);
+                }
+            }
+            window.addEventListener('DOMContentLoaded', applyStyles);
+
+        } else {
+            console.error('La bibliothèque DynSJS n\'a pas pu être chargée.');
+            // alert('Erreur: DynSJS non chargé...');
+        }
+    </script>
+</body>
+</html>

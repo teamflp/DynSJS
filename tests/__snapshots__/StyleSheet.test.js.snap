@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`StyleSheet Class > compile method > should compile keyframes 1`] = `
+"@keyframes slide {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+.slider { animation: slide 1s ease-in; }
+"
+`;
+
+exports[`StyleSheet Class > compile method > should compile media queries correctly grouped 1`] = `
+"@media (min-width: 600px) {
+  body { font-size: 18px; }
+  .container { max-width: 900px; }
+  .header a { color: blue; }
+}
+
+@media (max-width: 599px) {
+  .footer { font-size: 12px; }
+}
+"
+`;
+
+exports[`StyleSheet Class > compile method > should compile simple rules 1`] = `
+"h1 { font-size: 2em; }
+.p1, .p2 { margin: 1em 0; }
+"
+`;
