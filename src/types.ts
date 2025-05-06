@@ -14,26 +14,15 @@ export interface ThemeLookup {
     defaultValue?: any; // Rendre defaultValue optionnel
 }
 
-// Types primitifs acceptés comme valeur de style (ou retournés par une fonction)
 export type StyleValuePrimitive = string | number | Color | ThemeLookup | StyleValueFunction;
-
-// Type complet pour une valeur de style (peut être primitif ou tableau)
 export type StyleValue = StyleValuePrimitive | Array<StyleValuePrimitive>;
+export type StyleValueFunction = (theme: DynSJSTheme, context: DynSJS | null) => string | number | Color;
 
-// Fonction pouvant être passée comme valeur DANS l'objet de set() - Moins utilisée maintenant
-export type StyleValueFunction = (theme: DynSJSTheme, context: DynSJS) => string | number | Color;
-
-// Objet de propriétés CSS passé à set() ou retourné par la fonction SetFunction
 export type StyleProperties = {
-    [key: string]: StyleValue;
+    [key: string]: StyleValue | StyleProperties; // La clé peut être une prop CSS ou un sélecteur/directive
 };
 
-// --- AJOUT DU TYPE MANQUANT ---
-// Type pour la fonction passée directement à set()
 export type SetFunction = (theme: DynSJSTheme, context: DynSJS) => StyleProperties;
-// --- FIN AJOUT ---
-
-// Fonction pour les conditions 'when()'
 export type ConditionFunction = (theme: DynSJSTheme, ssr: boolean) => boolean;
 
 // Structure retournée par DynSJS.toCSS()
@@ -43,10 +32,7 @@ export interface CSSEntry {
     mediaCSS: Array<{ query: string; css: string; }>;
 }
 
-// Définition pour les keyframes
-export interface KeyframeDefinition {
-    [step: string]: StyleProperties; 
-}
+export interface KeyframeDefinition { [step: string]: StyleProperties; } 
 
 // Options pour le constructeur StyleSheet
 export interface StyleSheetOptions {

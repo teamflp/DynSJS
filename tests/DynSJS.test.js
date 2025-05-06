@@ -18,6 +18,10 @@ const mockTheme = {
     }
 };
 
+// Crée un marqueur theme pour les tests qui en ont besoin sans le vrai helper
+// Simule le helper theme() qui retourne un marqueur
+const themeMarkerFn = (key, defaultValue) => ({ __isThemeLookupRequest__: true, key, defaultValue });
+
 describe('DynSJS Class', () => {
 
     describe('Constructor and Context', () => {
@@ -101,7 +105,8 @@ describe('DynSJS Class', () => {
         it('should generate correct property string', () => {
             const rule = new DynSJS(['.f'], mockTheme);
             const colorInstance = new Color(255, 0, 0);
-            const themeMarker = { __isThemeLookupRequest__: true, key: 'colors.text', defaultValue: 'black' };
+            // Utilise themeMarkerFn corrigé
+            const themeMarker = themeMarkerFn('colors.text', 'black');
             const themeFunc = (t) => t.fonts.body;
 
             rule.set({
@@ -112,7 +117,7 @@ describe('DynSJS Class', () => {
                 fontFamily: themeFunc,
                 opacity: 0.8,
             });
-            const propsString = rule._generateProperties();
+            const propsString = rule._generateProperties(); // Pas besoin de transtypage en JS
 
             expect(propsString).toContain('font-size: 16px;');
             expect(propsString).toContain('line-height: 1.5;');
@@ -124,13 +129,16 @@ describe('DynSJS Class', () => {
 
         it('should skip properties with undefined resolved value and warn', () => {
             const rule = new DynSJS(['.f'], mockTheme);
-            const undefinedThemeMarker = { __isThemeLookupRequest__: true, key: 'colors.missing' };
-            rule.set({border: undefinedThemeMarker});
+            const undefinedThemeMarker = themeMarkerFn('colors.missing'); // Assurez-vous que themeMarkerFn est défini
+            rule.set({ border: undefinedThemeMarker });
             const propsString = rule._generateProperties();
-
+        
             expect(propsString).not.toContain('border:');
-            expect(warnSpy).toHaveBeenCalledWith('Non-string value [border]: undefined');
-            // expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('Theme key "colors.missing" not found'));
+            // --- CORRECTION DE L'ASSERTION ---
+            expect(warnSpy).toHaveBeenCalledWith(
+                expect.stringContaining('Theme key "colors.missing" not found for property "border" and no usable default value was provided.')
+            );
+            // --- FIN CORRECTION ---
         });
 
 
@@ -140,15 +148,14 @@ describe('DynSJS Class', () => {
             rule.set({ outline: failingFunc });
             const propsString = rule._generateProperties();
             expect(propsString).not.toContain('outline:');
-            // --- CORRECTION DE L'ASSERTION ---
+            // Assertion corrigée dans la réponse précédente
             expect(errorSpy).toHaveBeenCalledWith(
-                // Modifiez la chaîne attendue ici :
-                expect.stringContaining('Func prop value error [outline]:'), // <-- Ajout de "value"
+                expect.stringContaining('Func prop value error [outline]:'),
                 expect.any(Error)
             );
-            // --- FIN CORRECTION ---
        });
     });
+
 
     describe('DynSJS Property Key Conversion', () => {
         it('should handle mixed case property names', () => {
@@ -233,11 +240,10 @@ describe('DynSJS Class', () => {
         });
 
         it('should set a CSS variable using the theme() helper', () => {
-            // Assurez-vous que mockTheme est défini dans ce fichier de test
             const rule = new DynSJS([':root'], mockTheme);
+            // Utilise le 'theme' importé, PAS themeMarkerFn ici car on teste le helper public
             rule.setVar('primary-theme-color', theme('colors.primary'));
             const propsString = rule._generateProperties();
-            // mockTheme.colors.primary est une instance Color(0,0,255)
             expect(propsString).toContain('--primary-theme-color: rgb(0,0,255);');
         });
 
