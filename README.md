@@ -54,3 +54,5 @@ Documentation Initiale Forte : Améliorer le README.md actuel et créer une réf
 Migration vers TypeScript : C'est un gros effort mais qui apporte d'énormes bénéfices en termes de maintenabilité et d'attractivité pour les autres développeurs.
 Publication npm Initiale : Pour obtenir des retours d'utilisateurs.
 Ensuite, ajoutez progressivement les fonctionnalités (Theming avancé, Sélecteurs...) et améliorez la documentation (site dédié, tutoriels) en fonction des besoins et des retours.
+
+

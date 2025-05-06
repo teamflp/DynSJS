@@ -1,9 +1,6 @@
 // test/Color.test.js
-
-// Importe les fonctions de test de Vitest et la classe à tester
-import { describe, it, expect, vi } from 'vitest'; // <-- Ajout de vi
-// Chemin modifié pour importer depuis ../src/
-import { Color } from '../src/Color.js';
+import { describe, it, expect, vi } from 'vitest';
+import { Color } from '../src/Color.ts';
 
 describe('Color Class', () => {
 

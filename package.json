@@ -1,12 +1,19 @@
 {
   "name": "dynsjs",
   "version": "1.0.0",
-  "description": "Une bibliothèque JS pour générer dynamiquement des feuilles de style CSS.",
+  "description": "",
   "type": "module",
-  "main": "dist/dynsjs.cjs.js",
-  "module": "dist/dynsjs.esm.js",
-  "browser": "dist/dynsjs.umd.js",
-  "types": "dist/ts/index.d.ts",
+  "main": "dist/js/index.js",
+  "module": "dist/js/index.js",
+  "browser": "dist/js/dynsjs.umd.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/js/index.js",
+      "require": "./dist/js/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "dist"
   ],
@@ -14,44 +21,39 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "clean": "rm -rf dist",
-    "build:js": "rollup -c",
     "build:types": "tsc --project tsconfig.json",
-    "build": "npm run clean && npm run build:js && npm run build:types",
-    "watch:js": "rollup -c -w",
-    "watch:types": "tsc --watch --preserveWatchOutput --project tsconfig.json",
-    "dev": "concurrently \"npm:watch:js\" \"npm:watch:types\"",
-    "build:demo": "node compileStyles.js"
+    "build:bundle": "rollup -c",
+    "build": "npm run clean && npm run build:types && npm run build:bundle",
+    "watch:ts": "tsc --project tsconfig.json --watch --preserveWatchOutput",
+    "watch:bundle": "rollup -c -w",
+    "dev": "concurrently \"npm:watch:ts\" \"npm:watch:bundle\"",
+    "build:demo": "node compileStyles.js", 
+    "example:generate-css": "node examples/generate-css-file.js" 
   },
   "keywords": [
-    "css",
-    "stylesheet",
-    "dynamic",
-    "js"
+
   ],
-  "author": "Paterne G. G",
+  "author": "Paterne G. G.",
   "license": "MIT",
   "browserslist": [
-    "> 0.2%",
+    "> 0.25%",
     "not dead",
+    "not ie <= 11",
     "not op_mini all"
   ],
   "devDependencies": {
-    "@babel/core": "7.27.1",
-    "@babel/preset-env": "7.27.1",
-    "@rollup/plugin-babel": "6.0.4",
     "@rollup/plugin-commonjs": "28.0.3",
     "@rollup/plugin-node-resolve": "16.0.1",
-    "@rollup/plugin-terser": "^0.4.4",
-    "autoprefixer": "^10.4.21",
-    "concurrently": "^9.1.2",
-    "jsdom": "^26.1.0",
-    "postcss": "^8.5.3",
-    "rollup": "^4.4.0",
-    "tailwindcss": "^4.1.5",
+    "@rollup/plugin-terser": "0.4.4",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/node": "^22.15.3 || ^20.x.x",
+    "autoprefixer": "10.4.21",
+    "concurrently": "9.1.2",
+    "postcss": "8.5.3",
+    "rollup": "4.40.1",
+    "tailwindcss": "4.1.5", 
     "typescript": "^5.8.3",
-    "vitest": "^3.1.2"
-  },
-  "dependencies": {
-    "@tailwindcss/cli": "^4.1.5"
+    "vitest": "3.1.2",
+    "jsdom": "26.1.0"
   }
 }

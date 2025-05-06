@@ -1,63 +1,74 @@
-// rollup.config.js (CORRIGÉ - Lecture package.json via fs)
-
-import fs from 'node:fs'; // Utiliser node: préfixe
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
+// rollup.config.js
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import babel from '@rollup/plugin-babel';
+import typescript from '@rollup/plugin-typescript';
 import terser from '@rollup/plugin-terser';
+import pkg from './package.json' with { type: 'json' };
 
-// --- CORRECTION : Lecture package.json via fs ---
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const pkg = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'package.json'), 'utf-8'));
-// --- FIN CORRECTION ---
+const input = 'src/index.ts';
 
-// Point d'entrée
-const input = 'src/index.js';
-
-// Config Babel
-const babelConfig = {
-    babelHelpers: 'bundled',
-    exclude: 'node_modules/**',
-    presets: ['@babel/preset-env']
-};
-
-// Dépendances Externes (pour éviter les warnings Node builtins / tailwind dans les bundles)
-const externalDeps = [
-    /^node:/, // Exclut node:fs, node:path etc.
-    'tailwindcss/resolveConfig.js' // Exclut l'import dynamique de tailwind
-];
+const externalDeps = [];
 
 export default [
-    // 1. Build CommonJS (pour Node)
+    // 1. Build CommonJS
     {
         input: input,
         output: { file: pkg.main, format: 'cjs', sourcemap: true, exports: 'named' },
-        external: externalDeps, // <-- Doit être présent
-        plugins: [ resolve(), commonjs(), babel(babelConfig) ]
+        external: externalDeps,
+        plugins: [
+            resolve(),
+            commonjs(),
+            typescript({ 
+                tsconfig: './tsconfig.json',
+                declaration: true,
+                declarationDir: 'dist/js/types'
+            })
+        ]
     },
-    // 2. Build ES Module (pour bundlers / Node moderne)
+    // 2. Build ES Module
     {
         input: input,
         output: { file: pkg.module, format: 'es', sourcemap: true },
-        external: externalDeps, // <-- Doit être présent
-        plugins: [ resolve(), commonjs(), babel(babelConfig) ]
+        external: externalDeps,
+        plugins: [
+            resolve(),
+            commonjs(),
+            typescript({ 
+                tsconfig: './tsconfig.json',
+                declaration: true,
+                declarationDir: 'dist/js/types'
+            })
+        ]
     },
-    // 3. Build UMD (pour navigateurs via <script>)
+    // 3. Build UMD
     {
         input: input,
         output: { file: pkg.browser, format: 'umd', name: 'DynSJS', sourcemap: true, globals: {}, exports: 'named' },
-        external: externalDeps, // <-- Doit être présent
-        plugins: [ resolve(), commonjs(), babel(babelConfig) ]
+        external: externalDeps,
+        plugins: [
+            resolve(),
+            commonjs(),
+            typescript({ 
+                tsconfig: './tsconfig.json',
+                declaration: true,
+                declarationDir: 'dist/js/types'
+            })
+        ]
     },
-     // 4. Build UMD Minifié (pour production navigateur)
+    // 4. Build UMD Minifié
     {
         input: input,
         output: { file: pkg.browser.replace('.js', '.min.js'), format: 'umd', name: 'DynSJS', sourcemap: true, globals: {}, exports: 'named' },
-        external: externalDeps, // <-- Doit être présent
-        plugins: [ resolve(), commonjs(), babel(babelConfig), terser() ]
+        external: externalDeps,
+        plugins: [
+            resolve(),
+            commonjs(),
+            typescript({ 
+                tsconfig: './tsconfig.json',
+                declaration: true,
+                declarationDir: 'dist/js/types'
+            }),
+            terser()
+        ]
     }
 ];

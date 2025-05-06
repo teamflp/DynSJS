@@ -1,15 +1,21 @@
-// tsconfig.json (modifié)
+// tsconfig.json (Mis à jour)
 {
-    "compilerOptions": {
-      "allowJs": true,
-      "declaration": true,
-      "emitDeclarationOnly": true,
-      "declarationDir": "dist/ts",  // <-- MODIFIÉ : Spécifie le sous-dossier pour les .d.ts
-      "outDir": "dist",             // Garder outDir pour la logique interne de tsc
-      "moduleResolution": "node",
-      "esModuleInterop": true,
-      "skipLibCheck": true
-    },
-    "include": ["src/**/*", "tests"],
-    "exclude": ["node_modules", "dist"]
-  }
+  "compilerOptions": {
+    "target": "ES2016",        // Cible JS raisonnablement compatible
+    "module": "ESNext",        // Garder les imports/exports ES pour Rollup
+    "declaration": true,      // <-- Générer les .d.ts
+    "declarationMap": true,   // Optionnel: Générer des sourcemaps pour les .d.ts
+    "sourceMap": true,        // <-- Générer les .js.map
+    "outDir": "./dist/js",    // <-- Mettre les JS compilés dans dist/js
+    "declarationDir": "./dist/js/types",
+    "rootDir": "./src",       // <-- Spécifier la racine des sources TS
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true // Utile pour certains imports
+  },
+  "include": ["src/**/*.ts"], // Compiler uniquement les fichiers .ts dans src
+  "exclude": ["node_modules", "dist", "test"]
+}
