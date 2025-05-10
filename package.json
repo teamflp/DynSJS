@@ -27,12 +27,16 @@
     "watch:ts": "tsc --project tsconfig.json --watch --preserveWatchOutput",
     "watch:bundle": "rollup -c -w",
     "dev": "concurrently \"npm:watch:ts\" \"npm:watch:bundle\"",
-    "build:demo": "node compileStyles.js", 
-    "example:generate-css": "node examples/generate-css-file.js" 
+    "build:demo": "node compileStyles.js",
+    "example:generate-css": "node examples/generate-css-file.js",
+    "docs:api": "typedoc",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "docs:deploy": "vitepress build docs && vitepress serve docs",
+    "docs:serve": "vitepress serve docs"
   },
-  "keywords": [
-
-  ],
+  "keywords": [],
   "author": "Paterne G. G.",
   "license": "MIT",
   "browserslist": [
@@ -49,11 +53,15 @@
     "@types/node": "^22.15.3 || ^20.x.x",
     "autoprefixer": "10.4.21",
     "concurrently": "9.1.2",
+    "jsdom": "26.1.0",
     "postcss": "8.5.3",
     "rollup": "4.40.1",
-    "tailwindcss": "4.1.5", 
+    "tailwindcss": "4.1.5",
+    "typedoc": "^0.28.4",
+    "typedoc-plugin-markdown": "^4.6.3",
     "typescript": "^5.8.3",
+    "vitepress": "^1.6.3",
     "vitest": "3.1.2",
-    "jsdom": "26.1.0"
+    "vue": "^3.5.13"
   }
 }

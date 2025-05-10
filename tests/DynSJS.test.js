@@ -105,7 +105,6 @@ describe('DynSJS Class', () => {
         it('should generate correct property string', () => {
             const rule = new DynSJS(['.f'], mockTheme);
             const colorInstance = new Color(255, 0, 0);
-            // Utilise themeMarkerFn corrigé
             const themeMarker = themeMarkerFn('colors.text', 'black');
             const themeFunc = (t) => t.fonts.body;
 
@@ -129,18 +128,15 @@ describe('DynSJS Class', () => {
 
         it('should skip properties with undefined resolved value and warn', () => {
             const rule = new DynSJS(['.f'], mockTheme);
-            const undefinedThemeMarker = themeMarkerFn('colors.missing'); // Assurez-vous que themeMarkerFn est défini
+            const undefinedThemeMarker = themeMarkerFn('colors.missing');
             rule.set({ border: undefinedThemeMarker });
             const propsString = rule._generateProperties();
-        
+
             expect(propsString).not.toContain('border:');
-            // --- CORRECTION DE L'ASSERTION ---
             expect(warnSpy).toHaveBeenCalledWith(
                 expect.stringContaining('Theme key "colors.missing" not found for property "border" and no usable default value was provided.')
             );
-            // --- FIN CORRECTION ---
         });
-
 
         it('should skip properties where function value throws and log error', () => {
             const rule = new DynSJS(['.f'], mockTheme);
@@ -148,10 +144,9 @@ describe('DynSJS Class', () => {
             rule.set({ outline: failingFunc });
             const propsString = rule._generateProperties();
             expect(propsString).not.toContain('outline:');
-            // Assertion corrigée dans la réponse précédente
             expect(errorSpy).toHaveBeenCalledWith(
-                expect.stringContaining('Func prop value error [outline]:'),
-                expect.any(Error)
+                 expect.stringContaining('Func prop value error for [outline]:'), // <-- Mis à jour ici
+                 expect.any(Error)
             );
        });
     });

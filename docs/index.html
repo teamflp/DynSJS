@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="default" lang="en" data-base="./">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <title>dynsjs</title>
+    <meta name="description" content="Documentation for dynsjs" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="assets/highlight.css" />
+    <script defer src="assets/main.js"></script>
+    <script async src="assets/icons.js" id="tsd-icons-script"></script>
+    <script async src="assets/search.js" id="tsd-search-script"></script>
+    <script async src="assets/navigation.js" id="tsd-nav-script"></script>
+</head>
+
+<body>
+    <script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"; document.body.style.display = "none"; setTimeout(() => window.app ? app.showPage() : document.body.style.removeProperty("display"), 500)</script>
+    <header class="tsd-page-toolbar">
+        <div class="tsd-toolbar-contents container"><a href="index.html" class="title">dynsjs</a>
+            <div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget"
+                aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <use href="assets/icons.svg#icon-search"></use>
+                </svg></button>
+            <dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input"
+                    aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true"
+                    autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100" />
+                <ul role="listbox" id="tsd-search-results"></ul>
+                <div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+                    <div>Preparing search index...</div>
+                </div>
+            </dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu"
+                aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <use href="assets/icons.svg#icon-menu"></use>
+                </svg></a>
+        </div>
+    </header>
+    <div class="container container-main">
+        <div class="col-content">
+            <div class="tsd-page-title">
+                <h1>dynsjs</h1>
+            </div>
+            <div class="tsd-panel tsd-typography">
+                <h2 id="librairie-dynsjs--dynamic-style-javascript" class="tsd-anchor-link">Librairie DynSJS : Dynamic
+                    Style JavaScript<a href="#librairie-dynsjs--dynamic-style-javascript" aria-label="Permalink"
+                        class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <use href="assets/icons.svg#icon-anchor"></use>
+                        </svg></a></h2>
+                <p>Les axes principaux sur lesquels vous pourriez travailler :</p>
+                <ol>
+                    <li>Fiabilité et Robustesse du Cœur de la Bibliothèque</li>
+                </ol>
+                <h3 id="tests-approfondis-" class="tsd-anchor-link">Tests Approfondis :<a href="#tests-approfondis-"
+                        aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <use href="assets/icons.svg#icon-anchor"></use>
+                        </svg></a></h3>
+                <ul>
+                    <li><strong>Couverture</strong> Étendue : Augmentez la couverture de tests pour inclure tous les cas
+                        limites, les combinaisons complexes de nested, media, when, les erreurs d'API, etc. Visez une
+                        couverture proche de 100% pour les fonctions critiques.</li>
+                    <li><strong>Tests de Performance / Benchmarks</strong> : Mesurez la performance de compile() et
+                        inject() avec un grand nombre de règles pour identifier les goulots d'étranglement et valider
+                        les optimisations.</li>
+                    <li><strong>Tests de Snapshot CSS</strong> : Utilisez les snapshots de Vitest plus largement pour
+                        vérifier la sortie CSS générée et détecter les régressions visuelles non intentionnelles.</li>
+                    <li><strong>Gestion des Erreurs Améliorée</strong> : Rendez les messages d'erreur plus explicites,
+                        en indiquant clairement quelle partie de l'API a été mal utilisée ou quelle configuration pose
+                        problème. Ajoutez plus de validation préventive dans les méthodes publiques.</li>
+                    <li><strong>Optimisations (si nécessaire)</strong> : Si les benchmarks révèlent des lenteurs,
+                        implémentez des stratégies de caching plus avancées (par règle, basé sur un hash du
+                        contenu/thème) ou optimisez les algorithmes de génération de chaînes dans compile().</li>
+                    <li><strong>Gestion SSR</strong> : Testez et documentez rigoureusement l'utilisation dans un
+                        contexte de Server-Side Rendering. Assurez-vous que les fonctions when ou les accès au thème
+                        n'utilisent pas d'API spécifiques au navigateur si options.ssr est true.</li>
+                </ul>
+                <ol start="2">
+                    <li>-c Amélioration de l'Expérience Développeur (DX)</li>
+                </ol>
+                <h3 id="passage-à-typescript-fortement-recommandé-" class="tsd-anchor-link">Passage à TypeScript
+                    (Fortement Recommandé) :<a href="#passage-à-typescript-fortement-recommandé-" aria-label="Permalink"
+                        class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <use href="assets/icons.svg#icon-anchor"></use>
+                        </svg></a></h3>
+                <ul>
+                    <li><strong>Réécrire la source en .ts</strong> : C'est l'étape la plus significative vers la
+                        maturité. Cela apporte la sécurité des types au cœur de la bibliothèque, facilite la
+                        maintenance, le refactoring, et génère automatiquement des fichiers .d.ts parfaitement
+                        synchronisés.</li>
+                    <li><strong>Typages Stricts</strong> : Utilisez les options strictes de TypeScript (tsconfig.json)
+                        pour une meilleure qualité de code.</li>
+                </ul>
+                <p><strong>Documentation Complète</strong> :</p>
+                <ul>
+                    <li><strong>Site Dédié</strong> : Créez un site web pour la documentation (avec VitePress,
+                        Docusaurus, Nextra, MkDocs...).</li>
+                    <li><strong>Référence API</strong> : Documentez chaque classe, méthode, option publique avec des
+                        explications claires, des exemples de code et les types (via TSDoc si vous passez à TypeScript).
+                        Tutoriels et Guides : Rédigez des guides pas-à-pas (Installation, Prise en main, Theming,
+                        Utilisation avec Tailwind, Conditions avancées, SSR, etc.).
+                        Exemples Concrets : Fournissez des exemples d'utilisation plus complexes et variés,
+                        potentiellement intégrés au site de documentation.
+                        Messages d'Erreur et Avertissements : Assurez-vous qu'ils soient clairs, utiles et indiquent
+                        comment résoudre le problème.
+                        Intégration Outils : Fournissez ou recommandez des configurations pour les outils courants comme
+                        ESLint et Prettier pour assurer une cohérence de code.</li>
+                </ul>
+                <ol>
+                    <li>Fonctionnalités et Écosystème</li>
+                </ol>
+                <p>Fonctionnalités CSS Modernes :
+                    Variables CSS : Ajoutez des helpers optionnels pour simplifier la définition (setVariable('--nom',
+                    valeur)) et l'utilisation (useVariable('--nom', fallback)).
+                    Auto-Prefixing : Documentez clairement comment l'intégrer via PostCSS (comme nous l'avons fait) car
+                    c'est la méthode standard. Évitez de l'intégrer directement dans DynSJS.
+                    Amélioration API :
+                    Sélecteurs Avancés : Implémentez un support plus complet pour &amp; (combinateurs, sélecteurs
+                    multiples), et potentiellement des helpers pour les pseudo-éléments.
+                    Helpers d'Unités : Fonctions px(10), rem(1.5), percent(50) qui retournent les chaînes correctes.
+                    Theming Avancé : Support pour plusieurs thèmes, changement de thème dynamique (peut nécessiter des
+                    intégrations spécifiques aux frameworks UI).
+                    Intégrations Frameworks (Optionnel) : Si pertinent, créez des paquets séparés (ex: @dynsjs/react,
+                    @dynsjs/vue) avec des hooks ou des composants pour faciliter l'intégration (gestion de thème via
+                    contexte, injection automatique optimisée pour le cycle de vie du framework).
+                    Système de Plugins (Avancé) : Si vous voyez un besoin d'extension, définissez une API de plugins
+                    pour permettre à la communauté d'ajouter des fonctionnalités (ex: transformations CSS spécifiques,
+                    nouveaux helpers).
+                    4. Communauté et Publication</p>
+                <p>Publication sur npm : Rendez votre bibliothèque facilement installable. Utilisez le versionnage
+                    sémantique (SemVer).
+                    Licence Claire : (Vous avez déjà MIT, c'est parfait).
+                    Guide de Contribution (<a href="http://CONTRIBUTING.md">CONTRIBUTING.md</a>) : Expliquez comment
+                    rapporter des bugs, proposer des fonctionnalités et soumettre des Pull Requests (style de code,
+                    tests requis, etc.).
+                    Code de Conduite (CODE_OF_CONDUCT.md) : Pour établir un environnement accueillant.
+                    Changelog (<a href="http://CHANGELOG.md">CHANGELOG.md</a>) : Documentez les changements entre les
+                    versions.
+                    Par où commencer ?</p>
+                <p>C'est beaucoup de travail ! Je suggérerais de prioriser :</p>
+                <p>Solidifier les Tests : Augmenter la couverture pour être sûr de la base actuelle.
+                    Documentation Initiale Forte : Améliorer le <a href="http://README.md">README.md</a> actuel et créer
+                    une référence API de base.
+                    Migration vers TypeScript : C'est un gros effort mais qui apporte d'énormes bénéfices en termes de
+                    maintenabilité et d'attractivité pour les autres développeurs.
+                    Publication npm Initiale : Pour obtenir des retours d'utilisateurs.
+                    Ensuite, ajoutez progressivement les fonctionnalités (Theming avancé, Sélecteurs...) et améliorez la
+                    documentation (site dédié, tutoriels) en fonction des besoins et des retours.</p>
+            </div>
+        </div>
+        <div class="col-sidebar">
+            <div class="page-menu">
+                <div class="tsd-navigation settings">
+                    <details class="tsd-accordion">
+                        <summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" aria-hidden="true">
+                                <use href="assets/icons.svg#icon-chevronDown"></use>
+                            </svg>
+                            <h3>Settings</h3>
+                        </summary>
+                        <div class="tsd-accordion-details">
+                            <div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+                                <ul id="tsd-filter-options">
+                                    <li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox"
+                                                id="tsd-filter-protected" name="protected" /><svg width="32" height="32"
+                                                viewBox="0 0 32 32" aria-hidden="true">
+                                                <rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1"
+                                                    rx="6" fill="none"></rect>
+                                                <path class="tsd-checkbox-checkmark"
+                                                    d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none"
+                                                    stroke-width="3.5" stroke-linejoin="round" fill="none"></path>
+                                            </svg><span>Protected</span></label></li>
+                                    <li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox"
+                                                id="tsd-filter-inherited" name="inherited" checked /><svg width="32"
+                                                height="32" viewBox="0 0 32 32" aria-hidden="true">
+                                                <rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1"
+                                                    rx="6" fill="none"></rect>
+                                                <path class="tsd-checkbox-checkmark"
+                                                    d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none"
+                                                    stroke-width="3.5" stroke-linejoin="round" fill="none"></path>
+                                            </svg><span>Inherited</span></label></li>
+                                    <li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox"
+                                                id="tsd-filter-external" name="external" /><svg width="32" height="32"
+                                                viewBox="0 0 32 32" aria-hidden="true">
+                                                <rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1"
+                                                    rx="6" fill="none"></rect>
+                                                <path class="tsd-checkbox-checkmark"
+                                                    d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none"
+                                                    stroke-width="3.5" stroke-linejoin="round" fill="none"></path>
+                                            </svg><span>External</span></label></li>
+                                </ul>
+                            </div>
+                            <div class="tsd-theme-toggle"><label class="settings-label"
+                                    for="tsd-theme">Theme</label><select id="tsd-theme">
+                                    <option value="os">OS</option>
+                                    <option value="light">Light</option>
+                                    <option value="dark">Dark</option>
+                                </select></div>
+                        </div>
+                    </details>
+                </div>
+                <details open class="tsd-accordion tsd-page-navigation">
+                    <summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            aria-hidden="true">
+                            <use href="assets/icons.svg#icon-chevronDown"></use>
+                        </svg>
+                        <h3>On This Page</h3>
+                    </summary>
+                    <div class="tsd-accordion-details"><a
+                            href="#librairie-dynsjs--dynamic-style-javascript"><span>Librairie <wbr/>Dyn<wbr/>SJS : <wbr/>Dynamic
+                                <wbr/>Style <wbr/>Java<wbr/>Script</span></a>
+                        <ul>
+                            <li><a href="#tests-approfondis-"><span>Tests <wbr/>Approfondis :</span></a></li>
+                            <li><a href="#passage-à-typescript-fortement-recommandé-"><span>Passage à
+                                        <wbr/>Type<wbr/>Script (<wbr/>Fortement <wbr/>Recommandé) :</span></a></li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+            <div class="site-menu">
+                <nav class="tsd-navigation"><a href="modules.html">dynsjs</a>
+                    <ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+                        <li>Loading...</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+    </footer>
+    <div class="overlay"></div>
+</body>
+
+</html>

@@ -1,21 +1,28 @@
-// tsconfig.json (Mis à jour)
 {
+  "$schema": "https://typedoc.org/schema.json",
   "compilerOptions": {
-    "target": "ES2016",        // Cible JS raisonnablement compatible
-    "module": "ESNext",        // Garder les imports/exports ES pour Rollup
-    "declaration": true,      // <-- Générer les .d.ts
-    "declarationMap": true,   // Optionnel: Générer des sourcemaps pour les .d.ts
-    "sourceMap": true,        // <-- Générer les .js.map
-    "outDir": "./dist/js",    // <-- Mettre les JS compilés dans dist/js
-    "declarationDir": "./dist/js/types",
-    "rootDir": "./src",       // <-- Spécifier la racine des sources TS
     "strict": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true // Utile pour certains imports
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*.ts"], // Compiler uniquement les fichiers .ts dans src
-  "exclude": ["node_modules", "dist", "test"]
+  "entryPoints": ["./src/index.ts"],
+  "out": "docs/api",
+  "plugin": ["typedoc-plugin-markdown"], // Active le plugin pour la sortie Markdown
+  "tsconfig": "./tsconfig.json",      // Indique à TypeDoc d'utiliser votre config TS existante
+  "readme": "none",                 // N'inclut pas le README.md principal du projet dans la doc API
+                                    // Vous créerez une page d'accueil séparée avec VitePress/Docusaurus
+  "excludePrivate": true,           // Exclut les membres marqués comme @private ou private
+  "excludeProtected": true,         // Exclut les membres marqués comme @protected ou protected
+  "excludeExternals": true,         // Si votre code référence des types de dépendances externes, ne pas les documenter
+  "categorizeByGroup": false,       // Simplifie la structure de sortie. true regroupe par @category TSDoc.
+  "entryPointStrategy": "resolve",  // Traite les exports depuis le point d'entrée (index.ts)
+  "gitRevision": "main",            // Ou votre branche par défaut (ex: 'master') pour les liens sources
+  "name": "DynSJS API Reference",   // Titre pour la documentation générée
+  "includeVersion": true,           // Inclut la version du package.json
+
+  // Options spécifiques à typedoc-plugin-markdown (vous pouvez les ajuster plus tard)
+  "theme": "markdown",                 // Nécessaire pour typedoc-plugin-markdown
+  "hideBreadcrumbs": false,
+  "hideInPageTOC": false,
+  "publicPath": "/api/"             // Si votre doc API sera servie depuis /api/ sur votre site VitePress
+                                    // (ex: monsite.com/dynsjs/api/). Ajustez si besoin.
 }
