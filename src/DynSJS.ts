@@ -191,7 +191,8 @@ export class DynSJS {
                        else { combined.push(`${pSel} ${currentTrimmed}`); } }
             });
         });
-        return [...new Set(combined)].sort().join(', ');
+        //return [...new Set(combined)].sort().join(', ');
+        return Array.from(new Set(combined)).sort().join(', ');
     }
 
     /**

@@ -62,11 +62,11 @@ const THEME_LOOKUP_MARKER = '__isThemeLookupRequest__';
  * // });
  */
 export function theme(key: string, defaultValue: any = undefined): ThemeLookup {
-    if (typeof key !== 'string' || !key.trim()) {
+    if (!key.trim()) {
         // Utilisation de DynSJS Utils pour la clarté du message d'erreur si ce fichier est utilisé indépendamment.
         console.warn(`DynSJS Utils: Invalid theme key provided to theme(): (key was "${key}"). Using defaultValue.`);
     }
-    return { [THEME_LOOKUP_MARKER]: true, key: typeof key === 'string' ? key.trim() : '', defaultValue: defaultValue };
+    return { [THEME_LOOKUP_MARKER]: true, key: key.trim(), defaultValue: defaultValue };
 }
 
 /**
